@@ -1,0 +1,561 @@
+digraph individual {
+	concentrate=true;
+	
+	subgraph clustercontextKey {
+		fontname=Helvetica;
+		label="Parameters";
+		style="filled";
+		fillcolor=ghostwhite;
+		color=white;
+		labeljust=l;
+		contextOverview [style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="black",label=""];
+	}
+	subgraph clusterindividualKey {
+		fontname=Helvetica;
+		nodesep=0.1;
+		style="filled";
+		fillcolor=ghostwhite;
+		label="Individual";
+		color=white;
+		labeljust=l;
+		movementOverview [fontname=Helvetica,style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="0.611, 0.9 , 0.8",label="",URL="individual__Overview.svg"];
+		placeMovementOverview [fontname=Helvetica,style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="0.666, 0.9 , 0.8",label="",URL="individual__Overview.svg"];
+		diseaseProcessOverview [fontname=Helvetica,style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="0.388, 0.9 , 0.8",label="",URL="individual__Overview.svg"];
+		detectionOverview [fontname=Helvetica,style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="0.333, 0.9 , 0.8",label="",URL="individual__Overview.svg"];
+		deriveSuccesfulTreatmentsOverview [fontname=Helvetica,style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="0.277, 0.9 , 0.8",label="",URL="individual__Overview.svg"];
+		deriveAgeRangeOverview [fontname=Helvetica,style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="0.111, 0.9 , 0.8",label="",URL="individual__Overview.svg"];
+		immuneResponseOverview [fontname=Helvetica,style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="0.444, 0.9 , 0.8",label="",URL="individual__Overview.svg"];
+		deathProcessOverview [fontname=Helvetica,style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="0.055, 0.9 , 0.8",label="",URL="individual__Overview.svg"];
+		acquireOverview [fontname=Helvetica,style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="0.0, 0.9 , 0.8",label="",URL="individual__Overview.svg"];
+		deriveBacterialClearingRateOverview [fontname=Helvetica,style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="0.166, 0.9 , 0.8",label="",URL="individual__Overview.svg"];
+		deriveDaytimeOverview [fontname=Helvetica,style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="0.222, 0.9 , 0.8",label="",URL="individual__Overview.svg"];
+		watchTBStatusOverview [fontname=Helvetica,style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="0.833, 0.9 , 0.8",label="",URL="individual__Overview.svg"];
+		watchTreatmentStatusOverview [fontname=Helvetica,style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="0.888, 0.9 , 0.8",label="",URL="individual__Overview.svg"];
+movementOverview -> placeMovementOverview -> diseaseProcessOverview -> detectionOverview -> deriveSuccesfulTreatmentsOverview -> deriveAgeRangeOverview -> immuneResponseOverview -> deathProcessOverview -> acquireOverview -> deriveBacterialClearingRateOverview -> deriveDaytimeOverview -> watchTBStatusOverview -> watchTreatmentStatusOverview [style=invis];
+	}
+	subgraph clustermapLocationKey {
+		fontname=Helvetica;
+		nodesep=0.1;
+		style="filled";
+		fillcolor=ghostwhite;
+		label="Map Location";
+		color=white;
+		labeljust=l;
+		nearestTBPositiveOverview [fontname=Helvetica,style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="0.710, 0.9 , 0.8",label="",URL="mapLocation__Overview.svg"];
+		individualCopyCopyCopyCopyCopyOverview [fontname=Helvetica,style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="0.772, 0.9 , 0.8",label="",URL="mapLocation__Overview.svg"];
+		individualCopyCopyCopyCopyOverview [fontname=Helvetica,style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="0.794, 0.9 , 0.8",label="",URL="mapLocation__Overview.svg"];
+		individualOverview [fontname=Helvetica,style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="0.463, 0.9 , 0.8",label="",URL="mapLocation__Overview.svg"];
+		potentialDiseaseLocationOverview [fontname=Helvetica,style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="0.074, 0.9 , 0.8",label="",URL="mapLocation__Overview.svg"];
+nearestTBPositiveOverview -> individualCopyCopyCopyCopyCopyOverview -> individualCopyCopyCopyCopyOverview -> individualOverview -> potentialDiseaseLocationOverview [style=invis];
+	}
+	subgraph clusterhouseKey {
+		fontname=Helvetica;
+		nodesep=0.1;
+		style="filled";
+		fillcolor=ghostwhite;
+		label="House";
+		color=white;
+		labeljust=l;
+		targetHouseOverview [fontname=Helvetica,style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="0.730, 0.9 , 0.8",label="",URL="house__Overview.svg"];
+		foundHouseOverview [fontname=Helvetica,style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="0.709, 0.9 , 0.8",label="",URL="house__Overview.svg"];
+targetHouseOverview -> foundHouseOverview [style=invis];
+	}
+	subgraph clusterworkLocationKey {
+		fontname=Helvetica;
+		nodesep=0.1;
+		style="filled";
+		fillcolor=ghostwhite;
+		label="Work Location";
+		color=white;
+		labeljust=l;
+		individualCopyCopyOverview [fontname=Helvetica,style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="0.687, 0.9 , 0.8",label="",URL="workLocation__Overview.svg"];
+		individualCopyCopyCopyOverview [fontname=Helvetica,style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="0.751, 0.9 , 0.8",label="",URL="workLocation__Overview.svg"];
+individualCopyCopyOverview -> individualCopyCopyCopyOverview [style=invis];
+	}
+		individualageIndex [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label="Age Index"];
+
+//subgraph clusterderiveAgeRange {
+	//style=filled;
+	//color=white;
+	//fillcolor="0.0, 0.0, 0.98";
+		deriveAgeRange [shape=box,style="rounded,filled",fontname=Helvetica,color=black,fillcolor="0.111, 0.2, 1.0",label="Derive Age Range",URL="individual_deriveAgeRange.svg"];
+	deriveAgeRange ->  ageIndexMultiplyLiteral5 [color="0.111, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		ageIndexMultiplyLiteral5 [shape=none,style="rounded,filled",fontname=Helvetica,color="0.111, 0.2, 1.0",label="Multiply"];
+//}
+		individualageIndex -> ageIndexMultiplyLiteral5:nw [style=dotted,arrowhead=dot,color="0.111, 0.9 , 0.8",penwidth=2.0];
+		literal5 -> ageIndexMultiplyLiteral5:ne [style=dotted,arrowhead=dot,color="0.111, 0.9 , 0.8",penwidth=2.0];
+		literal5 [shape=none,fontname=Helvetica,color=black,label="5"];
+		literal5 -> ageIndexMultiplyLiteral5:ne [style=dotted,arrowhead=dot,color=blue,penwidth=2.0];
+
+//subgraph clusterderiveBacterialClearingRate {
+	//style=filled;
+	//color=white;
+	//fillcolor="0.0, 0.0, 0.98";
+		deriveBacterialClearingRate [shape=box,style="rounded,filled",fontname=Helvetica,color=black,fillcolor="0.166, 0.2, 1.0",label="Derive Bacterial Clearing Rate",URL="individual_deriveBacterialClearingRate.svg"];
+	deriveBacterialClearingRate ->  immuneClearing [color="0.166, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		immuneClearingAddZero [shape=none,style="rounded,filled",fontname=Helvetica,color="0.166, 0.2, 1.0",label="Add"];
+		immuneClearing [shape=none,style="rounded,filled",fontname=Helvetica,color="0.166, 0.2, 1.0",label="Immune Clearing"];
+	immuneClearing ->  immuneClearingAddZero [color="0.166, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+//}
+		immuneClearing -> immuneClearingAddZero:nw [style=dotted,arrowhead=dot,color=blue,penwidth=2.0];
+	
+		importxyximmuneClearingAddZerofunctionszero1 [fontname=Helvetica,shape=none,label="0"];
+		importxyximmuneClearingAddZerofunctionszero1 -> immuneClearingAddZero:ne [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+		tBmodelperiodsinDay [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label=<<i>Periods in Day</i>>];
+
+//subgraph clusterderiveDaytime {
+	//style=filled;
+	//color=white;
+	//fillcolor="0.0, 0.0, 0.98";
+		deriveDaytime [shape=box,style="rounded,filled",fontname=Helvetica,color=black,fillcolor="0.222, 0.2, 1.0",label="Derive Daytime",URL="individual_deriveDaytime.svg"];
+	deriveDaytime ->  now [color="0.222, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		nowModuloPeriodsinDay [shape=none,style="rounded,filled",fontname=Helvetica,color="0.222, 0.2, 1.0",label="Modulo"];
+	nowModuloPeriodsinDay ->  nowModuloPeriodsinDayIdenticalZero [color="0.222, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		nowModuloPeriodsinDayIdenticalZero [shape=none,style="rounded,filled",fontname=Helvetica,color="0.222, 0.2, 1.0",label="Identical?"];
+		now [shape=none,style="rounded,filled",fontname=Helvetica,color="0.222, 0.2, 1.0",label="Now"];
+	now ->  nowModuloPeriodsinDay [color="0.222, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+//}
+		tBmodelperiodsinDay -> nowModuloPeriodsinDay:ne [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+		now -> nowModuloPeriodsinDay:nw [style=dotted,arrowhead=dot,color=blue,penwidth=2.0];
+		nowModuloPeriodsinDay -> nowModuloPeriodsinDayIdenticalZero:nw [style=dotted,arrowhead=dot,color=blue,penwidth=2.0];
+	
+		importxyxnowModuloPeriodsinDayIdenticalZerofunctionszero1 [fontname=Helvetica,shape=none,label="0"];
+		importxyxnowModuloPeriodsinDayIdenticalZerofunctionszero1 -> nowModuloPeriodsinDayIdenticalZero:ne [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+		individualtBStatusRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualtBStatus> TB Status | {<individualtBStatussuseptible> Suseptible|<individualtBStatuslatent> Latent|<individualtBStatusactive> Active|<individualtBStatusdead> Dead}}"];
+		individualtBInfectionsPerLifetime [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label="TB Infections Per Lifetime"];
+
+//subgraph clusterderiveSuccesfulTreatments {
+	//style=filled;
+	//color=white;
+	//fillcolor="0.0, 0.0, 0.98";
+		deriveSuccesfulTreatments [shape=box,style="rounded,filled",fontname=Helvetica,color=black,fillcolor="0.277, 0.2, 1.0",label="Derive Succesful Treatments",URL="individual_deriveSuccesfulTreatments.svg"];
+	deriveSuccesfulTreatments ->  tBStatusDifferentSuseptibleQuery [color="0.277, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	deriveSuccesfulTreatments ->  tBStatusIdenticalSuseptibleQueryCopyCopy [color="0.277, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		tBInfectionsPerLifetimeSubtractUnit [shape=none,style="rounded,filled",fontname=Helvetica,color="0.277, 0.2, 1.0",label="Subtract"];
+		tBStatusIdenticalSuseptibleQueryCopyCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.277, 0.2, 1.0",label="Is?"];
+	tBStatusIdenticalSuseptibleQueryCopyCopy ->  tBInfectionsPerLifetimeSubtractZero [color="0.277, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		tBStatusDifferentSuseptibleQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.277, 0.2, 1.0",label="Is Not?"];
+	tBStatusDifferentSuseptibleQuery ->  tBInfectionsPerLifetimeSubtractUnit [color="0.277, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		tBInfectionsPerLifetimeSubtractZero [shape=none,style="rounded,filled",fontname=Helvetica,color="0.277, 0.2, 1.0",label="Subtract"];
+//}
+		individualtBInfectionsPerLifetime -> tBInfectionsPerLifetimeSubtractUnit:nw [style=dotted,arrowhead=dot,color="0.277, 0.9 , 0.8",penwidth=2.0];
+	
+		importxyxtBInfectionsPerLifetimeSubtractUnitfunctionsunit0 [fontname=Helvetica,shape=none,label="1"];
+		importxyxtBInfectionsPerLifetimeSubtractUnitfunctionsunit0 -> tBInfectionsPerLifetimeSubtractUnit:ne [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+		individualtBStatusRecord:individualtBStatussuseptible -> tBStatusIdenticalSuseptibleQueryCopyCopy:ne [style=dotted,arrowhead=dot,color="0.277, 0.9 , 0.8",penwidth=2.0];
+		individualtBStatusRecord:individualtBStatussuseptible -> tBStatusDifferentSuseptibleQuery:ne [style=dotted,arrowhead=dot,color="0.277, 0.9 , 0.8",penwidth=2.0];
+		individualtBInfectionsPerLifetime -> tBInfectionsPerLifetimeSubtractZero:nw [style=dotted,arrowhead=dot,color="0.277, 0.9 , 0.8",penwidth=2.0];
+	
+		importxyxtBInfectionsPerLifetimeSubtractZerofunctionszero0 [fontname=Helvetica,shape=none,label="0"];
+		importxyxtBInfectionsPerLifetimeSubtractZerofunctionszero0 -> tBInfectionsPerLifetimeSubtractZero:ne [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+		individualbacterialLoad [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label="Bacterial Load"];
+		mapLocationtBBacterialPresense [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label="TB Bacterial Presense"];
+
+//subgraph clusteracquire {
+	//style=filled;
+	//color=white;
+	//fillcolor="0.0, 0.0, 0.98";
+		acquire [shape=box,style="rounded,filled",fontname=Helvetica,color=black,fillcolor="0.0, 0.2, 1.0",label="Acquire",URL="individual_acquire.svg"];
+	acquire ->  potentialDiseaseLocation [color="0.0, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		hereQueryCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.074, 0.2, 1.0",label="Here"];
+	hereQueryCopy ->  bacterialLoadAddTBBacterialPresense [color="0.074, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		potentialDiseaseLocation [shape=none,style="rounded,filled",fontname=Helvetica,color=gray,fillcolor="0.074, 0.2, 1.0",label="Potential Disease Location"];
+	potentialDiseaseLocation ->  hereQueryCopy [color="0.074, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		bacterialLoadAddTBBacterialPresense [shape=none,style="rounded,filled",fontname=Helvetica,color="0.0, 0.2, 1.0",label="Add"];
+			bacterialLoadAddTBBacterialPresense ->  individualbacterialLoad [color="0.0, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+//}
+		individualbacterialLoad -> bacterialLoadAddTBBacterialPresense:nw [style=dotted,arrowhead=dot,color="0.0, 0.9 , 0.8",penwidth=2.0];
+		mapLocationtBBacterialPresense -> bacterialLoadAddTBBacterialPresense:ne [style=dotted,arrowhead=dot,color="0.074, 0.9 , 0.8",penwidth=2.0];
+		individualtBStatusRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualtBStatus> TB Status | {<individualtBStatussuseptible> Suseptible|<individualtBStatuslatent> Latent|<individualtBStatusactive> Active|<individualtBStatusdead> Dead}}"];
+		individualtBStatusRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualtBStatus> TB Status | {<individualtBStatussuseptible> Suseptible|<individualtBStatuslatent> Latent|<individualtBStatusactive> Active|<individualtBStatusdead> Dead}}"];
+		tBmodelperiodsinYear [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label=<<i>Periods in Year</i>>];
+		tBmodeltBActiveDeathRateperYear [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label=<<i>TB Active Death Rate per Year</i>>];
+
+//subgraph clusterdeathProcess {
+	//style=filled;
+	//color=white;
+	//fillcolor="0.0, 0.0, 0.98";
+		deathProcess [shape=box,style="rounded,filled",fontname=Helvetica,color=black,fillcolor="0.055, 0.2, 1.0",label="Death Process",URL="individual_deathProcess.svg"];
+	deathProcess ->  tBStatusIdenticalActiveQueryCopy [color="0.055, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		randomUnitLesserTBActiveDeathRateperYearDividePeriodsinYearQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.055, 0.2, 1.0",label="Lesser?"];
+			randomUnitLesserTBActiveDeathRateperYearDividePeriodsinYearQuery ->  individualtBStatusRecord:individualtBStatusdead [color="0.055, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		tBActiveDeathRateperYearDividePeriodsinYear [shape=none,style="rounded,filled",fontname=Helvetica,color="0.055, 0.2, 1.0",label="Divide"];
+	tBActiveDeathRateperYearDividePeriodsinYear ->  randomUnitLesserTBActiveDeathRateperYearDividePeriodsinYearQuery [color="0.055, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		tBStatusIdenticalActiveQueryCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.055, 0.2, 1.0",label="Is?"];
+	tBStatusIdenticalActiveQueryCopy ->  randomUnit [color="0.055, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		randomUnit [shape=none,style="rounded,filled",fontname=Helvetica,color="0.055, 0.2, 1.0",label="Random Unit"];
+	randomUnit ->  tBActiveDeathRateperYearDividePeriodsinYear [color="0.055, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+//}
+		tBActiveDeathRateperYearDividePeriodsinYear -> randomUnitLesserTBActiveDeathRateperYearDividePeriodsinYearQuery:ne [style=dotted,arrowhead=dot,color=blue,penwidth=2.0];
+		randomUnit -> randomUnitLesserTBActiveDeathRateperYearDividePeriodsinYearQuery:nw [style=dotted,arrowhead=dot,color=blue,penwidth=2.0];
+		tBmodeltBActiveDeathRateperYear -> tBActiveDeathRateperYearDividePeriodsinYear:nw [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+		tBmodelperiodsinYear -> tBActiveDeathRateperYearDividePeriodsinYear:ne [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+		individualtBStatusRecord:individualtBStatusactive -> tBStatusIdenticalActiveQueryCopy:ne [style=dotted,arrowhead=dot,color="0.055, 0.9 , 0.8",penwidth=2.0];
+		individualtreatmentStatusRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualtreatmentStatus> Treatment Status | {<individualtreatmentStatusnotInfected> Not Infected|<individualtreatmentStatusnoTreatment> No Treatment|<individualtreatmentStatusclinicalTreatment> Clinical Treatment|<individualtreatmentStatusnonCompliantClinicalTreatment> Non Compliant Clinical Treatment}}"];
+		individualtBStatusRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualtBStatus> TB Status | {<individualtBStatussuseptible> Suseptible|<individualtBStatuslatent> Latent|<individualtBStatusactive> Active|<individualtBStatusdead> Dead}}"];
+		individualtreatmentStatusRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualtreatmentStatus> Treatment Status | {<individualtreatmentStatusnotInfected> Not Infected|<individualtreatmentStatusnoTreatment> No Treatment|<individualtreatmentStatusclinicalTreatment> Clinical Treatment|<individualtreatmentStatusnonCompliantClinicalTreatment> Non Compliant Clinical Treatment}}"];
+		individualtBInfectionsPerLifetime [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label="TB Infections Per Lifetime"];
+		individualtBStatusRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualtBStatus> TB Status | {<individualtBStatussuseptible> Suseptible|<individualtBStatuslatent> Latent|<individualtBStatusactive> Active|<individualtBStatusdead> Dead}}"];
+
+//subgraph clusterwatchTBStatus {
+	//style=filled;
+	//color=white;
+	//fillcolor="0.0, 0.0, 0.98";
+		watchTBStatus [shape=box,style="rounded,filled",fontname=Helvetica,color=black,fillcolor="0.833, 0.2, 1.0",label="Watch TB Status",URL="individual_watchTBStatus.svg"];
+		individualtBStatusRecord:individualtBStatus ->  watchTBStatus [color="0.833, 0.9 , 0.8",penwidth=2.0,arrowhead=vee];
+	watchTBStatus ->  tBStatusIdenticalLatentQueryCopy [color="0.833, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	watchTBStatus ->  tBStatusIdenticalSuseptibleQueryCopy [color="0.833, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		incrementTBInfectionsPerLifetime [shape=none,style="rounded,filled",fontname=Helvetica,color="0.833, 0.2, 1.0",label="Increment"];
+			incrementTBInfectionsPerLifetime ->  individualtBInfectionsPerLifetime [color="0.833, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		tBStatusIdenticalLatentQueryCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.833, 0.2, 1.0",label="Is?"];
+	tBStatusIdenticalLatentQueryCopy ->  incrementTBInfectionsPerLifetime [color="0.833, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+			tBStatusIdenticalLatentQueryCopy ->  individualtreatmentStatusRecord:individualtreatmentStatusnoTreatment [color="0.833, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		tBStatusIdenticalSuseptibleQueryCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.833, 0.2, 1.0",label="Is?"];
+			tBStatusIdenticalSuseptibleQueryCopy ->  individualtreatmentStatusRecord:individualtreatmentStatusnotInfected [color="0.833, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+//}
+		individualtBInfectionsPerLifetime -> incrementTBInfectionsPerLifetime:nw [style=dotted,arrowhead=dot,color="0.833, 0.9 , 0.8",penwidth=2.0];
+		individualtBStatusRecord:individualtBStatuslatent -> tBStatusIdenticalLatentQueryCopy:ne [style=dotted,arrowhead=dot,color="0.833, 0.9 , 0.8",penwidth=2.0];
+		individualtBStatusRecord:individualtBStatussuseptible -> tBStatusIdenticalSuseptibleQueryCopy:ne [style=dotted,arrowhead=dot,color="0.833, 0.9 , 0.8",penwidth=2.0];
+		individualtBStatusRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualtBStatus> TB Status | {<individualtBStatussuseptible> Suseptible|<individualtBStatuslatent> Latent|<individualtBStatusactive> Active|<individualtBStatusdead> Dead}}"];
+		individualtreatmentStatusRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualtreatmentStatus> Treatment Status | {<individualtreatmentStatusnotInfected> Not Infected|<individualtreatmentStatusnoTreatment> No Treatment|<individualtreatmentStatusclinicalTreatment> Clinical Treatment|<individualtreatmentStatusnonCompliantClinicalTreatment> Non Compliant Clinical Treatment}}"];
+		individualdaysUntilRecovered [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label="Days Until Recovered"];
+		tBmodelminDaysClinicalTreatmenttoLatent [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label=<<i>Min Days Clinical Treatment to Latent</i>>];
+		tBmodelmaxDaysClinicalTreatmenttoLatent [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label=<<i>Max Days Clinical Treatment to Latent</i>>];
+		individualdaysUntilLatent [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label="Days Until Latent"];
+		tBmodelminDaysClinicalTreatmenttoRecovered [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label=<<i>Min Days Clinical Treatment to Recovered</i>>];
+		tBmodelmaxDaysClinicalTreatmenttoRecovered [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label=<<i>Max Days Clinical Treatment to Recovered</i>>];
+		individualtreatmentStatusRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualtreatmentStatus> Treatment Status | {<individualtreatmentStatusnotInfected> Not Infected|<individualtreatmentStatusnoTreatment> No Treatment|<individualtreatmentStatusclinicalTreatment> Clinical Treatment|<individualtreatmentStatusnonCompliantClinicalTreatment> Non Compliant Clinical Treatment}}"];
+
+//subgraph clusterwatchTreatmentStatus {
+	//style=filled;
+	//color=white;
+	//fillcolor="0.0, 0.0, 0.98";
+		watchTreatmentStatus [shape=box,style="rounded,filled",fontname=Helvetica,color=black,fillcolor="0.888, 0.2, 1.0",label="Watch Treatment Status",URL="individual_watchTreatmentStatus.svg"];
+		individualtreatmentStatusRecord:individualtreatmentStatus ->  watchTreatmentStatus [color="0.888, 0.9 , 0.8",penwidth=2.0,arrowhead=vee];
+	watchTreatmentStatus ->  treatmentStatusIdenticalClinicalTreatmentQuery [color="0.888, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		tBStatusIdenticalActiveQueryCopyCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.888, 0.2, 1.0",label="Is?"];
+	tBStatusIdenticalActiveQueryCopyCopy ->  drawDaysuntilLatent [color="0.888, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		treatmentStatusIdenticalClinicalTreatmentQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.888, 0.2, 1.0",label="Is?"];
+	treatmentStatusIdenticalClinicalTreatmentQuery ->  tBStatusIdenticalActiveQueryCopyCopy [color="0.888, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	treatmentStatusIdenticalClinicalTreatmentQuery ->  drawDaysuntilRecovered [color="0.888, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		drawDaysuntilLatent [shape=none,style="rounded,filled",fontname=Helvetica,color="0.888, 0.2, 1.0",label="Random In Range?"];
+			drawDaysuntilLatent ->  individualdaysUntilLatent [color="0.888, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		drawDaysuntilRecovered [shape=none,style="rounded,filled",fontname=Helvetica,color="0.888, 0.2, 1.0",label="Random In Range?"];
+			drawDaysuntilRecovered ->  individualdaysUntilRecovered [color="0.888, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+//}
+		individualtBStatusRecord:individualtBStatusactive -> tBStatusIdenticalActiveQueryCopyCopy:ne [style=dotted,arrowhead=dot,color="0.888, 0.9 , 0.8",penwidth=2.0];
+		individualtreatmentStatusRecord:individualtreatmentStatusclinicalTreatment -> treatmentStatusIdenticalClinicalTreatmentQuery:ne [style=dotted,arrowhead=dot,color="0.888, 0.9 , 0.8",penwidth=2.0];
+		tBmodelminDaysClinicalTreatmenttoLatent -> drawDaysuntilLatent:nw [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+		tBmodelmaxDaysClinicalTreatmenttoLatent -> drawDaysuntilLatent:ne [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+		tBmodelminDaysClinicalTreatmenttoRecovered -> drawDaysuntilRecovered:nw [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+		tBmodelmaxDaysClinicalTreatmenttoRecovered -> drawDaysuntilRecovered:ne [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+		individualtBStatusRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualtBStatus> TB Status | {<individualtBStatussuseptible> Suseptible|<individualtBStatuslatent> Latent|<individualtBStatusactive> Active|<individualtBStatusdead> Dead}}"];
+		individualbacterialLoad [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label="Bacterial Load"];
+		individualbacterialClearingRate [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label="Bacterial Clearing Rate"];
+		individualtBStatusRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualtBStatus> TB Status | {<individualtBStatussuseptible> Suseptible|<individualtBStatuslatent> Latent|<individualtBStatusactive> Active|<individualtBStatusdead> Dead}}"];
+		tBmodelbacterialLoadInfectionThreshold [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label=<<i>Bacterial Load Infection Threshold</i>>];
+
+//subgraph clusterimmuneResponse {
+	//style=filled;
+	//color=white;
+	//fillcolor="0.0, 0.0, 0.98";
+		immuneResponse [shape=box,style="rounded,filled",fontname=Helvetica,color=black,fillcolor="0.444, 0.2, 1.0",label="Immune Response",URL="individual_immuneResponse.svg"];
+	immuneResponse ->  tBStatusIdenticalSuseptibleQuery [color="0.444, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	immuneResponse ->  tBStatusDifferentSuseptibleQueryCopy [color="0.444, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		tBStatusDifferentSuseptibleQueryCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.444, 0.2, 1.0",label="Is Not?"];
+	tBStatusDifferentSuseptibleQueryCopy ->  setBacterialLoadToBacterialLoadInfectionThreshold [color="0.444, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	setBacterialLoadToBacterialLoadInfectionThreshold ->  individualbacterialLoad [color="0.444, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		bacterialLoadSubtractBacterialClearingRate [shape=none,style="rounded,filled",fontname=Helvetica,color="0.444, 0.2, 1.0",label="Subtract"];
+	bacterialLoadSubtractBacterialClearingRate ->  maximum_BacterialLoadSubtractBacterialClearingRateZero_ [color="0.444, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		tBStatusIdenticalSuseptibleQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.444, 0.2, 1.0",label="Is?"];
+	tBStatusIdenticalSuseptibleQuery ->  bacterialLoadSubtractBacterialClearingRate [color="0.444, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+
+		setBacterialLoadToBacterialLoadInfectionThreshold [shape=none,style="rounded,filled",fontname=Helvetica,color="0.444, 0.2, 1.0",label="Set"];
+		bacterialLoadGreaterBacterialLoadInfectionThresholdQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.444, 0.2, 1.0",label="Greater?"];
+			bacterialLoadGreaterBacterialLoadInfectionThresholdQuery ->  individualtBStatusRecord:individualtBStatuslatent [color="0.444, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		maximum_BacterialLoadSubtractBacterialClearingRateZero_ [shape=none,style="rounded,filled",fontname=Helvetica,color="0.444, 0.2, 1.0",label="Maximum?"];
+		maximum_BacterialLoadSubtractBacterialClearingRateZero_ ->  bacterialLoadGreaterBacterialLoadInfectionThresholdQuery [color="0.444, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+			maximum_BacterialLoadSubtractBacterialClearingRateZero_ ->  individualbacterialLoad [color="0.444, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+//}
+		individualtBStatusRecord:individualtBStatussuseptible -> tBStatusDifferentSuseptibleQueryCopy:ne [style=dotted,arrowhead=dot,color="0.444, 0.9 , 0.8",penwidth=2.0];
+		individualbacterialLoad -> bacterialLoadSubtractBacterialClearingRate:nw [style=dotted,arrowhead=dot,color="0.444, 0.9 , 0.8",penwidth=2.0];
+		individualbacterialClearingRate -> bacterialLoadSubtractBacterialClearingRate:ne [style=dotted,arrowhead=dot,color="0.444, 0.9 , 0.8",penwidth=2.0];
+		individualtBStatusRecord:individualtBStatussuseptible -> tBStatusIdenticalSuseptibleQuery:ne [style=dotted,arrowhead=dot,color="0.444, 0.9 , 0.8",penwidth=2.0];
+
+		importabcsetBacterialLoadToBacterialLoadInfectionThresholdtBmodelbacterialLoadInfectionThreshold [fontname=Helvetica,shape=none,label="Bacterial Load Infection Threshold"];
+		importabcsetBacterialLoadToBacterialLoadInfectionThresholdtBmodelbacterialLoadInfectionThreshold -> setBacterialLoadToBacterialLoadInfectionThreshold:"ne" [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+		individualbacterialLoad -> bacterialLoadGreaterBacterialLoadInfectionThresholdQuery:nw [style=dotted,arrowhead=dot,color="0.444, 0.9 , 0.8",penwidth=2.0];
+		tBmodelbacterialLoadInfectionThreshold -> bacterialLoadGreaterBacterialLoadInfectionThresholdQuery:ne [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+		bacterialLoadSubtractBacterialClearingRate -> maximum_BacterialLoadSubtractBacterialClearingRateZero_:nw [style=dotted,arrowhead=dot,color=blue,penwidth=2.0];
+	
+		importxyxmaximum_BacterialLoadSubtractBacterialClearingRateZero_functionszero1 [fontname=Helvetica,shape=none,label="0"];
+		importxyxmaximum_BacterialLoadSubtractBacterialClearingRateZero_functionszero1 -> maximum_BacterialLoadSubtractBacterialClearingRateZero_:ne [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+		individualtreatmentStatusRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualtreatmentStatus> Treatment Status | {<individualtreatmentStatusnotInfected> Not Infected|<individualtreatmentStatusnoTreatment> No Treatment|<individualtreatmentStatusclinicalTreatment> Clinical Treatment|<individualtreatmentStatusnonCompliantClinicalTreatment> Non Compliant Clinical Treatment}}"];
+		individualcomplianceBehaviorRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualcomplianceBehavior> Compliance Behavior | {<individualcomplianceBehaviorneverCompliant> Never Compliant|<individualcomplianceBehaviorsometimesCompliant> Sometimes Compliant|<individualcomplianceBehavioralwaysCompliant> Always Compliant}}"];
+		individualtreatmentStatusRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualtreatmentStatus> Treatment Status | {<individualtreatmentStatusnotInfected> Not Infected|<individualtreatmentStatusnoTreatment> No Treatment|<individualtreatmentStatusclinicalTreatment> Clinical Treatment|<individualtreatmentStatusnonCompliantClinicalTreatment> Non Compliant Clinical Treatment}}"];
+		tBmodelpSomtimesCompliantwillComply [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label=<<i>P Somtimes Compliant will Comply</i>>];
+		tBmodelpDetection [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label=<<i>P Detection</i>>];
+
+//subgraph clusterdetection {
+	//style=filled;
+	//color=white;
+	//fillcolor="0.0, 0.0, 0.98";
+		detection [shape=box,style="rounded,filled",fontname=Helvetica,color=black,fillcolor="0.333, 0.2, 1.0",label="Detection",URL="individual_detection.svg"];
+	detection ->  treatmentStatusIdenticalNoTreatmentQuery [color="0.333, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		complianceDrawLesserPSomtimesCompliantwillComplyQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.333, 0.2, 1.0",label="Lesser?"];
+			complianceDrawLesserPSomtimesCompliantwillComplyQuery ->  individualtreatmentStatusRecord:individualtreatmentStatusclinicalTreatment [color="0.333, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		detectionDrawLesserPDetectionQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.333, 0.2, 1.0",label="Lesser?"];
+	detectionDrawLesserPDetectionQuery ->  complianceBehaviorIdenticalAlwaysCompliantQuery [color="0.333, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	detectionDrawLesserPDetectionQuery ->  complianceBehaviorIdenticalNeverCompliantQuery [color="0.333, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	detectionDrawLesserPDetectionQuery ->  complianceBehaviorIdenticalSometimesCompliantQuery [color="0.333, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		complianceBehaviorIdenticalSometimesCompliantQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.333, 0.2, 1.0",label="Is?"];
+	complianceBehaviorIdenticalSometimesCompliantQuery ->  complianceDraw [color="0.333, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		detectionDraw [shape=none,style="rounded,filled",fontname=Helvetica,color="0.333, 0.2, 1.0",label="Random Unit"];
+	detectionDraw ->  detectionDrawLesserPDetectionQuery [color="0.333, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		complianceBehaviorIdenticalNeverCompliantQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.333, 0.2, 1.0",label="Is?"];
+			complianceBehaviorIdenticalNeverCompliantQuery ->  individualtreatmentStatusRecord:individualtreatmentStatusnonCompliantClinicalTreatment [color="0.333, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		complianceDraw [shape=none,style="rounded,filled",fontname=Helvetica,color="0.333, 0.2, 1.0",label="Random Unit"];
+	complianceDraw ->  complianceDrawGreaterorEqualPSomtimesCompliantwillComplyQuery [color="0.333, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	complianceDraw ->  complianceDrawLesserPSomtimesCompliantwillComplyQuery [color="0.333, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		complianceBehaviorIdenticalAlwaysCompliantQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.333, 0.2, 1.0",label="Is?"];
+			complianceBehaviorIdenticalAlwaysCompliantQuery ->  individualtreatmentStatusRecord:individualtreatmentStatusclinicalTreatment [color="0.333, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		complianceDrawGreaterorEqualPSomtimesCompliantwillComplyQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.333, 0.2, 1.0",label="Greater or Equal?"];
+			complianceDrawGreaterorEqualPSomtimesCompliantwillComplyQuery ->  individualtreatmentStatusRecord:individualtreatmentStatusnonCompliantClinicalTreatment [color="0.333, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		treatmentStatusIdenticalNoTreatmentQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.333, 0.2, 1.0",label="Is?"];
+	treatmentStatusIdenticalNoTreatmentQuery ->  detectionDraw [color="0.333, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+//}
+		tBmodelpSomtimesCompliantwillComply -> complianceDrawLesserPSomtimesCompliantwillComplyQuery:ne [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+		complianceDraw -> complianceDrawLesserPSomtimesCompliantwillComplyQuery:nw [style=dotted,arrowhead=dot,color=blue,penwidth=2.0];
+		tBmodelpDetection -> detectionDrawLesserPDetectionQuery:ne [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+		detectionDraw -> detectionDrawLesserPDetectionQuery:nw [style=dotted,arrowhead=dot,color=blue,penwidth=2.0];
+		individualcomplianceBehaviorRecord:individualcomplianceBehaviorsometimesCompliant -> complianceBehaviorIdenticalSometimesCompliantQuery:ne [style=dotted,arrowhead=dot,color="0.333, 0.9 , 0.8",penwidth=2.0];
+		individualcomplianceBehaviorRecord:individualcomplianceBehaviorneverCompliant -> complianceBehaviorIdenticalNeverCompliantQuery:ne [style=dotted,arrowhead=dot,color="0.333, 0.9 , 0.8",penwidth=2.0];
+		individualcomplianceBehaviorRecord:individualcomplianceBehavioralwaysCompliant -> complianceBehaviorIdenticalAlwaysCompliantQuery:ne [style=dotted,arrowhead=dot,color="0.333, 0.9 , 0.8",penwidth=2.0];
+		tBmodelpSomtimesCompliantwillComply -> complianceDrawGreaterorEqualPSomtimesCompliantwillComplyQuery:ne [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+		complianceDraw -> complianceDrawGreaterorEqualPSomtimesCompliantwillComplyQuery:nw [style=dotted,arrowhead=dot,color=blue,penwidth=2.0];
+		individualtreatmentStatusRecord:individualtreatmentStatusnoTreatment -> treatmentStatusIdenticalNoTreatmentQuery:ne [style=dotted,arrowhead=dot,color="0.333, 0.9 , 0.8",penwidth=2.0];
+		individualtBStatusRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualtBStatus> TB Status | {<individualtBStatussuseptible> Suseptible|<individualtBStatuslatent> Latent|<individualtBStatusactive> Active|<individualtBStatusdead> Dead}}"];
+		tBmodelavoidTBLocationsRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<tBmodelavoidTBLocationsRecord> Avoid TB Locations | {<true> True| <false> False}}"];
+		mapLocationtBBacterialPresense [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label="TB Bacterial Presense"];
+		tBmodeltBAvoidanceThreshold [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label=<<i>TB Avoidance Threshold</i>>];
+
+//subgraph clustermovement {
+	//style=filled;
+	//color=white;
+	//fillcolor="0.0, 0.0, 0.98";
+		movement [shape=box,style="rounded,filled",fontname=Helvetica,color=black,fillcolor="0.611, 0.2, 1.0",label="Movement",URL="individual_movement.svg"];
+	movement ->  tBStatusDifferentDeadQuery [color="0.611, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	movement ->  tBStatusDifferentActiveQuery [color="0.611, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		moveIndividualCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.611, 0.2, 1.0",label="Move"];
+	movement ->  moveIndividualCopy:nw [style=dashed,color="0.611, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	nearestTBPositive -> moveIndividualCopy:ne [style=dashed,color="0.710, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		awayQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.710, 0.2, 1.0",label="Away"];
+	awayQuery ->  avoidedTBLocation [color="0.710, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		_TBStatusDifferentActiveQueryAndTBStatusDifferentDeadQuery_ [shape=none,style="rounded,filled",fontname=Helvetica,color="0.611, 0.2, 1.0",label="And"];
+	_TBStatusDifferentActiveQueryAndTBStatusDifferentDeadQuery_ ->  identityAvoidTBLocationsQuery [color="0.611, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		identityAvoidTBLocationsQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.611, 0.2, 1.0",label="Is?"];
+	identityAvoidTBLocationsQuery ->  nearestTBPositive [color="0.611, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		moveAvailable [shape=none,style="rounded,filled",fontname=Helvetica,color="0.710, 0.2, 1.0",label="Nearest "];
+	moveAvailable ->  avoidedTBLocation [color="0.710, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		neighborQueryCopyCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.660, 0.2, 1.0",label="Neighbor"];
+	neighborQueryCopyCopy ->  _And_NeighborQueryCopyCopy [color="0.660, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		availableQueryCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.660, 0.2, 1.0",label="Available"];
+	availableQueryCopy ->  _And_NeighborQueryCopyCopy [color="0.660, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		tBStatusDifferentActiveQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.611, 0.2, 1.0",label="Is Not?"];
+	tBStatusDifferentActiveQuery ->  _TBStatusDifferentActiveQueryAndTBStatusDifferentDeadQuery_ [color="0.611, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		moveIndividualCopyCopyCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.611, 0.2, 1.0",label="Move"];
+	movement ->  moveIndividualCopyCopyCopy:nw [style=dashed,color="0.611, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	neighboringCell -> moveIndividualCopyCopyCopy:ne [style=dashed,color="0.660, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		tBStatusDifferentDeadQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.611, 0.2, 1.0",label="Is Not?"];
+	tBStatusDifferentDeadQuery ->  neighboringCell [color="0.611, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	tBStatusDifferentDeadQuery ->  _TBStatusDifferentActiveQueryAndTBStatusDifferentDeadQuery_ [color="0.611, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		neighboringCell [shape=none,style="rounded,filled",fontname=Helvetica,color=gray,fillcolor="0.660, 0.2, 1.0",label="Neighboring Cell"];
+	neighboringCell ->  availableQueryCopy [color="0.660, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	neighboringCell ->  neighborQueryCopyCopy [color="0.660, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		tBBacterialPresenseGreaterTBAvoidanceThresholdQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.710, 0.2, 1.0",label="Greater?"];
+	tBBacterialPresenseGreaterTBAvoidanceThresholdQuery ->  avoidedTBLocation [color="0.710, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		avoidedTBLocation [shape=none,style="rounded,filled",fontname=Helvetica,color="0.710, 0.2, 1.0",label="And"];
+	avoidedTBLocation ->  moveIndividualCopy [color="0.710, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		_And_NeighborQueryCopyCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.660, 0.2, 1.0",label="And"];
+	_And_NeighborQueryCopyCopy ->  moveIndividualCopyCopyCopy [color="0.660, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		nearestTBPositive [shape=none,style="rounded,filled",fontname=Helvetica,color=gray,fillcolor="0.710, 0.2, 1.0",label="Nearest TB Positive"];
+	nearestTBPositive ->  moveAvailable [color="0.710, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	nearestTBPositive ->  tBBacterialPresenseGreaterTBAvoidanceThresholdQuery [color="0.710, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	nearestTBPositive ->  awayQuery [color="0.710, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+//}
+		tBmodelavoidTBLocationsRecord -> identityAvoidTBLocationsQuery:nw [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+		individualtBStatusRecord:individualtBStatusactive -> tBStatusDifferentActiveQuery:ne [style=dotted,arrowhead=dot,color="0.611, 0.9 , 0.8",penwidth=2.0];
+		individualtBStatusRecord:individualtBStatusdead -> tBStatusDifferentDeadQuery:ne [style=dotted,arrowhead=dot,color="0.611, 0.9 , 0.8",penwidth=2.0];
+		mapLocationtBBacterialPresense -> tBBacterialPresenseGreaterTBAvoidanceThresholdQuery:nw [style=dotted,arrowhead=dot,color="0.710, 0.9 , 0.8",penwidth=2.0];
+		tBmodeltBAvoidanceThreshold -> tBBacterialPresenseGreaterTBAvoidanceThresholdQuery:ne [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+		individualtreatmentStatusRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualtreatmentStatus> Treatment Status | {<individualtreatmentStatusnotInfected> Not Infected|<individualtreatmentStatusnoTreatment> No Treatment|<individualtreatmentStatusclinicalTreatment> Clinical Treatment|<individualtreatmentStatusnonCompliantClinicalTreatment> Non Compliant Clinical Treatment}}"];
+		individualtBStatusRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualtBStatus> TB Status | {<individualtBStatussuseptible> Suseptible|<individualtBStatuslatent> Latent|<individualtBStatusactive> Active|<individualtBStatusdead> Dead}}"];
+		individualdaysUntilLatent [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label="Days Until Latent"];
+		individualdaysUntilRecovered [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label="Days Until Recovered"];
+		individualtBStatusRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualtBStatus> TB Status | {<individualtBStatussuseptible> Suseptible|<individualtBStatuslatent> Latent|<individualtBStatusactive> Active|<individualtBStatusdead> Dead}}"];
+		tBmodelperiodsinYear [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label=<<i>Periods in Year</i>>];
+		mapLocationtBBacterialPresense [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label="TB Bacterial Presense"];
+		tBmodelbacterialEmissionRate [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label=<<i>Bacterial Emission Rate</i>>];
+		tBmodelactiveBacterialTransmissionRate [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label=<<i>Active Bacterial Transmission Rate</i>>];
+
+//subgraph clusterdiseaseProcess {
+	//style=filled;
+	//color=white;
+	//fillcolor="0.0, 0.0, 0.98";
+		diseaseProcess [shape=box,style="rounded,filled",fontname=Helvetica,color=black,fillcolor="0.388, 0.2, 1.0",label="Disease Process",URL="individual_diseaseProcess.svg"];
+	diseaseProcess ->  tBStatusIdenticalLatentQuery [color="0.388, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	diseaseProcess ->  tBStatusIdenticalActiveQueryCopyCopyCopyCopyCopy [color="0.388, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		daysUntilLatentSubtractUnit [shape=none,style="rounded,filled",fontname=Helvetica,color="0.388, 0.2, 1.0",label="Subtract"];
+		daysUntilLatentSubtractUnit ->  daysUntilLatentIdenticalZeroQuery [color="0.388, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+			daysUntilLatentSubtractUnit ->  individualdaysUntilLatent [color="0.388, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		treatmentStatusDifferentClinicalTreatmentQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.388, 0.2, 1.0",label="Is Not?"];
+	treatmentStatusDifferentClinicalTreatmentQuery ->  latenttoActiveDraw [color="0.388, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		daysUntilRecoveredIdenticalZeroQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.388, 0.2, 1.0",label="Identical?"];
+			daysUntilRecoveredIdenticalZeroQuery ->  individualtBStatusRecord:individualtBStatussuseptible [color="0.388, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		pActiveTransitionLatentDividePeriodsinYear [shape=none,style="rounded,filled",fontname=Helvetica,color="0.388, 0.2, 1.0",label="Divide"];
+	pActiveTransitionLatentDividePeriodsinYear ->  latenttoActiveDrawLesserPActiveTransitionLatentDividePeriodsinYearQuery [color="0.388, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		treatmentStatusIdenticalClinicalTreatmentQueryCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.388, 0.2, 1.0",label="Is?"];
+	treatmentStatusIdenticalClinicalTreatmentQueryCopy ->  daysUntilLatentSubtractUnit [color="0.388, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	treatmentStatusIdenticalClinicalTreatmentQueryCopy ->  daysUntilRecoveredSubtractUnit [color="0.388, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		daysUntilRecoveredSubtractUnit [shape=none,style="rounded,filled",fontname=Helvetica,color="0.388, 0.2, 1.0",label="Subtract"];
+		daysUntilRecoveredSubtractUnit ->  daysUntilRecoveredIdenticalZeroQuery [color="0.388, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+			daysUntilRecoveredSubtractUnit ->  individualdaysUntilRecovered [color="0.388, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		tBBacterialPresenseAddBacterialEmissionRate [shape=none,style="rounded,filled",fontname=Helvetica,color="0.463, 0.2, 1.0",label="Add"];
+	tBBacterialPresenseAddBacterialEmissionRate ->  minimum_TBBacterialPresenseAddBacterialEmissionRateActiveBacterialTransmissionRate_ [color="0.463, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		tBStatusIdenticalActiveQueryCopyCopyCopyCopyCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.388, 0.2, 1.0",label="Is?"];
+	tBStatusIdenticalActiveQueryCopyCopyCopyCopyCopy ->  individual [color="0.388, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+
+		setTBBacterialPresenseToActiveBacterialTransmissionRate [shape=none,style="rounded,filled",fontname=Helvetica,color="0.463, 0.2, 1.0",label="Set"];
+		tBStatusIdenticalLatentQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.388, 0.2, 1.0",label="Is?"];
+	tBStatusIdenticalLatentQuery ->  treatmentStatusDifferentClinicalTreatmentQuery [color="0.388, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	tBStatusIdenticalLatentQuery ->  treatmentStatusIdenticalClinicalTreatmentQueryCopy [color="0.388, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		latenttoActiveDrawLesserPActiveTransitionLatentDividePeriodsinYearQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.388, 0.2, 1.0",label="Lesser?"];
+			latenttoActiveDrawLesserPActiveTransitionLatentDividePeriodsinYearQuery ->  individualtBStatusRecord:individualtBStatusactive [color="0.388, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		daysUntilLatentIdenticalZeroQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.388, 0.2, 1.0",label="Identical?"];
+			daysUntilLatentIdenticalZeroQuery ->  individualtBStatusRecord:individualtBStatuslatent [color="0.388, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		hereQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.463, 0.2, 1.0",label="Here"];
+	hereQuery ->  tBBacterialPresenseAddBacterialEmissionRate [color="0.463, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		individual [shape=none,style="rounded,filled",fontname=Helvetica,color=gray,fillcolor="0.463, 0.2, 1.0",label="Individual"];
+	individual ->  hereQuery [color="0.463, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		pActiveTransitionLatent [shape=none,style="rounded,filled",fontname=Helvetica,color="0.388, 0.2, 1.0",label="P Active Transition Latent"];
+	pActiveTransitionLatent ->  pActiveTransitionLatentDividePeriodsinYear [color="0.388, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		minimum_TBBacterialPresenseAddBacterialEmissionRateActiveBacterialTransmissionRate_ [shape=none,style="rounded,filled",fontname=Helvetica,color="0.463, 0.2, 1.0",label="Minimum?"];
+	minimum_TBBacterialPresenseAddBacterialEmissionRateActiveBacterialTransmissionRate_ ->  setTBBacterialPresenseToActiveBacterialTransmissionRate [color="0.463, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	setTBBacterialPresenseToActiveBacterialTransmissionRate ->  mapLocationtBBacterialPresense [color="0.463, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		latenttoActiveDraw [shape=none,style="rounded,filled",fontname=Helvetica,color="0.388, 0.2, 1.0",label="Random Unit"];
+	latenttoActiveDraw ->  pActiveTransitionLatent [color="0.388, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+//}
+		individualdaysUntilLatent -> daysUntilLatentSubtractUnit:nw [style=dotted,arrowhead=dot,color="0.388, 0.9 , 0.8",penwidth=2.0];
+	
+		importxyxdaysUntilLatentSubtractUnitfunctionsunit0 [fontname=Helvetica,shape=none,label="1"];
+		importxyxdaysUntilLatentSubtractUnitfunctionsunit0 -> daysUntilLatentSubtractUnit:ne [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+		individualtreatmentStatusRecord:individualtreatmentStatusclinicalTreatment -> treatmentStatusDifferentClinicalTreatmentQuery:ne [style=dotted,arrowhead=dot,color="0.388, 0.9 , 0.8",penwidth=2.0];
+		individualdaysUntilRecovered -> daysUntilRecoveredIdenticalZeroQuery:nw [style=dotted,arrowhead=dot,color="0.388, 0.9 , 0.8",penwidth=2.0];
+	
+		importxyxdaysUntilRecoveredIdenticalZeroQueryfunctionszero0 [fontname=Helvetica,shape=none,label="0"];
+		importxyxdaysUntilRecoveredIdenticalZeroQueryfunctionszero0 -> daysUntilRecoveredIdenticalZeroQuery:ne [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+		tBmodelperiodsinYear -> pActiveTransitionLatentDividePeriodsinYear:ne [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+		pActiveTransitionLatent -> pActiveTransitionLatentDividePeriodsinYear:nw [style=dotted,arrowhead=dot,color=blue,penwidth=2.0];
+		individualtreatmentStatusRecord:individualtreatmentStatusclinicalTreatment -> treatmentStatusIdenticalClinicalTreatmentQueryCopy:ne [style=dotted,arrowhead=dot,color="0.388, 0.9 , 0.8",penwidth=2.0];
+		individualdaysUntilRecovered -> daysUntilRecoveredSubtractUnit:nw [style=dotted,arrowhead=dot,color="0.388, 0.9 , 0.8",penwidth=2.0];
+	
+		importxyxdaysUntilRecoveredSubtractUnitfunctionsunit0 [fontname=Helvetica,shape=none,label="1"];
+		importxyxdaysUntilRecoveredSubtractUnitfunctionsunit0 -> daysUntilRecoveredSubtractUnit:ne [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+		mapLocationtBBacterialPresense -> tBBacterialPresenseAddBacterialEmissionRate:nw [style=dotted,arrowhead=dot,color="0.463, 0.9 , 0.8",penwidth=2.0];
+		tBmodelbacterialEmissionRate -> tBBacterialPresenseAddBacterialEmissionRate:ne [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+		individualtBStatusRecord:individualtBStatusactive -> tBStatusIdenticalActiveQueryCopyCopyCopyCopyCopy:ne [style=dotted,arrowhead=dot,color="0.388, 0.9 , 0.8",penwidth=2.0];
+
+		importabcsetTBBacterialPresenseToActiveBacterialTransmissionRatetBmodelactiveBacterialTransmissionRate [fontname=Helvetica,shape=none,label="Active Bacterial Transmission Rate"];
+		importabcsetTBBacterialPresenseToActiveBacterialTransmissionRatetBmodelactiveBacterialTransmissionRate -> setTBBacterialPresenseToActiveBacterialTransmissionRate:"ne" [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+		individualtBStatusRecord:individualtBStatuslatent -> tBStatusIdenticalLatentQuery:ne [style=dotted,arrowhead=dot,color="0.388, 0.9 , 0.8",penwidth=2.0];
+		pActiveTransitionLatentDividePeriodsinYear -> latenttoActiveDrawLesserPActiveTransitionLatentDividePeriodsinYearQuery:ne [style=dotted,arrowhead=dot,color=blue,penwidth=2.0];
+		latenttoActiveDraw -> latenttoActiveDrawLesserPActiveTransitionLatentDividePeriodsinYearQuery:nw [style=dotted,arrowhead=dot,color=blue,penwidth=2.0];
+		individualdaysUntilLatent -> daysUntilLatentIdenticalZeroQuery:nw [style=dotted,arrowhead=dot,color="0.388, 0.9 , 0.8",penwidth=2.0];
+	
+		importxyxdaysUntilLatentIdenticalZeroQueryfunctionszero0 [fontname=Helvetica,shape=none,label="0"];
+		importxyxdaysUntilLatentIdenticalZeroQueryfunctionszero0 -> daysUntilLatentIdenticalZeroQuery:ne [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+		tBmodelactiveBacterialTransmissionRate -> minimum_TBBacterialPresenseAddBacterialEmissionRateActiveBacterialTransmissionRate_:ne [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+		tBBacterialPresenseAddBacterialEmissionRate -> minimum_TBBacterialPresenseAddBacterialEmissionRateActiveBacterialTransmissionRate_:nw [style=dotted,arrowhead=dot,color=blue,penwidth=2.0];
+		individualhomeSearchRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualhomeSearch> Home Search | {<individualhomeSearchcomplete> Complete|<individualhomeSearchinProgress> In Progress}}"];
+		tBmodelmaximumSeperation [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label=<<i>Maximum Seperation</i>>];
+		individualhomeSearchRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualhomeSearch> Home Search | {<individualhomeSearchcomplete> Complete|<individualhomeSearchinProgress> In Progress}}"];
+		individualdaytimeRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualdaytimeRecord> Daytime | {<true> True| <false> False}}"];
+
+//subgraph clusterplaceMovement {
+	//style=filled;
+	//color=white;
+	//fillcolor="0.0, 0.0, 0.98";
+		placeMovement [shape=box,style="rounded,filled",fontname=Helvetica,color=black,fillcolor="0.666, 0.2, 1.0",label="Place Movement",URL="individual_placeMovement.svg"];
+	placeMovement ->  homeSearchIdenticalInProgressQuery [color="0.666, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	placeMovement ->  homeSearchIdenticalCompleteQuery [color="0.666, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		within_MaximumSeperation_Query [shape=none,style="rounded,filled",fontname=Helvetica,color="0.794, 0.2, 1.0",label="Within?"];
+	within_MaximumSeperation_Query ->  _And_IndividualCopyCopyCopyCopy [color="0.794, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		neighborQueryCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.730, 0.2, 1.0",label="Neighbor"];
+	neighborQueryCopy ->  individualCopyCopyCopyCopy [color="0.730, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		nearestQueryCopyCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.687, 0.2, 1.0",label="Nearest "];
+	nearestQueryCopyCopy ->  connectIndividualCopy [color="0.687, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		nearestQueryCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.794, 0.2, 1.0",label="Nearest "];
+	nearestQueryCopy ->  _And_IndividualCopyCopyCopyCopy [color="0.794, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		individualCopyCopy [shape=none,style="rounded,filled",fontname=Helvetica,color=gray,fillcolor="0.687, 0.2, 1.0",label="Individual Copy Copy"];
+	individualCopyCopy ->  nearestQueryCopyCopy [color="0.687, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		nearestQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.709, 0.2, 1.0",label="Nearest "];
+	nearestQuery ->  connectIndividual [color="0.709, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		_And_IndividualCopyCopyCopyCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.794, 0.2, 1.0",label="And"];
+	_And_IndividualCopyCopyCopyCopy ->  moveIndividualCopyCopy [color="0.794, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		homeSearchIdenticalCompleteQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.666, 0.2, 1.0",label="Is?"];
+	homeSearchIdenticalCompleteQuery ->  identityDaytimeQuery [color="0.666, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	homeSearchIdenticalCompleteQuery ->  notDaytimeQuery [color="0.666, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		connectIndividualCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.666, 0.2, 1.0",label="Connect"];
+	placeMovement ->  connectIndividualCopy:nw [style=dashed,color="0.666, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	individualCopyCopy -> connectIndividualCopy:ne [style=dashed,color="0.687, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		_And__Unspecified_QueryCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.772, 0.2, 1.0",label="And"];
+	_And__Unspecified_QueryCopy ->  moveWorkLocation [color="0.772, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		notDaytimeQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.666, 0.2, 1.0",label="Is Not?"];
+	notDaytimeQuery ->  targetHouse [color="0.666, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		neighborQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.751, 0.2, 1.0",label="Neighbor"];
+	neighborQuery ->  individualCopyCopyCopyCopyCopy [color="0.751, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		individualCopyCopyCopyCopyCopy [shape=none,style="rounded,filled",fontname=Helvetica,color=gray,fillcolor="0.772, 0.2, 1.0",label="Individual Copy Copy Copy Copy Copy"];
+	individualCopyCopyCopyCopyCopy ->  within_MaximumSeperation_QueryCopy [color="0.772, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	individualCopyCopyCopyCopyCopy ->  nearestQueryCopyCopyCopy [color="0.772, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	individualCopyCopyCopyCopyCopy ->  availableQueryCopyCopyCopy [color="0.772, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		identityDaytimeQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.666, 0.2, 1.0",label="Is?"];
+	identityDaytimeQuery ->  individualCopyCopyCopy [color="0.666, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		connectIndividual [shape=none,style="rounded,filled",fontname=Helvetica,color="0.666, 0.2, 1.0",label="Connect"];
+			connectIndividual ->  individualhomeSearchRecord:individualhomeSearchcomplete [color="0.666, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	placeMovement ->  connectIndividual:nw [style=dashed,color="0.666, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	foundHouse -> connectIndividual:ne [style=dashed,color="0.709, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		individualCopyCopyCopyCopy [shape=none,style="rounded,filled",fontname=Helvetica,color=gray,fillcolor="0.794, 0.2, 1.0",label="Individual Copy Copy Copy Copy"];
+	individualCopyCopyCopyCopy ->  nearestQueryCopy [color="0.794, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	individualCopyCopyCopyCopy ->  availableQueryCopyCopy [color="0.794, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	individualCopyCopyCopyCopy ->  within_MaximumSeperation_Query [color="0.794, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		availableQueryCopyCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.794, 0.2, 1.0",label="Available"];
+	availableQueryCopyCopy ->  _And_IndividualCopyCopyCopyCopy [color="0.794, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		homeSearchIdenticalInProgressQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.666, 0.2, 1.0",label="Is?"];
+	homeSearchIdenticalInProgressQuery ->  foundHouse [color="0.666, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	homeSearchIdenticalInProgressQuery ->  individualCopyCopy [color="0.666, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		availableQueryCopyCopyCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.772, 0.2, 1.0",label="Available"];
+	availableQueryCopyCopyCopy ->  _And__Unspecified_QueryCopy [color="0.772, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		targetHouse [shape=none,style="rounded,filled",fontname=Helvetica,color=gray,fillcolor="0.730, 0.2, 1.0",label="Target House"];
+	targetHouse ->  neighborQueryCopy [color="0.730, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		moveWorkLocation [shape=none,style="rounded,filled",fontname=Helvetica,color="0.666, 0.2, 1.0",label="Move"];
+	placeMovement ->  moveWorkLocation:nw [style=dashed,color="0.666, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	individualCopyCopyCopyCopyCopy -> moveWorkLocation:ne [style=dashed,color="0.772, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		nearestQueryCopyCopyCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.772, 0.2, 1.0",label="Nearest "];
+	nearestQueryCopyCopyCopy ->  _And__Unspecified_QueryCopy [color="0.772, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		individualCopyCopyCopy [shape=none,style="rounded,filled",fontname=Helvetica,color=gray,fillcolor="0.751, 0.2, 1.0",label="Individual Copy Copy Copy"];
+	individualCopyCopyCopy ->  neighborQuery [color="0.751, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		moveIndividualCopyCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.666, 0.2, 1.0",label="Move"];
+	placeMovement ->  moveIndividualCopyCopy:nw [style=dashed,color="0.666, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	individualCopyCopyCopyCopy -> moveIndividualCopyCopy:ne [style=dashed,color="0.794, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		foundHouse [shape=none,style="rounded,filled",fontname=Helvetica,color=gray,fillcolor="0.709, 0.2, 1.0",label="Found House"];
+	foundHouse ->  nearestQuery [color="0.709, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		within_MaximumSeperation_QueryCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.772, 0.2, 1.0",label="Within?"];
+	within_MaximumSeperation_QueryCopy ->  _And__Unspecified_QueryCopy [color="0.772, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+//}
+		tBmodelmaximumSeperation -> within_MaximumSeperation_Query:nw [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+		individualhomeSearchRecord:individualhomeSearchcomplete -> homeSearchIdenticalCompleteQuery:ne [style=dotted,arrowhead=dot,color="0.666, 0.9 , 0.8",penwidth=2.0];
+		individualdaytimeRecord -> notDaytimeQuery:nw [style=dotted,arrowhead=dot,color="0.666, 0.9 , 0.8",penwidth=2.0];
+		individualdaytimeRecord -> identityDaytimeQuery:nw [style=dotted,arrowhead=dot,color="0.666, 0.9 , 0.8",penwidth=2.0];
+		individualhomeSearchRecord:individualhomeSearchinProgress -> homeSearchIdenticalInProgressQuery:ne [style=dotted,arrowhead=dot,color="0.666, 0.9 , 0.8",penwidth=2.0];
+		tBmodelmaximumSeperation -> within_MaximumSeperation_QueryCopy:nw [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+}

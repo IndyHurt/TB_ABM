@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ares:RunSet xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aBase="http://www.eclipse.org/amp/amf/abase/ABase" xmlns:ares="http://eclipse.org/amp/ares" result="FAILURE">
+  <runs started="2011-07-26T11:34:16.984-0700">
+    <model href="../TBmodel.metaabm#/"/>
+    <test href="../tests/NormalTransition.atest#/"/>
+    <parameterization href="../tests/NoDetectionNoInitialActive.apar#/"/>
+    <parameters>
+      <attribute href="../TBmodel.metaabm#//@attributes[ID='pDetection']"/>
+      <value xsi:type="aBase:RealValue" value=".00"/>
+    </parameters>
+    <parameters>
+      <attribute href="../TBmodel.metaabm#//@attributes[ID='pInitialActive']"/>
+      <value xsi:type="aBase:RealValue" value=".0"/>
+    </parameters>
+    <parameters>
+      <attribute href="http://metaabm.org/Engine.metaabm#//@attributes[ID='stopPeriod']"/>
+      <value xsi:type="aBase:IntValue" value="1000"/>
+    </parameters>
+    <constraints>
+      <agent href="../TBmodel.metaabm#//@agents[ID='individual']"/>
+      <attribute href="../TBmodel.metaabm#//@agents[ID='individual']/@attributes[ID='treatmentStatus']"/>
+      <qualifier href="../TBmodel.metaabm#//@agents[ID='individual']/@attributes[ID='treatmentStatus']/@options.3"/>
+      <minValue xsi:type="aBase:IntValue" value="0"/>
+      <maxValue xsi:type="aBase:IntValue" value="0"/>
+    </constraints>
+    <constraints>
+      <agent href="../TBmodel.metaabm#//@agents[ID='individual']"/>
+      <attribute href="../TBmodel.metaabm#//@agents[ID='individual']/@attributes[ID='tBStatus']"/>
+      <qualifier href="../TBmodel.metaabm#//@agents[ID='individual']/@attributes[ID='tBStatus']/@options.2"/>
+      <minValue xsi:type="aBase:IntValue" value="35"/>
+      <maxValue xsi:type="aBase:IntValue" value="60"/>
+    </constraints>
+  </runs>
+  <runs started="2011-07-26T11:34:16.984-0700">
+    <model href="../TBmodel.metaabm#/"/>
+    <test href="../tests/HIVOrSmokerTransition.atest#/"/>
+    <parameterization href="../tests/NoDetectionNoInitialActiveNoSmoker.apar#/"/>
+    <parameters>
+      <attribute href="../TBmodel.metaabm#//@attributes[ID='pActiveTransitionLatentFactorBase']"/>
+      <value xsi:type="aBase:RealValue" value=".0"/>
+    </parameters>
+    <constraints>
+      <agent href="../TBmodel.metaabm#//@agents[ID='individual']"/>
+      <attribute href="../TBmodel.metaabm#//@agents[ID='individual']/@attributes[ID='treatmentStatus']"/>
+      <qualifier href="../TBmodel.metaabm#//@agents[ID='individual']/@attributes[ID='treatmentStatus']/@options.3"/>
+      <minValue xsi:type="aBase:IntValue" value="0"/>
+      <maxValue xsi:type="aBase:IntValue" value="0"/>
+    </constraints>
+    <constraints>
+      <agent href="../TBmodel.metaabm#//@agents[ID='individual']"/>
+      <attribute href="../TBmodel.metaabm#//@agents[ID='individual']/@attributes[ID='tBStatus']"/>
+      <qualifier href="../TBmodel.metaabm#//@agents[ID='individual']/@attributes[ID='tBStatus']/@options.2"/>
+      <minValue xsi:type="aBase:IntValue" value="0"/>
+      <maxValue xsi:type="aBase:IntValue" value="30"/>
+    </constraints>
+  </runs>
+</ares:RunSet>

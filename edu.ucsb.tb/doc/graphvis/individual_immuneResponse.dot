@@ -1,0 +1,66 @@
+digraph immuneResponse {
+
+	subgraph clustercontextKey {
+		fontname=Helvetica;
+		label="Parameters";
+		style="filled";
+		fillcolor=ghostwhite;
+		color=white;
+		labeljust=l;
+		contextOverview [style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="black",label=""];
+	}
+	subgraph clusterindividualKey {
+		fontname=Helvetica;
+		nodesep=0.1;
+		style="filled";
+		fillcolor=ghostwhite;
+		label="Individual";
+		color=white;
+		labeljust=l;
+		immuneResponseOverview [fontname=Helvetica,style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="0.444, 0.9 , 0.8",label="",URL="individual__Overview.svg"];
+
+	}
+		watchTBStatus [shape=box,style="rounded,filled",fontname=Helvetica,color=black,fillcolor="0.833, 0.2, 1.0",label="Watch TB Status",URL="individual_watchTBStatus.svg"];
+		individualtBStatusRecord:individualtBStatus ->  watchTBStatus [color="0.833, 0.9 , 0.8",penwidth=2.0,arrowhead=vee];
+		individualtBStatusRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualtBStatus> TB Status | {<individualtBStatussuseptible> Suseptible|<individualtBStatuslatent> Latent}}"];
+		individualbacterialLoad [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label="Bacterial Load"];
+		individualbacterialClearingRate [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label="Bacterial Clearing Rate"];
+		tBmodelbacterialLoadInfectionThreshold [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label=<<i>Bacterial Load Infection Threshold</i>>];
+		individualtBStatusRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualtBStatus> TB Status | {<individualtBStatussuseptible> Suseptible|<individualtBStatuslatent> Latent}}"];
+
+//subgraph clusterimmuneResponse {
+	//style=filled;
+	//color=white;
+	//fillcolor="0.0, 0.0, 0.98";
+		immuneResponse [shape=box,style="rounded,filled",fontname=Helvetica,color=black,fillcolor="0.444, 0.2, 1.0",label="Immune Response",URL="individual_immuneResponse.svg"];
+	immuneResponse ->  tBStatusIdenticalSuseptibleQuery [color="0.444, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	immuneResponse ->  tBStatusDifferentSuseptibleQueryCopy [color="0.444, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		bacterialLoadSubtractBacterialClearingRate [shape=none,style="rounded,filled",fontname=Helvetica,color="0.444, 0.2, 1.0",label="Subtract"];
+	bacterialLoadSubtractBacterialClearingRate ->  maximum_BacterialLoadSubtractBacterialClearingRateZero_ [color="0.444, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		bacterialLoadGreaterBacterialLoadInfectionThresholdQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.444, 0.2, 1.0",label="Greater?"];
+			bacterialLoadGreaterBacterialLoadInfectionThresholdQuery ->  individualtBStatusRecord:individualtBStatuslatent [color="0.444, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+
+		setBacterialLoadToBacterialLoadInfectionThreshold [shape=none,style="rounded,filled",fontname=Helvetica,color="0.444, 0.2, 1.0",label="Set"];
+		maximum_BacterialLoadSubtractBacterialClearingRateZero_ [shape=none,style="rounded,filled",fontname=Helvetica,color="0.444, 0.2, 1.0",label="Maximum?"];
+		maximum_BacterialLoadSubtractBacterialClearingRateZero_ ->  bacterialLoadGreaterBacterialLoadInfectionThresholdQuery [color="0.444, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+			maximum_BacterialLoadSubtractBacterialClearingRateZero_ ->  individualbacterialLoad [color="0.444, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		tBStatusDifferentSuseptibleQueryCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.444, 0.2, 1.0",label="Is Not?"];
+	tBStatusDifferentSuseptibleQueryCopy ->  setBacterialLoadToBacterialLoadInfectionThreshold [color="0.444, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	setBacterialLoadToBacterialLoadInfectionThreshold ->  individualbacterialLoad [color="0.444, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		tBStatusIdenticalSuseptibleQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.444, 0.2, 1.0",label="Is?"];
+	tBStatusIdenticalSuseptibleQuery ->  bacterialLoadSubtractBacterialClearingRate [color="0.444, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+//}
+		individualbacterialLoad -> bacterialLoadSubtractBacterialClearingRate:nw [style=dotted,arrowhead=dot,color="0.444, 0.9 , 0.8",penwidth=2.0];
+		individualbacterialClearingRate -> bacterialLoadSubtractBacterialClearingRate:ne [style=dotted,arrowhead=dot,color="0.444, 0.9 , 0.8",penwidth=2.0];
+		individualbacterialLoad -> bacterialLoadGreaterBacterialLoadInfectionThresholdQuery:nw [style=dotted,arrowhead=dot,color="0.444, 0.9 , 0.8",penwidth=2.0];
+		tBmodelbacterialLoadInfectionThreshold -> bacterialLoadGreaterBacterialLoadInfectionThresholdQuery:ne [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+
+		importabcsetBacterialLoadToBacterialLoadInfectionThresholdtBmodelbacterialLoadInfectionThreshold [fontname=Helvetica,shape=none,label="Bacterial Load Infection Threshold"];
+		importabcsetBacterialLoadToBacterialLoadInfectionThresholdtBmodelbacterialLoadInfectionThreshold -> setBacterialLoadToBacterialLoadInfectionThreshold:"ne" [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+		bacterialLoadSubtractBacterialClearingRate -> maximum_BacterialLoadSubtractBacterialClearingRateZero_:nw [style=dotted,arrowhead=dot,color=blue,penwidth=2.0];
+	
+		importxyxmaximum_BacterialLoadSubtractBacterialClearingRateZero_functionszero1 [fontname=Helvetica,shape=none,label="0"];
+		importxyxmaximum_BacterialLoadSubtractBacterialClearingRateZero_functionszero1 -> maximum_BacterialLoadSubtractBacterialClearingRateZero_:ne [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+		individualtBStatusRecord:individualtBStatussuseptible -> tBStatusDifferentSuseptibleQueryCopy:ne [style=dotted,arrowhead=dot,color="0.444, 0.9 , 0.8",penwidth=2.0];
+		individualtBStatusRecord:individualtBStatussuseptible -> tBStatusIdenticalSuseptibleQuery:ne [style=dotted,arrowhead=dot,color="0.444, 0.9 , 0.8",penwidth=2.0];
+}

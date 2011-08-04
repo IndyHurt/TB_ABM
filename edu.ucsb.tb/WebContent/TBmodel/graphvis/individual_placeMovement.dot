@@ -1,0 +1,141 @@
+digraph placeMovement {
+
+	subgraph clustercontextKey {
+		fontname=Helvetica;
+		label="Parameters";
+		style="filled";
+		fillcolor=ghostwhite;
+		color=white;
+		labeljust=l;
+		contextOverview [style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="black",label=""];
+	}
+	subgraph clusterindividualKey {
+		fontname=Helvetica;
+		nodesep=0.1;
+		style="filled";
+		fillcolor=ghostwhite;
+		label="Individual";
+		color=white;
+		labeljust=l;
+		placeMovementOverview [fontname=Helvetica,style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="0.666, 0.9 , 0.8",label="",URL="individual__Overview.svg"];
+
+	}
+	subgraph clusterworkLocationKey {
+		fontname=Helvetica;
+		nodesep=0.1;
+		style="filled";
+		fillcolor=ghostwhite;
+		label="Work Location";
+		color=white;
+		labeljust=l;
+		individualCopyCopyOverview [fontname=Helvetica,style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="0.687, 0.9 , 0.8",label="",URL="workLocation__Overview.svg"];
+		individualCopyCopyCopyOverview [fontname=Helvetica,style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="0.751, 0.9 , 0.8",label="",URL="workLocation__Overview.svg"];
+individualCopyCopyOverview -> individualCopyCopyCopyOverview [style=invis];
+	}
+	subgraph clustermapLocationKey {
+		fontname=Helvetica;
+		nodesep=0.1;
+		style="filled";
+		fillcolor=ghostwhite;
+		label="Map Location";
+		color=white;
+		labeljust=l;
+		individualCopyCopyCopyCopyOverview [fontname=Helvetica,style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="0.772, 0.9 , 0.8",label="",URL="mapLocation__Overview.svg"];
+		individualCopyCopyCopyCopyCopyOverview [fontname=Helvetica,style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="0.794, 0.9 , 0.8",label="",URL="mapLocation__Overview.svg"];
+individualCopyCopyCopyCopyOverview -> individualCopyCopyCopyCopyCopyOverview [style=invis];
+	}
+	subgraph clusterhouseKey {
+		fontname=Helvetica;
+		nodesep=0.1;
+		style="filled";
+		fillcolor=ghostwhite;
+		label="House";
+		color=white;
+		labeljust=l;
+		targetHouseOverview [fontname=Helvetica,style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="0.730, 0.9 , 0.8",label="",URL="house__Overview.svg"];
+		foundHouseOverview [fontname=Helvetica,style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="0.709, 0.9 , 0.8",label="",URL="house__Overview.svg"];
+targetHouseOverview -> foundHouseOverview [style=invis];
+	}
+		individualhomeSearchRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualhomeSearch> Home Search | {<individualhomeSearchcomplete> Complete|<individualhomeSearchinProgress> In Progress}}"];
+		tBmodelmaximumSeperation [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label=<<i>Maximum Seperation</i>>];
+		individualdaytimeRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualdaytimeRecord> Daytime | {<true> True| <false> False}}"];
+		individualhomeSearchRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualhomeSearch> Home Search | {<individualhomeSearchcomplete> Complete|<individualhomeSearchinProgress> In Progress}}"];
+
+//subgraph clusterplaceMovement {
+	//style=filled;
+	//color=white;
+	//fillcolor="0.0, 0.0, 0.98";
+		placeMovement [shape=box,style="rounded,filled",fontname=Helvetica,color=black,fillcolor="0.666, 0.2, 1.0",label="Place Movement",URL="individual_placeMovement.svg"];
+	placeMovement ->  homeSearchIdenticalInProgressQuery [color="0.666, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	placeMovement ->  homeSearchIdenticalCompleteQuery [color="0.666, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		nearestQueryCopyCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.687, 0.2, 1.0",label="Nearest "];
+	nearestQueryCopyCopy ->  connectIndividualCopy [color="0.687, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		neighborQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.751, 0.2, 1.0",label="Neighbor"];
+	neighborQuery ->  individualCopyCopyCopyCopyCopy [color="0.751, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		within_MaximumSeperation_Query [shape=none,style="rounded,filled",fontname=Helvetica,color="0.772, 0.2, 1.0",label="Within?"];
+	within_MaximumSeperation_Query ->  _And_IndividualCopyCopyCopyCopy [color="0.772, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		targetHouse [shape=none,style="rounded,filled",fontname=Helvetica,color=gray,fillcolor="0.730, 0.2, 1.0",label="Target House"];
+	targetHouse ->  neighborQueryCopy [color="0.730, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		individualCopyCopyCopyCopy [shape=none,style="rounded,filled",fontname=Helvetica,color=gray,fillcolor="0.772, 0.2, 1.0",label="Individual Copy Copy Copy Copy"];
+	individualCopyCopyCopyCopy ->  nearestQueryCopy [color="0.772, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	individualCopyCopyCopyCopy ->  availableQueryCopyCopy [color="0.772, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	individualCopyCopyCopyCopy ->  within_MaximumSeperation_Query [color="0.772, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		individualCopyCopyCopyCopyCopy [shape=none,style="rounded,filled",fontname=Helvetica,color=gray,fillcolor="0.794, 0.2, 1.0",label="Individual Copy Copy Copy Copy Copy"];
+	individualCopyCopyCopyCopyCopy ->  within_MaximumSeperation_QueryCopy [color="0.794, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	individualCopyCopyCopyCopyCopy ->  nearestQueryCopyCopyCopy [color="0.794, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	individualCopyCopyCopyCopyCopy ->  availableQueryCopyCopyCopy [color="0.794, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		individualCopyCopy [shape=none,style="rounded,filled",fontname=Helvetica,color=gray,fillcolor="0.687, 0.2, 1.0",label="Individual Copy Copy"];
+	individualCopyCopy ->  nearestQueryCopyCopy [color="0.687, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		nearestQueryCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.772, 0.2, 1.0",label="Nearest "];
+	nearestQueryCopy ->  _And_IndividualCopyCopyCopyCopy [color="0.772, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		homeSearchIdenticalInProgressQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.666, 0.2, 1.0",label="Is?"];
+	homeSearchIdenticalInProgressQuery ->  foundHouse [color="0.666, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	homeSearchIdenticalInProgressQuery ->  individualCopyCopy [color="0.666, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		foundHouse [shape=none,style="rounded,filled",fontname=Helvetica,color=gray,fillcolor="0.709, 0.2, 1.0",label="Found House"];
+	foundHouse ->  nearestQuery [color="0.709, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		availableQueryCopyCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.772, 0.2, 1.0",label="Available"];
+	availableQueryCopyCopy ->  _And_IndividualCopyCopyCopyCopy [color="0.772, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		moveWorkLocation [shape=none,style="rounded,filled",fontname=Helvetica,color="0.666, 0.2, 1.0",label="Move"];
+	placeMovement ->  moveWorkLocation:nw [style=dashed,color="0.666, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	individualCopyCopyCopyCopyCopy -> moveWorkLocation:ne [style=dashed,color="0.794, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		homeSearchIdenticalCompleteQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.666, 0.2, 1.0",label="Is?"];
+	homeSearchIdenticalCompleteQuery ->  identityDaytimeQuery [color="0.666, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	homeSearchIdenticalCompleteQuery ->  notDaytimeQuery [color="0.666, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		identityDaytimeQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.666, 0.2, 1.0",label="Is?"];
+	identityDaytimeQuery ->  individualCopyCopyCopy [color="0.666, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		notDaytimeQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.666, 0.2, 1.0",label="Is Not?"];
+	notDaytimeQuery ->  targetHouse [color="0.666, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		connectIndividualCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.666, 0.2, 1.0",label="Connect"];
+	placeMovement ->  connectIndividualCopy:nw [style=dashed,color="0.666, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	individualCopyCopy -> connectIndividualCopy:ne [style=dashed,color="0.687, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		neighborQueryCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.730, 0.2, 1.0",label="Neighbor"];
+	neighborQueryCopy ->  individualCopyCopyCopyCopy [color="0.730, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		individualCopyCopyCopy [shape=none,style="rounded,filled",fontname=Helvetica,color=gray,fillcolor="0.751, 0.2, 1.0",label="Individual Copy Copy Copy"];
+	individualCopyCopyCopy ->  neighborQuery [color="0.751, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		nearestQueryCopyCopyCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.794, 0.2, 1.0",label="Nearest "];
+	nearestQueryCopyCopyCopy ->  _And__Unspecified_QueryCopy [color="0.794, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		nearestQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.709, 0.2, 1.0",label="Nearest "];
+	nearestQuery ->  connectIndividual [color="0.709, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		_And_IndividualCopyCopyCopyCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.772, 0.2, 1.0",label="And"];
+	_And_IndividualCopyCopyCopyCopy ->  moveIndividualCopyCopy [color="0.772, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		availableQueryCopyCopyCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.794, 0.2, 1.0",label="Available"];
+	availableQueryCopyCopyCopy ->  _And__Unspecified_QueryCopy [color="0.794, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		moveIndividualCopyCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.666, 0.2, 1.0",label="Move"];
+	placeMovement ->  moveIndividualCopyCopy:nw [style=dashed,color="0.666, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	individualCopyCopyCopyCopy -> moveIndividualCopyCopy:ne [style=dashed,color="0.772, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		connectIndividual [shape=none,style="rounded,filled",fontname=Helvetica,color="0.666, 0.2, 1.0",label="Connect"];
+			connectIndividual ->  individualhomeSearchRecord:individualhomeSearchcomplete [color="0.666, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	placeMovement ->  connectIndividual:nw [style=dashed,color="0.666, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	foundHouse -> connectIndividual:ne [style=dashed,color="0.709, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		_And__Unspecified_QueryCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.794, 0.2, 1.0",label="And"];
+	_And__Unspecified_QueryCopy ->  moveWorkLocation [color="0.794, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		within_MaximumSeperation_QueryCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.794, 0.2, 1.0",label="Within?"];
+	within_MaximumSeperation_QueryCopy ->  _And__Unspecified_QueryCopy [color="0.794, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+//}
+		tBmodelmaximumSeperation -> within_MaximumSeperation_Query:nw [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+		individualhomeSearchRecord:individualhomeSearchinProgress -> homeSearchIdenticalInProgressQuery:ne [style=dotted,arrowhead=dot,color="0.666, 0.9 , 0.8",penwidth=2.0];
+		individualhomeSearchRecord:individualhomeSearchcomplete -> homeSearchIdenticalCompleteQuery:ne [style=dotted,arrowhead=dot,color="0.666, 0.9 , 0.8",penwidth=2.0];
+		individualdaytimeRecord -> identityDaytimeQuery:nw [style=dotted,arrowhead=dot,color="0.666, 0.9 , 0.8",penwidth=2.0];
+		individualdaytimeRecord -> notDaytimeQuery:nw [style=dotted,arrowhead=dot,color="0.666, 0.9 , 0.8",penwidth=2.0];
+		tBmodelmaximumSeperation -> within_MaximumSeperation_QueryCopy:nw [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+}

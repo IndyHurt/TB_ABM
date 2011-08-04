@@ -1,0 +1,72 @@
+digraph houseMovement {
+
+	subgraph clustercontextKey {
+		fontname=Helvetica;
+		label="Parameters";
+		style="filled";
+		fillcolor=ghostwhite;
+		color=white;
+		labeljust=l;
+		contextOverview [style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="black",label=""];
+	}
+	subgraph clusterindividualKey {
+		fontname=Helvetica;
+		nodesep=0.1;
+		style="filled";
+		fillcolor=ghostwhite;
+		label="Individual";
+		color=white;
+		labeljust=l;
+		houseMovementOverview [fontname=Helvetica,style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="0.388, 0.9 , 0.8",label="",URL="individual__Overview.svg"];
+
+	}
+	subgraph clusterhouseKey {
+		fontname=Helvetica;
+		nodesep=0.1;
+		style="filled";
+		fillcolor=ghostwhite;
+		label="House";
+		color=white;
+		labeljust=l;
+		foundHouseOverview [fontname=Helvetica,style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="0.438, 0.9 , 0.8",label="",URL="house__Overview.svg"];
+		targetHouseOverview [fontname=Helvetica,style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="0.487, 0.9 , 0.8",label="",URL="house__Overview.svg"];
+foundHouseOverview -> targetHouseOverview [style=invis];
+	}
+		individualhomeSearchRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualhomeSearch> Home Search | {<individualhomeSearchcomplete> Complete|<individualhomeSearchinProgress> In Progress}}"];
+		individualhomeSearchRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualhomeSearch> Home Search | {<individualhomeSearchcomplete> Complete|<individualhomeSearchinProgress> In Progress}}"];
+
+//subgraph clusterhouseMovement {
+	//style=filled;
+	//color=white;
+	//fillcolor="0.0, 0.0, 0.98";
+		houseMovement [shape=box,style="rounded,filled",fontname=Helvetica,color=black,fillcolor="0.388, 0.2, 1.0",label="House Movement",URL="individual_houseMovement.svg"];
+	houseMovement ->  homeSearchIdenticalInProgressQuery [color="0.388, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	houseMovement ->  homeSearchIdenticalCompleteQuery [color="0.388, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		nearestQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.438, 0.2, 1.0",label="Nearest "];
+	nearestQuery ->  connectIndividual [color="0.438, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		moveIndividualCopyCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.388, 0.2, 1.0",label="Move"];
+	houseMovement ->  moveIndividualCopyCopy:nw [style=dashed,color="0.388, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	targetHouse -> moveIndividualCopyCopy:ne [style=dashed,color="0.487, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		towardQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.487, 0.2, 1.0",label="Toward"];
+	towardQuery ->  _And_NeighborQueryCopy [color="0.487, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		homeSearchIdenticalCompleteQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.388, 0.2, 1.0",label="Is?"];
+	homeSearchIdenticalCompleteQuery ->  targetHouse [color="0.388, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		foundHouse [shape=none,style="rounded,filled",fontname=Helvetica,color=gray,fillcolor="0.438, 0.2, 1.0",label="Found House"];
+	foundHouse ->  nearestQuery [color="0.438, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		targetHouse [shape=none,style="rounded,filled",fontname=Helvetica,color=gray,fillcolor="0.487, 0.2, 1.0",label="Target House"];
+	targetHouse ->  neighborQueryCopy [color="0.487, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	targetHouse ->  towardQuery [color="0.487, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		neighborQueryCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.487, 0.2, 1.0",label="Neighbor"];
+	neighborQueryCopy ->  _And_NeighborQueryCopy [color="0.487, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		connectIndividual [shape=none,style="rounded,filled",fontname=Helvetica,color="0.388, 0.2, 1.0",label="Connect"];
+			connectIndividual ->  individualhomeSearchRecord:individualhomeSearchcomplete [color="0.388, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	houseMovement ->  connectIndividual:nw [style=dashed,color="0.388, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	foundHouse -> connectIndividual:ne [style=dashed,color="0.438, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		homeSearchIdenticalInProgressQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.388, 0.2, 1.0",label="Is?"];
+	homeSearchIdenticalInProgressQuery ->  foundHouse [color="0.388, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		_And_NeighborQueryCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.487, 0.2, 1.0",label="And"];
+	_And_NeighborQueryCopy ->  moveIndividualCopyCopy [color="0.487, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+//}
+		individualhomeSearchRecord:individualhomeSearchcomplete -> homeSearchIdenticalCompleteQuery:ne [style=dotted,arrowhead=dot,color="0.388, 0.9 , 0.8",penwidth=2.0];
+		individualhomeSearchRecord:individualhomeSearchinProgress -> homeSearchIdenticalInProgressQuery:ne [style=dotted,arrowhead=dot,color="0.388, 0.9 , 0.8",penwidth=2.0];
+}

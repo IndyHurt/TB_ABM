@@ -1,0 +1,88 @@
+digraph movement {
+
+	subgraph clustercontextKey {
+		fontname=Helvetica;
+		label="Parameters";
+		style="filled";
+		fillcolor=ghostwhite;
+		color=white;
+		labeljust=l;
+		contextOverview [style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="black",label=""];
+	}
+	subgraph clusterindividualKey {
+		fontname=Helvetica;
+		nodesep=0.1;
+		style="filled";
+		fillcolor=ghostwhite;
+		label="Individual";
+		color=white;
+		labeljust=l;
+		movementOverview [fontname=Helvetica,style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="0.611, 0.9 , 0.8",label="",URL="individual__Overview.svg"];
+
+	}
+	subgraph clustermapLocationKey {
+		fontname=Helvetica;
+		nodesep=0.1;
+		style="filled";
+		fillcolor=ghostwhite;
+		label="Map Location";
+		color=white;
+		labeljust=l;
+		nearestTBPositiveOverview [fontname=Helvetica,style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="0.710, 0.9 , 0.8",label="",URL="mapLocation__Overview.svg"];
+
+	}
+		individualtBStatusRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualtBStatus> TB Status | {<individualtBStatusactive> Active|<individualtBStatusdead> Dead}}"];
+		tBmodelavoidTBLocationsRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<tBmodelavoidTBLocationsRecord> Avoid TB Locations | {<true> True| <false> False}}"];
+		mapLocationtBBacterialPresense [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label="TB Bacterial Presense"];
+		tBmodeltBAvoidanceThreshold [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label=<<i>TB Avoidance Threshold</i>>];
+
+//subgraph clustermovement {
+	//style=filled;
+	//color=white;
+	//fillcolor="0.0, 0.0, 0.98";
+		movement [shape=box,style="rounded,filled",fontname=Helvetica,color=black,fillcolor="0.611, 0.2, 1.0",label="Movement",URL="individual_movement.svg"];
+	movement ->  tBStatusDifferentDeadQuery [color="0.611, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	movement ->  tBStatusDifferentActiveQuery [color="0.611, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		moveIndividualCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.611, 0.2, 1.0",label="Move"];
+	movement ->  moveIndividualCopy:nw [style=dashed,color="0.611, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	nearestTBPositive -> moveIndividualCopy:ne [style=dashed,color="0.710, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		awayQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.710, 0.2, 1.0",label="Away"];
+	awayQuery ->  avoidedTBLocation [color="0.710, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		_TBStatusDifferentActiveQueryAndTBStatusDifferentDeadQuery_ [shape=none,style="rounded,filled",fontname=Helvetica,color="0.611, 0.2, 1.0",label="And"];
+	_TBStatusDifferentActiveQueryAndTBStatusDifferentDeadQuery_ ->  identityAvoidTBLocationsQuery [color="0.611, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		identityAvoidTBLocationsQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.611, 0.2, 1.0",label="Is?"];
+	identityAvoidTBLocationsQuery ->  nearestTBPositive [color="0.611, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		moveAvailable [shape=none,style="rounded,filled",fontname=Helvetica,color="0.710, 0.2, 1.0",label="Nearest "];
+	moveAvailable ->  avoidedTBLocation [color="0.710, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		neighborQueryCopyCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.660, 0.2, 1.0",label="Neighbor"];
+	neighborQueryCopyCopy ->  _And_NeighborQueryCopyCopy [color="0.660, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		availableQueryCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.660, 0.2, 1.0",label="Available"];
+	availableQueryCopy ->  _And_NeighborQueryCopyCopy [color="0.660, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		tBStatusDifferentActiveQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.611, 0.2, 1.0",label="Is Not?"];
+	tBStatusDifferentActiveQuery ->  _TBStatusDifferentActiveQueryAndTBStatusDifferentDeadQuery_ [color="0.611, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		moveIndividualCopyCopyCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.611, 0.2, 1.0",label="Move"];
+	movement ->  moveIndividualCopyCopyCopy:nw [style=dashed,color="0.611, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	neighboringCell -> moveIndividualCopyCopyCopy:ne [style=dashed,color="0.660, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		tBStatusDifferentDeadQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.611, 0.2, 1.0",label="Is Not?"];
+	tBStatusDifferentDeadQuery ->  neighboringCell [color="0.611, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	tBStatusDifferentDeadQuery ->  _TBStatusDifferentActiveQueryAndTBStatusDifferentDeadQuery_ [color="0.611, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		neighboringCell [shape=none,style="rounded,filled",fontname=Helvetica,color=gray,fillcolor="0.660, 0.2, 1.0",label="Neighboring Cell"];
+	neighboringCell ->  availableQueryCopy [color="0.660, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	neighboringCell ->  neighborQueryCopyCopy [color="0.660, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		tBBacterialPresenseGreaterTBAvoidanceThresholdQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.710, 0.2, 1.0",label="Greater?"];
+	tBBacterialPresenseGreaterTBAvoidanceThresholdQuery ->  avoidedTBLocation [color="0.710, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		avoidedTBLocation [shape=none,style="rounded,filled",fontname=Helvetica,color="0.710, 0.2, 1.0",label="And"];
+	avoidedTBLocation ->  moveIndividualCopy [color="0.710, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		_And_NeighborQueryCopyCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.660, 0.2, 1.0",label="And"];
+	_And_NeighborQueryCopyCopy ->  moveIndividualCopyCopyCopy [color="0.660, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		nearestTBPositive [shape=none,style="rounded,filled",fontname=Helvetica,color=gray,fillcolor="0.710, 0.2, 1.0",label="Nearest TB Positive"];
+	nearestTBPositive ->  moveAvailable [color="0.710, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	nearestTBPositive ->  tBBacterialPresenseGreaterTBAvoidanceThresholdQuery [color="0.710, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	nearestTBPositive ->  awayQuery [color="0.710, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+//}
+		tBmodelavoidTBLocationsRecord -> identityAvoidTBLocationsQuery:nw [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+		individualtBStatusRecord:individualtBStatusactive -> tBStatusDifferentActiveQuery:ne [style=dotted,arrowhead=dot,color="0.611, 0.9 , 0.8",penwidth=2.0];
+		individualtBStatusRecord:individualtBStatusdead -> tBStatusDifferentDeadQuery:ne [style=dotted,arrowhead=dot,color="0.611, 0.9 , 0.8",penwidth=2.0];
+		mapLocationtBBacterialPresense -> tBBacterialPresenseGreaterTBAvoidanceThresholdQuery:nw [style=dotted,arrowhead=dot,color="0.710, 0.9 , 0.8",penwidth=2.0];
+		tBmodeltBAvoidanceThreshold -> tBBacterialPresenseGreaterTBAvoidanceThresholdQuery:ne [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+}

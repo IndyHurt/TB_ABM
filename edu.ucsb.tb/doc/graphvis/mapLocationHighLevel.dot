@@ -1,0 +1,32 @@
+digraph mapLocation {
+	compound=true;
+	iteration [fontname=Helvetica,shape=box,fillcolor=lightgray,style="filled,rounded",label="Step"];
+	start [fontname=Helvetica,shape=box,fillcolor=lightgray,style="filled,rounded",label="Start"];
+	subgraph clusterWatch {
+		label="Watch";
+		fontname=Helvetica;
+		style=filled;
+		color=white;
+		fillcolor=ghostwhite;
+		labeljust=l;
+		diffuse [shape="polygon,sides=4,peripheries=1",style="rounded,filled",fontname=Helvetica,color=black,fillcolor="0.0, 0.2, 1.0",label="Diffuse"];
+	}
+	subgraph clusterRule {
+		label="Rules";
+		fontname=Helvetica;
+		style=filled;
+		color=white;
+		fillcolor=ghostwhite;
+		labeljust=l;
+		iteration ->  -> iteration [color=darkslategray,penwidth=3.0];
+	}
+	subgraph clusterInit {
+		label="Initialize";
+		fontname=Helvetica;
+		style=filled;
+		color=white;
+		fillcolor=ghostwhite;
+		labeljust=l;
+		start ->  -> iteration [color=darkslategray,penwidth=3.0];
+	}
+}

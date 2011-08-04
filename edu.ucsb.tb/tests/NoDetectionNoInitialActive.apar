@@ -1,0 +1,4 @@
+model "|TBmodel.metaabm"
+PDetection=.00
+PInitialActive=.0
+StopPeriod=1000

@@ -1,0 +1,6 @@
+model "|TBmodel.metaabm"
+PDetection=.00
+PInitialActive=1.0
+PActiveTransitionLatentFactorBase=1.0
+StopPeriod=1000
+ActiveBacterialTransmissionRate=3

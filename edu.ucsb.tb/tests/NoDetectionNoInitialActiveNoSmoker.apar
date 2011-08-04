@@ -1,0 +1,3 @@
+model "|TBmodel.metaabm"
+incorporates "NoDetectionNoInitialActive.apar"
+PActiveTransitionLatentFactorBase=.0

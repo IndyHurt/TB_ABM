@@ -1,0 +1,57 @@
+digraph individual {
+	compound=true;
+	iteration [fontname=Helvetica,shape=box,fillcolor=lightgray,style="filled,rounded",label="Step"];
+	start [fontname=Helvetica,shape=box,fillcolor=lightgray,style="filled,rounded",label="Start"];
+	subgraph clusterWatch {
+		label="Watch";
+		fontname=Helvetica;
+		style=filled;
+		color=white;
+		fillcolor=ghostwhite;
+		labeljust=l;
+		watchTBStatus [shape=box,style="rounded,filled",fontname=Helvetica,color=black,fillcolor="0.833, 0.2, 1.0",label="Watch TB Status",URL="individual_watchTBStatus.svg"];
+		watchTBStatus ->  watchTreatmentStatus:n [color="0.833, 0.9 , 0.8",penwidth=3.0];
+		watchTreatmentStatus [shape=box,style="rounded,filled",fontname=Helvetica,color=black,fillcolor="0.888, 0.2, 1.0",label="Watch Treatment Status",URL="individual_watchTreatmentStatus.svg"];
+		deriveSuccesfulTreatments [shape=box,style="rounded,filled",fontname=Helvetica,color=black,fillcolor="0.222, 0.2, 1.0",label="Derive Succesful Treatments",URL="individual_deriveSuccesfulTreatments.svg"];
+		watchGender [shape=box,style="rounded,filled",fontname=Helvetica,color=black,fillcolor="0.777, 0.2, 1.0",label="Watch Gender",URL="individual_watchGender.svg"];
+		watchGender ->  watchAgeIndex:n [color="0.777, 0.9 , 0.8",penwidth=3.0];
+		deriveAgeRange [shape=box,style="rounded,filled",fontname=Helvetica,color=black,fillcolor="0.111, 0.2, 1.0",label="Derive Age Range",URL="individual_deriveAgeRange.svg"];
+		watchAgeIndex [shape=box,style="rounded,filled",fontname=Helvetica,color=black,fillcolor="0.722, 0.2, 1.0",label="Watch Age Index",URL="individual_watchAgeIndex.svg"];
+		deriveBacterialClearingRate [shape=box,style="rounded,filled",fontname=Helvetica,color=black,fillcolor="0.166, 0.2, 1.0",label="Derive Bacterial Clearing Rate",URL="individual_deriveBacterialClearingRate.svg"];
+	}
+	subgraph clusterRule {
+		label="Rules";
+		fontname=Helvetica;
+		style=filled;
+		color=white;
+		fillcolor=ghostwhite;
+		labeljust=l;
+		movement [shape=box,style="rounded,filled",fontname=Helvetica,color=black,fillcolor="0.611, 0.2, 1.0",label="Movement",URL="individual_movement.svg"];
+		transmission [shape=box,style="rounded,filled",fontname=Helvetica,color=black,fillcolor="0.666, 0.2, 1.0",label="Transmission",URL="individual_transmission.svg"];
+		diseaseProcess [shape=box,style="rounded,filled",fontname=Helvetica,color=black,fillcolor="0.333, 0.2, 1.0",label="Disease Process",URL="individual_diseaseProcess.svg"];
+		diseaseProcess ->  watchTBStatus:n [color="0.333, 0.9 , 0.8",penwidth=3.0];
+		detection [shape=box,style="rounded,filled",fontname=Helvetica,color=black,fillcolor="0.277, 0.2, 1.0",label="Detection",URL="individual_detection.svg"];
+		detection ->  watchTreatmentStatus:n [color="0.277, 0.9 , 0.8",penwidth=3.0];
+		immuneResponse [shape=box,style="rounded,filled",fontname=Helvetica,color=black,fillcolor="0.444, 0.2, 1.0",label="Immune Response",URL="individual_immuneResponse.svg"];
+		immuneResponse ->  watchTBStatus:n [color="0.444, 0.9 , 0.8",penwidth=3.0];
+		deathProcess [shape=box,style="rounded,filled",fontname=Helvetica,color=black,fillcolor="0.055, 0.2, 1.0",label="Death Process",URL="individual_deathProcess.svg"];
+		deathProcess ->  watchTBStatus:n [color="0.055, 0.9 , 0.8",penwidth=3.0];
+		houseMovement [shape=box,style="rounded,filled",fontname=Helvetica,color=black,fillcolor="0.388, 0.2, 1.0",label="House Movement",URL="individual_houseMovement.svg"];
+		acquire [shape=box,style="rounded,filled",fontname=Helvetica,color=black,fillcolor="0.0, 0.2, 1.0",label="Acquire",URL="individual_acquire.svg"];
+		iteration -> movement->transmission->diseaseProcess->detection->immuneResponse->deathProcess->houseMovement->acquire -> iteration [color=darkslategray,penwidth=3.0];
+	}
+	subgraph clusterInit {
+		label="Initialize";
+		fontname=Helvetica;
+		style=filled;
+		color=white;
+		fillcolor=ghostwhite;
+		labeljust=l;
+		initialPlacement [shape=box,style="rounded,filled",fontname=Helvetica,color=black,fillcolor="0.5, 0.2, 1.0",label="Initial Placement",URL="individual_initialPlacement.svg"];
+		initializeState [shape=box,style="rounded,filled",fontname=Helvetica,color=black,fillcolor="0.555, 0.2, 1.0",label="Initialize State",URL="individual_initializeState.svg"];
+		initializeState ->  watchGender:n [color="0.555, 0.9 , 0.8",penwidth=3.0];
+		initializeState ->  watchTreatmentStatus:n [color="0.555, 0.9 , 0.8",penwidth=3.0];
+		initializeState ->  watchTBStatus:n [color="0.555, 0.9 , 0.8",penwidth=3.0];
+		start -> initialPlacement->initializeState -> iteration [color=darkslategray,penwidth=3.0];
+	}
+}

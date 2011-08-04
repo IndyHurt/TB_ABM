@@ -1,0 +1,52 @@
+digraph watchGender {
+
+	subgraph clustercontextKey {
+		fontname=Helvetica;
+		label="Parameters";
+		style="filled";
+		fillcolor=ghostwhite;
+		color=white;
+		labeljust=l;
+		contextOverview [style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="black",label=""];
+	}
+	subgraph clusterindividualKey {
+		fontname=Helvetica;
+		nodesep=0.1;
+		style="filled";
+		fillcolor=ghostwhite;
+		label="Individual";
+		color=white;
+		labeljust=l;
+		watchGenderOverview [fontname=Helvetica,style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="0.777, 0.9 , 0.8",label="",URL="individual__Overview.svg"];
+
+	}
+		watchAgeIndex [shape=box,style="rounded,filled",fontname=Helvetica,color=black,fillcolor="0.722, 0.2, 1.0",label="Watch Age Index",URL="individual_watchAgeIndex.svg"];
+		individualageIndex ->  watchAgeIndex [color="0.722, 0.9 , 0.8",penwidth=2.0,arrowhead=vee];
+		individualgenderRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualgender> Gender | {<individualgenderfemale> Female|<individualgendermale> Male}}"];
+		tBmodelageDistributionFemale [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label=<<i>Age Distribution Female</i>>];
+		individualageIndex [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label="Age Index"];
+		tBmodelageDistributionMale [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label=<<i>Age Distribution Male</i>>];
+		individualgenderRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualgender> Gender | {<individualgenderfemale> Female|<individualgendermale> Male}}"];
+
+//subgraph clusterwatchGender {
+	//style=filled;
+	//color=white;
+	//fillcolor="0.0, 0.0, 0.98";
+		watchGender [shape=box,style="rounded,filled",fontname=Helvetica,color=black,fillcolor="0.777, 0.2, 1.0",label="Watch Gender",URL="individual_watchGender.svg"];
+		individualgenderRecord:individualgender ->  watchGender [color="0.777, 0.9 , 0.8",penwidth=2.0,arrowhead=vee];
+	watchGender ->  genderIdenticalMaleQuery [color="0.777, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	watchGender ->  genderIdenticalFemaleQuery [color="0.777, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		randomWeighted_AgeDistributionFemale_ [shape=none,style="rounded,filled",fontname=Helvetica,color="0.777, 0.2, 1.0",label="Random Weighted?"];
+			randomWeighted_AgeDistributionFemale_ ->  individualageIndex [color="0.777, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		randomWeighted_AgeDistributionMale_ [shape=none,style="rounded,filled",fontname=Helvetica,color="0.777, 0.2, 1.0",label="Random Weighted?"];
+			randomWeighted_AgeDistributionMale_ ->  individualageIndex [color="0.777, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		genderIdenticalFemaleQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.777, 0.2, 1.0",label="Is?"];
+	genderIdenticalFemaleQuery ->  randomWeighted_AgeDistributionFemale_ [color="0.777, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		genderIdenticalMaleQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.777, 0.2, 1.0",label="Is?"];
+	genderIdenticalMaleQuery ->  randomWeighted_AgeDistributionMale_ [color="0.777, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+//}
+		tBmodelageDistributionFemale -> randomWeighted_AgeDistributionFemale_:nw [style=dotted,arrowhead=dot,color="0.777, 0.9 , 0.8",penwidth=2.0];
+		tBmodelageDistributionMale -> randomWeighted_AgeDistributionMale_:nw [style=dotted,arrowhead=dot,color="0.777, 0.9 , 0.8",penwidth=2.0];
+		individualgenderRecord:individualgenderfemale -> genderIdenticalFemaleQuery:ne [style=dotted,arrowhead=dot,color="0.777, 0.9 , 0.8",penwidth=2.0];
+		individualgenderRecord:individualgendermale -> genderIdenticalMaleQuery:ne [style=dotted,arrowhead=dot,color="0.777, 0.9 , 0.8",penwidth=2.0];
+}

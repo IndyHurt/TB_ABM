@@ -1,0 +1,50 @@
+digraph watchTBStatus {
+
+	subgraph clustercontextKey {
+		fontname=Helvetica;
+		label="Parameters";
+		style="filled";
+		fillcolor=ghostwhite;
+		color=white;
+		labeljust=l;
+		contextOverview [style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="black",label=""];
+	}
+	subgraph clusterindividualKey {
+		fontname=Helvetica;
+		nodesep=0.1;
+		style="filled";
+		fillcolor=ghostwhite;
+		label="Individual";
+		color=white;
+		labeljust=l;
+		watchTBStatusOverview [fontname=Helvetica,style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="0.833, 0.9 , 0.8",label="",URL="individual__Overview.svg"];
+
+	}
+		watchTreatmentStatus [shape=box,style="rounded,filled",fontname=Helvetica,color=black,fillcolor="0.888, 0.2, 1.0",label="Watch Treatment Status",URL="individual_watchTreatmentStatus.svg"];
+		individualtreatmentStatusRecord:individualtreatmentStatus ->  watchTreatmentStatus [color="0.888, 0.9 , 0.8",penwidth=2.0,arrowhead=vee];
+		individualtreatmentStatusRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualtreatmentStatus> Treatment Status | {<individualtreatmentStatusnotInfected> Not Infected|<individualtreatmentStatusnoTreatment> No Treatment}}"];
+		individualtBStatusRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualtBStatus> TB Status | {<individualtBStatussuseptible> Suseptible|<individualtBStatuslatent> Latent}}"];
+		individualtBInfectionsPerLifetime [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label="TB Infections Per Lifetime"];
+		individualtreatmentStatusRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualtreatmentStatus> Treatment Status | {<individualtreatmentStatusnotInfected> Not Infected|<individualtreatmentStatusnoTreatment> No Treatment}}"];
+		individualtBStatusRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualtBStatus> TB Status | {<individualtBStatussuseptible> Suseptible|<individualtBStatuslatent> Latent}}"];
+
+//subgraph clusterwatchTBStatus {
+	//style=filled;
+	//color=white;
+	//fillcolor="0.0, 0.0, 0.98";
+		watchTBStatus [shape=box,style="rounded,filled",fontname=Helvetica,color=black,fillcolor="0.833, 0.2, 1.0",label="Watch TB Status",URL="individual_watchTBStatus.svg"];
+		individualtBStatusRecord:individualtBStatus ->  watchTBStatus [color="0.833, 0.9 , 0.8",penwidth=2.0,arrowhead=vee];
+	watchTBStatus ->  tBStatusIdenticalLatentQueryCopy [color="0.833, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	watchTBStatus ->  tBStatusIdenticalSuseptibleQueryCopy [color="0.833, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		incrementTBInfectionsPerLifetime [shape=none,style="rounded,filled",fontname=Helvetica,color="0.833, 0.2, 1.0",label="Increment"];
+			incrementTBInfectionsPerLifetime ->  individualtBInfectionsPerLifetime [color="0.833, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		tBStatusIdenticalLatentQueryCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.833, 0.2, 1.0",label="Is?"];
+	tBStatusIdenticalLatentQueryCopy ->  incrementTBInfectionsPerLifetime [color="0.833, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+			tBStatusIdenticalLatentQueryCopy ->  individualtreatmentStatusRecord:individualtreatmentStatusnoTreatment [color="0.833, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		tBStatusIdenticalSuseptibleQueryCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.833, 0.2, 1.0",label="Is?"];
+			tBStatusIdenticalSuseptibleQueryCopy ->  individualtreatmentStatusRecord:individualtreatmentStatusnotInfected [color="0.833, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+//}
+		individualtBInfectionsPerLifetime -> incrementTBInfectionsPerLifetime:nw [style=dotted,arrowhead=dot,color="0.833, 0.9 , 0.8",penwidth=2.0];
+		individualtBStatusRecord:individualtBStatuslatent -> tBStatusIdenticalLatentQueryCopy:ne [style=dotted,arrowhead=dot,color="0.833, 0.9 , 0.8",penwidth=2.0];
+		individualtBStatusRecord:individualtBStatussuseptible -> tBStatusIdenticalSuseptibleQueryCopy:ne [style=dotted,arrowhead=dot,color="0.833, 0.9 , 0.8",penwidth=2.0];
+}

@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ares:RunSet xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aBase="http://www.eclipse.org/amp/amf/abase/ABase" xmlns:ares="http://eclipse.org/amp/ares" result="SUCCESS">
+  <runs result="SUCCESS" started="2011-07-26T11:40:02.614-0700" finished="2011-07-26T11:40:04.134-0700">
+    <model href="../TBmodel.metaabm#/"/>
+    <test href="../tests/Impoverished.atest#/"/>
+    <parameterization href="../tests/Stats.apar#/"/>
+    <parameters>
+      <attribute href="http://metaabm.org/Engine.metaabm#//@attributes[ID='stopPeriod']"/>
+      <value xsi:type="aBase:IntValue" value="1"/>
+    </parameters>
+    <parameters>
+      <attribute href="../TBmodel.metaabm#//@attributes[ID='individualCount']"/>
+      <value xsi:type="aBase:IntValue" value="1000"/>
+    </parameters>
+    <constraints>
+      <agent href="../TBmodel.metaabm#//@agents[ID='individual']"/>
+      <attribute href="../TBmodel.metaabm#//@agents[ID='individual']/@attributes[ID='nutrition']"/>
+      <qualifier href="../TBmodel.metaabm#//@agents[ID='individual']/@attributes[ID='nutrition']/@options.1"/>
+      <minValue xsi:type="aBase:IntValue" value="50"/>
+      <maxValue xsi:type="aBase:IntValue" value="100"/>
+    </constraints>
+    <results constraint="//@runs.0/@constraints.0" issue="NONE" actualValue="70.0"/>
+  </runs>
+  <runs result="SUCCESS" started="2011-07-26T11:40:02.614-0700" finished="2011-07-26T11:40:04.138-0700">
+    <model href="../TBmodel.metaabm#/"/>
+    <test href="../tests/Poverty.atest#/"/>
+    <parameterization href="../tests/Stats.apar#/"/>
+    <parameters>
+      <attribute href="http://metaabm.org/Engine.metaabm#//@attributes[ID='stopPeriod']"/>
+      <value xsi:type="aBase:IntValue" value="1"/>
+    </parameters>
+    <parameters>
+      <attribute href="../TBmodel.metaabm#//@attributes[ID='individualCount']"/>
+      <value xsi:type="aBase:IntValue" value="1000"/>
+    </parameters>
+    <constraints>
+      <agent href="../TBmodel.metaabm#//@agents[ID='individual']"/>
+      <attribute href="../TBmodel.metaabm#//@agents[ID='individual']/@attributes[ID='economicStatus']"/>
+      <qualifier href="../TBmodel.metaabm#//@agents[ID='individual']/@attributes[ID='economicStatus']/@options.1"/>
+      <minValue xsi:type="aBase:IntValue" value="425"/>
+      <maxValue xsi:type="aBase:IntValue" value="575"/>
+    </constraints>
+    <results constraint="//@runs.1/@constraints.0" issue="NONE" actualValue="469.0"/>
+  </runs>
+  <runs result="SUCCESS" started="2011-07-26T11:40:02.614-0700" finished="2011-07-26T11:40:04.166-0700">
+    <model href="../TBmodel.metaabm#/"/>
+    <test href="../tests/Impoverished.atest#/"/>
+    <parameterization href="../tests/Stats.apar#/"/>
+    <parameters>
+      <attribute href="http://metaabm.org/Engine.metaabm#//@attributes[ID='stopPeriod']"/>
+      <value xsi:type="aBase:IntValue" value="1"/>
+    </parameters>
+    <parameters>
+      <attribute href="../TBmodel.metaabm#//@attributes[ID='individualCount']"/>
+      <value xsi:type="aBase:IntValue" value="1000"/>
+    </parameters>
+    <constraints>
+      <agent href="../TBmodel.metaabm#//@agents[ID='individual']"/>
+      <attribute href="../TBmodel.metaabm#//@agents[ID='individual']/@attributes[ID='nutrition']"/>
+      <qualifier href="../TBmodel.metaabm#//@agents[ID='individual']/@attributes[ID='nutrition']/@options.1"/>
+      <minValue xsi:type="aBase:IntValue" value="50"/>
+      <maxValue xsi:type="aBase:IntValue" value="100"/>
+    </constraints>
+    <results constraint="//@runs.2/@constraints.0" issue="NONE" actualValue="87.0"/>
+  </runs>
+  <runs result="SUCCESS" started="2011-07-26T11:40:02.615-0700" finished="2011-07-26T11:40:04.160-0700">
+    <model href="../TBmodel.metaabm#/"/>
+    <test href="../tests/Poverty.atest#/"/>
+    <parameterization href="../tests/Stats.apar#/"/>
+    <parameters>
+      <attribute href="http://metaabm.org/Engine.metaabm#//@attributes[ID='stopPeriod']"/>
+      <value xsi:type="aBase:IntValue" value="1"/>
+    </parameters>
+    <parameters>
+      <attribute href="../TBmodel.metaabm#//@attributes[ID='individualCount']"/>
+      <value xsi:type="aBase:IntValue" value="1000"/>
+    </parameters>
+    <constraints>
+      <agent href="../TBmodel.metaabm#//@agents[ID='individual']"/>
+      <attribute href="../TBmodel.metaabm#//@agents[ID='individual']/@attributes[ID='economicStatus']"/>
+      <qualifier href="../TBmodel.metaabm#//@agents[ID='individual']/@attributes[ID='economicStatus']/@options.1"/>
+      <minValue xsi:type="aBase:IntValue" value="425"/>
+      <maxValue xsi:type="aBase:IntValue" value="575"/>
+    </constraints>
+    <results constraint="//@runs.3/@constraints.0" issue="NONE" actualValue="451.0"/>
+  </runs>
+  <runs result="SUCCESS" started="2011-07-26T11:40:02.614-0700" finished="2011-07-26T11:40:04.179-0700">
+    <model href="../TBmodel.metaabm#/"/>
+    <test href="../tests/Impoverished.atest#/"/>
+    <parameterization href="../tests/Stats.apar#/"/>
+    <parameters>
+      <attribute href="http://metaabm.org/Engine.metaabm#//@attributes[ID='stopPeriod']"/>
+      <value xsi:type="aBase:IntValue" value="1"/>
+    </parameters>
+    <parameters>
+      <attribute href="../TBmodel.metaabm#//@attributes[ID='individualCount']"/>
+      <value xsi:type="aBase:IntValue" value="1000"/>
+    </parameters>
+    <constraints>
+      <agent href="../TBmodel.metaabm#//@agents[ID='individual']"/>
+      <attribute href="../TBmodel.metaabm#//@agents[ID='individual']/@attributes[ID='nutrition']"/>
+      <qualifier href="../TBmodel.metaabm#//@agents[ID='individual']/@attributes[ID='nutrition']/@options.1"/>
+      <minValue xsi:type="aBase:IntValue" value="50"/>
+      <maxValue xsi:type="aBase:IntValue" value="100"/>
+    </constraints>
+    <results constraint="//@runs.4/@constraints.0" issue="NONE" actualValue="51.0"/>
+  </runs>
+  <runs result="SUCCESS" started="2011-07-26T11:40:02.615-0700" finished="2011-07-26T11:40:04.189-0700">
+    <model href="../TBmodel.metaabm#/"/>
+    <test href="../tests/Poverty.atest#/"/>
+    <parameterization href="../tests/Stats.apar#/"/>
+    <parameters>
+      <attribute href="http://metaabm.org/Engine.metaabm#//@attributes[ID='stopPeriod']"/>
+      <value xsi:type="aBase:IntValue" value="1"/>
+    </parameters>
+    <parameters>
+      <attribute href="../TBmodel.metaabm#//@attributes[ID='individualCount']"/>
+      <value xsi:type="aBase:IntValue" value="1000"/>
+    </parameters>
+    <constraints>
+      <agent href="../TBmodel.metaabm#//@agents[ID='individual']"/>
+      <attribute href="../TBmodel.metaabm#//@agents[ID='individual']/@attributes[ID='economicStatus']"/>
+      <qualifier href="../TBmodel.metaabm#//@agents[ID='individual']/@attributes[ID='economicStatus']/@options.1"/>
+      <minValue xsi:type="aBase:IntValue" value="425"/>
+      <maxValue xsi:type="aBase:IntValue" value="575"/>
+    </constraints>
+    <results constraint="//@runs.5/@constraints.0" issue="NONE" actualValue="473.0"/>
+  </runs>
+  <runs result="SUCCESS" started="2011-07-26T11:40:02.614-0700" finished="2011-07-26T11:40:04.213-0700">
+    <model href="../TBmodel.metaabm#/"/>
+    <test href="../tests/Impoverished.atest#/"/>
+    <parameterization href="../tests/Stats.apar#/"/>
+    <parameters>
+      <attribute href="http://metaabm.org/Engine.metaabm#//@attributes[ID='stopPeriod']"/>
+      <value xsi:type="aBase:IntValue" value="1"/>
+    </parameters>
+    <parameters>
+      <attribute href="../TBmodel.metaabm#//@attributes[ID='individualCount']"/>
+      <value xsi:type="aBase:IntValue" value="1000"/>
+    </parameters>
+    <constraints>
+      <agent href="../TBmodel.metaabm#//@agents[ID='individual']"/>
+      <attribute href="../TBmodel.metaabm#//@agents[ID='individual']/@attributes[ID='nutrition']"/>
+      <qualifier href="../TBmodel.metaabm#//@agents[ID='individual']/@attributes[ID='nutrition']/@options.1"/>
+      <minValue xsi:type="aBase:IntValue" value="50"/>
+      <maxValue xsi:type="aBase:IntValue" value="100"/>
+    </constraints>
+    <results constraint="//@runs.6/@constraints.0" issue="NONE" actualValue="65.0"/>
+  </runs>
+  <runs result="SUCCESS" started="2011-07-26T11:40:02.614-0700" finished="2011-07-26T11:40:04.256-0700">
+    <model href="../TBmodel.metaabm#/"/>
+    <test href="../tests/Impoverished.atest#/"/>
+    <parameterization href="../tests/Stats.apar#/"/>
+    <parameters>
+      <attribute href="http://metaabm.org/Engine.metaabm#//@attributes[ID='stopPeriod']"/>
+      <value xsi:type="aBase:IntValue" value="1"/>
+    </parameters>
+    <parameters>
+      <attribute href="../TBmodel.metaabm#//@attributes[ID='individualCount']"/>
+      <value xsi:type="aBase:IntValue" value="1000"/>
+    </parameters>
+    <constraints>
+      <agent href="../TBmodel.metaabm#//@agents[ID='individual']"/>
+      <attribute href="../TBmodel.metaabm#//@agents[ID='individual']/@attributes[ID='nutrition']"/>
+      <qualifier href="../TBmodel.metaabm#//@agents[ID='individual']/@attributes[ID='nutrition']/@options.1"/>
+      <minValue xsi:type="aBase:IntValue" value="50"/>
+      <maxValue xsi:type="aBase:IntValue" value="100"/>
+    </constraints>
+    <results constraint="//@runs.7/@constraints.0" issue="NONE" actualValue="68.0"/>
+  </runs>
+  <runs result="SUCCESS" started="2011-07-26T11:40:04.141-0700" finished="2011-07-26T11:40:04.660-0700">
+    <model href="../TBmodel.metaabm#/"/>
+    <test href="../tests/Poverty.atest#/"/>
+    <parameterization href="../tests/Stats.apar#/"/>
+    <parameters>
+      <attribute href="http://metaabm.org/Engine.metaabm#//@attributes[ID='stopPeriod']"/>
+      <value xsi:type="aBase:IntValue" value="1"/>
+    </parameters>
+    <parameters>
+      <attribute href="../TBmodel.metaabm#//@attributes[ID='individualCount']"/>
+      <value xsi:type="aBase:IntValue" value="1000"/>
+    </parameters>
+    <constraints>
+      <agent href="../TBmodel.metaabm#//@agents[ID='individual']"/>
+      <attribute href="../TBmodel.metaabm#//@agents[ID='individual']/@attributes[ID='economicStatus']"/>
+      <qualifier href="../TBmodel.metaabm#//@agents[ID='individual']/@attributes[ID='economicStatus']/@options.1"/>
+      <minValue xsi:type="aBase:IntValue" value="425"/>
+      <maxValue xsi:type="aBase:IntValue" value="575"/>
+    </constraints>
+    <results constraint="//@runs.8/@constraints.0" issue="NONE" actualValue="433.0"/>
+  </runs>
+  <runs result="SUCCESS" started="2011-07-26T11:40:04.158-0700" finished="2011-07-26T11:40:04.684-0700">
+    <model href="../TBmodel.metaabm#/"/>
+    <test href="../tests/Poverty.atest#/"/>
+    <parameterization href="../tests/Stats.apar#/"/>
+    <parameters>
+      <attribute href="http://metaabm.org/Engine.metaabm#//@attributes[ID='stopPeriod']"/>
+      <value xsi:type="aBase:IntValue" value="1"/>
+    </parameters>
+    <parameters>
+      <attribute href="../TBmodel.metaabm#//@attributes[ID='individualCount']"/>
+      <value xsi:type="aBase:IntValue" value="1000"/>
+    </parameters>
+    <constraints>
+      <agent href="../TBmodel.metaabm#//@agents[ID='individual']"/>
+      <attribute href="../TBmodel.metaabm#//@agents[ID='individual']/@attributes[ID='economicStatus']"/>
+      <qualifier href="../TBmodel.metaabm#//@agents[ID='individual']/@attributes[ID='economicStatus']/@options.1"/>
+      <minValue xsi:type="aBase:IntValue" value="425"/>
+      <maxValue xsi:type="aBase:IntValue" value="575"/>
+    </constraints>
+    <results constraint="//@runs.9/@constraints.0" issue="NONE" actualValue="436.0"/>
+  </runs>
+</ares:RunSet>

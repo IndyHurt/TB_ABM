@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: edu.ucsb.tb
+Bundle-SymbolicName: edu.ucsb.tb
+Bundle-Version: 1.0.0
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: org.eclipse.amp.escape.runtime;bundle-version="0.9.0",
+ org.eclipse.amp.amf.gen.extras;bundle-version="0.9.0"

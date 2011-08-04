@@ -1,0 +1,348 @@
+
+		<HTML>
+			<HEAD>
+				<TITLE>TBmodel</TITLE>
+			</HEAD>
+			<BODY>
+				<H1>TBmodel</H1>
+				
+				<P>This model is investigates the dynamics of tuberculosis disease transmission within a population.</P>
+					<h2>Parameters</h2>
+						
+		
+				<H5>Individual Count  (int, default: 1000)</H5>
+				<i>The number of individuals to create.</i><BR/>
+		
+				<H5>P Initial TB Positive  (double, default: .3)</H5>
+				<i>Individuals that have been infected with the TB bacillus but are not currently infectious (not w/ active TB).</i><BR/>
+		
+				<H5>P Initial Active  (double, default: .2)</H5>
+				<i>The probability that a given individual is in the active stage given that they are TB positive.</i><BR/>
+		
+				<H5>Min Days Clinical Treatment to Recovered  (int, default: 175)</H5>
+				<i></i><BR/>
+		
+				<H5>P Transmission  (double, default: .001)</H5>
+				<i></i><BR/>
+		
+				<H5>P Detection  (double, default: .05)</H5>
+				<i></i><BR/>
+		
+				<H5>Min Days Clinical Treatment to Latent  (int, default: 12)</H5>
+				<i></i><BR/>
+		
+				<H5>Max Days Clinical Treatment to Latent  (int, default: 16)</H5>
+				<i></i><BR/>
+		
+				<H5>Max Days Clinical Treatment to Recovered  (int, default: 185)</H5>
+				<i></i><BR/>
+		
+				<H5>P Female  (double, default: 0.498374422)</H5>
+				<i></i><BR/>
+		
+				<H5>Age Distribution Female  (double[], default: 0.162608312,0.147915583,0.113257637,0.100629927,0.097086767,0.090447583,0.076451235,0.055016226,0.041937109,0.033182086,0.024994817,0.018708896,0.037763823)</H5>
+				<i></i><BR/>
+		
+				<H5>Age Distribution Male  (double[], default: 0.161184175,0.146690633,0.112438585,0.100090123,0.096109558,0.08958423,0.072958262,0.050453954,0.039608665,0.034161275,0.028156401,0.022416222,0.046147917)</H5>
+				<i></i><BR/>
+		
+				<H5>HIV Prevalence Female by Age Index  (double[], default: 0,0.00,0.00,0.027,0.064,0.104,0.11,0.088,0.143,0.064,0.00,0.00,0.00)</H5>
+				<i></i><BR/>
+		
+				<H5>HIV Prevalence Male by Age Index  (double[], default: 0,0.00,0.00,0.007,0.015,0.065,0.068,0.104,0.057,0.043,0.00,0.00,0.00)</H5>
+				<i></i><BR/>
+		
+				<H5>Smoking Prevelance Male by Age Index  (double[], default: 0,0,0,0.027,0.151,0.201,0.255,0.245,0.259,0.296,0.296,0.296,0.296)</H5>
+				<i></i><BR/>
+		
+				<H5>Periods in Year  (int, default: 365)</H5>
+				<i></i><BR/>
+		
+				<H5>P Always Compliant Category  (double, default: .7)</H5>
+				<i></i><BR/>
+		
+				<H5>P Sometimes Compliant Category  (double, default: 0)</H5>
+				<i></i><BR/>
+		
+				<H5>P Somtimes Compliant will Comply  (double, default: .8)</H5>
+				<i></i><BR/>
+		
+				<H5>TB Active Death Rate per Year  (double, default: .2)</H5>
+				<i></i><BR/>
+		
+				<H5>House Count  (int, default: 100)</H5>
+				<i>The number of houses to create.</i><BR/>
+		
+				<H5>Work Location Count  (int, default: 25)</H5>
+				<i>The number of work locations to create.</i><BR/>
+		
+				<H5>Bacterial Decay Rate  (double, default: .03)</H5>
+				<i></i><BR/>
+		
+				<H5>Bacterial Diffusion Rate  (double, default: .2)</H5>
+				<i></i><BR/>
+		
+				<H5>Bacterial Emission Rate  (double, default: .8)</H5>
+				<i>The rate at which an active individual produces active bacterial cells into the surrounding environment.</i><BR/>
+		
+				<H5>TB Avoidance Threshold  (double, default: .25)</H5>
+				<i>The level of assumed bacterial present from which the individual will attempt to avoid.</i><BR/>
+		
+				<H5>Avoid TB Locations  (boolean, default: true)</H5>
+				<i></i><BR/>
+		
+				<H5>P Initial Impoverished  (double, default: .45)</H5>
+				<i></i><BR/>
+		
+				<H5>P Initial Malnourished  (double, default: .075)</H5>
+				<i></i><BR/>
+		
+				<H5>P Active Transition Latent Factor Base  (double, default: .02)</H5>
+				<i></i><BR/>
+		
+				<H5>P Active Transition Latent HIV Negative Factor  (double, default: .0)</H5>
+				<i></i><BR/>
+		
+				<H5>P Active Transition Latent HIV Positive Factor  (double, default: 0.11)</H5>
+				<i></i><BR/>
+		
+				<H5>P Active Transition Latent Non Smoker Factor  (double, default: .0)</H5>
+				<i></i><BR/>
+		
+				<H5>P Active Transition Latent Smoker Factor  (double, default: 0.04)</H5>
+				<i></i><BR/>
+		
+				<H5>P Active Transition Latent Nourished Factor  (double, default: )</H5>
+				<i></i><BR/>
+		
+				<H5>P Active Transition Latent Malnourished Factor  (double, default: .04)</H5>
+				<i></i><BR/>
+		
+				<H5>P Active Transition Latent Not Improvished Factor  (double, default: )</H5>
+				<i></i><BR/>
+		
+				<H5>P Active Transition Latent Impoverished Factor  (double, default: .04)</H5>
+				<i></i><BR/>
+		
+				<H5>Active Bacterial Transmission Rate  (double, default: 12)</H5>
+				<i></i><BR/>
+		
+				<H5>Bacterial Load Infection Threshold  (int, default: 10)</H5>
+				<i>The level of bacterial load that will cause an individual to be considered as having (latent) TB. At this point, the individual will be serum positive.</i><BR/>
+		
+				<H5>Immune Clearing Factor Base  (double, default: 9)</H5>
+				<i></i><BR/>
+		
+				<H5>Immune Clearing HIV Negative Factor  (double, default: )</H5>
+				<i></i><BR/>
+		
+				<H5>Immune Clearing HIV Positive Factor  (double, default: -3)</H5>
+				<i></i><BR/>
+		
+				<H5>Immune Clearing Non Smoker Factor  (double, default: )</H5>
+				<i></i><BR/>
+		
+				<H5>Immune Clearing Smoker Factor  (double, default: -2)</H5>
+				<i></i><BR/>
+		
+				<H5>Immune Clearing Nourished Factor  (double, default: )</H5>
+				<i></i><BR/>
+		
+				<H5>Immune Clearing Malnourished Factor  (double, default: -2)</H5>
+				<i></i><BR/>
+		
+				<H5>Immune Clearing Not Improvished Factor  (double, default: )</H5>
+				<i></i><BR/>
+		
+				<H5>Immune Clearing Impoverished Factor  (double, default: -2)</H5>
+				<i></i><BR/>
+		
+				<H5>Periods in Day  (int, default: 2)</H5>
+				<i></i><BR/>
+		
+				<H5>Maximum Seperation  (int, default: 100)</H5>
+				<i></i><BR/>
+		
+
+					<h2><ul>Agents</ul></h2>
+						
+							<H3>Individual</H3>
+							
+							<H4>Attributes</H4>
+							
+		
+				<H5>TB Status  (TBStatusEnum, default: Suseptible)</H5>
+				<i>Where the individual is in the disease cycle.  </i><BR/>
+		
+				<H5>TB Infections Per Lifetime  (int, default: )</H5>
+				<i></i><BR/>
+		
+				<H5>Treatment Status  (TreatmentStatusEnum, default: Not Infected)</H5>
+				<i></i><BR/>
+		
+				<H5>Days Until Latent  (int, default: 0)</H5>
+				<i></i><BR/>
+		
+				<H5>Days Until Recovered  (int, default: 0)</H5>
+				<i></i><BR/>
+		
+				<H5>Succesful Treatments  (int, default: )</H5>
+				<i></i><BR/>
+		
+				<H5>HIV Status  (HIVStatusEnum, default: HIV Negative)</H5>
+				<i></i><BR/>
+		
+				<H5>Smoking  (SmokingEnum, default: Non Smoker)</H5>
+				<i></i><BR/>
+		
+				<H5>Gender  (GenderEnum, default: Female)</H5>
+				<i></i><BR/>
+		
+				<H5>Age Index  (int, default: )</H5>
+				<i></i><BR/>
+		
+				<H5>Age Range  (int, default: )</H5>
+				<i></i><BR/>
+		
+				<H5>Compliance Behavior  (ComplianceBehaviorEnum, default: Sometimes Compliant)</H5>
+				<i></i><BR/>
+		
+				<H5>Bacterial Load  (double, default: 0.0)</H5>
+				<i></i><BR/>
+		
+				<H5>Home Search  (HomeSearchEnum, default: In Progress)</H5>
+				<i></i><BR/>
+		
+				<H5>Nutrition  (NutritionEnum, default: Nourished)</H5>
+				<i></i><BR/>
+		
+				<H5>Economic Status  (EconomicStatusEnum, default: Not Improvished)</H5>
+				<i></i><BR/>
+		
+				<H5>Bacterial Clearing Rate  (double, default: )</H5>
+				<i></i><BR/>
+		
+				<H5>Daytime  (boolean, default: )</H5>
+				<i></i><BR/>
+		
+
+							<H4>Behaviors</H4>
+							
+		
+				<H5>Initial Placement</H5>
+				<i>Initial Placement Initialization. Executed once at the beginning of each model run.</i><BR/>
+		
+				<H5>Initialize State</H5>
+				<i>Initialize State Initialization. Executed once at the beginning of each model run.</i><BR/>
+		
+				<H5>Movement</H5>
+				<i>Movement Rule. Executed every period.</i><BR/>
+		
+				<H5>Place Movement</H5>
+				<i>Place Movement Rule. Executed every period.</i><BR/>
+		
+				<H5>Disease Process</H5>
+				<i>Disease Process Rule. Executed every period.</i><BR/>
+		
+				<H5>Watch TB Status</H5>
+				<i>Watch for changes in TB Status.</i><BR/>
+		
+				<H5>Detection</H5>
+				<i>Detection Rule. Executed every period.</i><BR/>
+		
+				<H5>Watch Treatment Status</H5>
+				<i>Watch for changes in Treatment Status.</i><BR/>
+		
+				<H5>Derive Succesful Treatments</H5>
+				<i>Derive Succesful Treatments.</i><BR/>
+		
+				<H5>Watch Gender</H5>
+				<i>Watch for changes in Gender.</i><BR/>
+		
+				<H5>Derive Age Range</H5>
+				<i>Derive Age Range.</i><BR/>
+		
+				<H5>Watch Age Index</H5>
+				<i>Watch for changes in Age Index.</i><BR/>
+		
+				<H5>Immune Response</H5>
+				<i>Immune Response Rule. Executed every period.</i><BR/>
+		
+				<H5>Death Process</H5>
+				<i>Death Process Rule. Executed every period.</i><BR/>
+		
+				<H5>Acquire</H5>
+				<i>Acquire Rule. Executed every period.</i><BR/>
+		
+				<H5>Derive Bacterial Clearing Rate</H5>
+				<i>Derive Bacterial Clearing Rate.</i><BR/>
+		
+				<H5>Derive Daytime</H5>
+				<i>Derive Daytime.</i><BR/>
+		
+
+						
+							<H3>House</H3>
+							
+							<H4>Attributes</H4>
+							
+		
+
+							<H4>Behaviors</H4>
+							
+		
+				<H5>Initialize</H5>
+				<i>Initialize Initialization. Executed once at the beginning of each model run.</i><BR/>
+		
+
+						
+							<H3>Map Location</H3>
+							
+							<H4>Attributes</H4>
+							
+		
+				<H5>TB Bacterial Presense  (double, default: )</H5>
+				<i></i><BR/>
+		
+
+							<H4>Behaviors</H4>
+							
+		
+				<H5>Diffuse</H5>
+				<i>Diffuse.</i><BR/>
+		
+
+						
+							<H3>Work Location</H3>
+							
+							<H4>Attributes</H4>
+							
+		
+
+							<H4>Behaviors</H4>
+							
+		
+				<H5>Initialize</H5>
+				<i>Initialize Initialization. Executed once at the beginning of each model run.</i><BR/>
+		
+
+						
+						
+					<H2>Projections</H2>
+					
+		
+				<H5>Village  (2-Dimensional Grid)</H5>
+				<i></i><BR/>
+		
+				<H5>Housing  (Network)</H5>
+				<i></i><BR/>
+		
+				<H5>Workplaces  (Network)</H5>
+				<i></i><BR/>
+		
+
+			    
+				<P>Generated by AMF.</P>
+			</BODY>
+		</HTML>
+	

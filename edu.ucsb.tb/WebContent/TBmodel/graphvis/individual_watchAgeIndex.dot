@@ -1,0 +1,71 @@
+digraph watchAgeIndex {
+
+	subgraph clustercontextKey {
+		fontname=Helvetica;
+		label="Parameters";
+		style="filled";
+		fillcolor=ghostwhite;
+		color=white;
+		labeljust=l;
+		contextOverview [style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="black",label=""];
+	}
+	subgraph clusterindividualKey {
+		fontname=Helvetica;
+		nodesep=0.1;
+		style="filled";
+		fillcolor=ghostwhite;
+		label="Individual";
+		color=white;
+		labeljust=l;
+		watchAgeIndexOverview [fontname=Helvetica,style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="0.722, 0.9 , 0.8",label="",URL="individual__Overview.svg"];
+
+	}
+		individualgenderRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualgender> Gender | {<individualgenderfemale> Female|<individualgendermale> Male}}"];
+		individualsmokingRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualsmoking> Smoking | {<individualsmokingsmoker> Smoker}}"];
+		individualhIVStatusRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualhIVStatus> HIV Status | {<individualhIVStatushIVPositive> HIV Positive}}"];
+		individualageIndex [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label="Age Index"];
+		tBmodelsmokingPrevelanceMalebyAgeIndex [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label=<<i>Smoking Prevelance Male by Age Index</i>>];
+		individualsmokingRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualsmoking> Smoking | {<individualsmokingsmoker> Smoker}}"];
+		tBmodelhIVPrevalenceMalebyAgeIndex [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label=<<i>HIV Prevalence Male by Age Index</i>>];
+		individualhIVStatusRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualhIVStatus> HIV Status | {<individualhIVStatushIVPositive> HIV Positive}}"];
+		individualageIndex [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label="Age Index"];
+
+//subgraph clusterwatchAgeIndex {
+	//style=filled;
+	//color=white;
+	//fillcolor="0.0, 0.0, 0.98";
+		watchAgeIndex [shape=box,style="rounded,filled",fontname=Helvetica,color=black,fillcolor="0.722, 0.2, 1.0",label="Watch Age Index",URL="individual_watchAgeIndex.svg"];
+		individualageIndex ->  watchAgeIndex [color="0.722, 0.9 , 0.8",penwidth=2.0,arrowhead=vee];
+	watchAgeIndex ->  hIVDraw [color="0.722, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	watchAgeIndex ->  genderIdenticalMaleQueryCopy [color="0.722, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		item_SmokingPrevelanceMalebyAgeIndexAgeIndex_ [shape=none,style="rounded,filled",fontname=Helvetica,color="0.722, 0.2, 1.0",label="Item?"];
+	item_SmokingPrevelanceMalebyAgeIndexAgeIndex_ ->  smokingDraw [color="0.722, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		genderIdenticalFemaleQueryCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.722, 0.2, 1.0",label="Is?"];
+		smokingDraw [shape=none,style="rounded,filled",fontname=Helvetica,color="0.722, 0.2, 1.0",label="Random Unit"];
+	smokingDraw ->  smokingDrawLesserItem_SmokingPrevelanceMalebyAgeIndexAgeIndex_Query [color="0.722, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		hIVDrawLesserItem_HIVPrevalenceMalebyAgeIndexAgeIndex_Query [shape=none,style="rounded,filled",fontname=Helvetica,color="0.722, 0.2, 1.0",label="Lesser?"];
+			hIVDrawLesserItem_HIVPrevalenceMalebyAgeIndexAgeIndex_Query ->  individualhIVStatusRecord:individualhIVStatushIVPositive [color="0.722, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		hIVDraw [shape=none,style="rounded,filled",fontname=Helvetica,color="0.722, 0.2, 1.0",label="Random Unit"];
+	hIVDraw ->  genderIdenticalFemaleQueryCopy [color="0.722, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	hIVDraw ->  genderIdenticalMale [color="0.722, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		item_HIVPrevalenceMalebyAgeIndexAgeIndex_ [shape=none,style="rounded,filled",fontname=Helvetica,color="0.722, 0.2, 1.0",label="Item?"];
+	item_HIVPrevalenceMalebyAgeIndexAgeIndex_ ->  hIVDrawLesserItem_HIVPrevalenceMalebyAgeIndexAgeIndex_Query [color="0.722, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		smokingDrawLesserItem_SmokingPrevelanceMalebyAgeIndexAgeIndex_Query [shape=none,style="rounded,filled",fontname=Helvetica,color="0.722, 0.2, 1.0",label="Lesser?"];
+			smokingDrawLesserItem_SmokingPrevelanceMalebyAgeIndexAgeIndex_Query ->  individualsmokingRecord:individualsmokingsmoker [color="0.722, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		genderIdenticalMaleQueryCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.722, 0.2, 1.0",label="Is?"];
+	genderIdenticalMaleQueryCopy ->  item_SmokingPrevelanceMalebyAgeIndexAgeIndex_ [color="0.722, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		genderIdenticalMale [shape=none,style="rounded,filled",fontname=Helvetica,color="0.722, 0.2, 1.0",label="Is?"];
+	genderIdenticalMale ->  item_HIVPrevalenceMalebyAgeIndexAgeIndex_ [color="0.722, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+//}
+		tBmodelsmokingPrevelanceMalebyAgeIndex -> item_SmokingPrevelanceMalebyAgeIndexAgeIndex_:nw [style=dotted,arrowhead=dot,color="0.722, 0.9 , 0.8",penwidth=2.0];
+		individualageIndex -> item_SmokingPrevelanceMalebyAgeIndexAgeIndex_:ne [style=dotted,arrowhead=dot,color="0.722, 0.9 , 0.8",penwidth=2.0];
+		individualgenderRecord:individualgenderfemale -> genderIdenticalFemaleQueryCopy:ne [style=dotted,arrowhead=dot,color="0.722, 0.9 , 0.8",penwidth=2.0];
+		hIVDraw -> hIVDrawLesserItem_HIVPrevalenceMalebyAgeIndexAgeIndex_Query:nw [style=dotted,arrowhead=dot,color=blue,penwidth=2.0];
+		item_HIVPrevalenceMalebyAgeIndexAgeIndex_ -> hIVDrawLesserItem_HIVPrevalenceMalebyAgeIndexAgeIndex_Query:ne [style=dotted,arrowhead=dot,color=blue,penwidth=2.0];
+		tBmodelhIVPrevalenceMalebyAgeIndex -> item_HIVPrevalenceMalebyAgeIndexAgeIndex_:nw [style=dotted,arrowhead=dot,color="0.722, 0.9 , 0.8",penwidth=2.0];
+		individualageIndex -> item_HIVPrevalenceMalebyAgeIndexAgeIndex_:ne [style=dotted,arrowhead=dot,color="0.722, 0.9 , 0.8",penwidth=2.0];
+		item_SmokingPrevelanceMalebyAgeIndexAgeIndex_ -> smokingDrawLesserItem_SmokingPrevelanceMalebyAgeIndexAgeIndex_Query:ne [style=dotted,arrowhead=dot,color=blue,penwidth=2.0];
+		smokingDraw -> smokingDrawLesserItem_SmokingPrevelanceMalebyAgeIndexAgeIndex_Query:nw [style=dotted,arrowhead=dot,color=blue,penwidth=2.0];
+		individualgenderRecord:individualgendermale -> genderIdenticalMaleQueryCopy:ne [style=dotted,arrowhead=dot,color="0.722, 0.9 , 0.8",penwidth=2.0];
+		individualgenderRecord:individualgendermale -> genderIdenticalMale:ne [style=dotted,arrowhead=dot,color="0.722, 0.9 , 0.8",penwidth=2.0];
+}

@@ -1,0 +1,50 @@
+digraph deriveSuccesfulTreatments {
+
+	subgraph clustercontextKey {
+		fontname=Helvetica;
+		label="Parameters";
+		style="filled";
+		fillcolor=ghostwhite;
+		color=white;
+		labeljust=l;
+		contextOverview [style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="black",label=""];
+	}
+	subgraph clusterindividualKey {
+		fontname=Helvetica;
+		nodesep=0.1;
+		style="filled";
+		fillcolor=ghostwhite;
+		label="Individual";
+		color=white;
+		labeljust=l;
+		deriveSuccesfulTreatmentsOverview [fontname=Helvetica,style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="0.277, 0.9 , 0.8",label="",URL="individual__Overview.svg"];
+
+	}
+		individualtBStatusRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualtBStatus> TB Status | {<individualtBStatussuseptible> Suseptible}}"];
+		individualtBInfectionsPerLifetime [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label="TB Infections Per Lifetime"];
+
+//subgraph clusterderiveSuccesfulTreatments {
+	//style=filled;
+	//color=white;
+	//fillcolor="0.0, 0.0, 0.98";
+		deriveSuccesfulTreatments [shape=box,style="rounded,filled",fontname=Helvetica,color=black,fillcolor="0.277, 0.2, 1.0",label="Derive Succesful Treatments",URL="individual_deriveSuccesfulTreatments.svg"];
+	deriveSuccesfulTreatments ->  tBStatusDifferentSuseptibleQuery [color="0.277, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	deriveSuccesfulTreatments ->  tBStatusIdenticalSuseptibleQueryCopyCopy [color="0.277, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		tBInfectionsPerLifetimeSubtractUnit [shape=none,style="rounded,filled",fontname=Helvetica,color="0.277, 0.2, 1.0",label="Subtract"];
+		tBStatusIdenticalSuseptibleQueryCopyCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.277, 0.2, 1.0",label="Is?"];
+	tBStatusIdenticalSuseptibleQueryCopyCopy ->  tBInfectionsPerLifetimeSubtractZero [color="0.277, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		tBStatusDifferentSuseptibleQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.277, 0.2, 1.0",label="Is Not?"];
+	tBStatusDifferentSuseptibleQuery ->  tBInfectionsPerLifetimeSubtractUnit [color="0.277, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		tBInfectionsPerLifetimeSubtractZero [shape=none,style="rounded,filled",fontname=Helvetica,color="0.277, 0.2, 1.0",label="Subtract"];
+//}
+		individualtBInfectionsPerLifetime -> tBInfectionsPerLifetimeSubtractUnit:nw [style=dotted,arrowhead=dot,color="0.277, 0.9 , 0.8",penwidth=2.0];
+	
+		importxyxtBInfectionsPerLifetimeSubtractUnitfunctionsunit0 [fontname=Helvetica,shape=none,label="1"];
+		importxyxtBInfectionsPerLifetimeSubtractUnitfunctionsunit0 -> tBInfectionsPerLifetimeSubtractUnit:ne [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+		individualtBStatusRecord:individualtBStatussuseptible -> tBStatusIdenticalSuseptibleQueryCopyCopy:ne [style=dotted,arrowhead=dot,color="0.277, 0.9 , 0.8",penwidth=2.0];
+		individualtBStatusRecord:individualtBStatussuseptible -> tBStatusDifferentSuseptibleQuery:ne [style=dotted,arrowhead=dot,color="0.277, 0.9 , 0.8",penwidth=2.0];
+		individualtBInfectionsPerLifetime -> tBInfectionsPerLifetimeSubtractZero:nw [style=dotted,arrowhead=dot,color="0.277, 0.9 , 0.8",penwidth=2.0];
+	
+		importxyxtBInfectionsPerLifetimeSubtractZerofunctionszero0 [fontname=Helvetica,shape=none,label="0"];
+		importxyxtBInfectionsPerLifetimeSubtractZerofunctionszero0 -> tBInfectionsPerLifetimeSubtractZero:ne [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+}

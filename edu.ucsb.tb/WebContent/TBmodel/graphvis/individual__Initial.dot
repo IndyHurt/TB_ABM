@@ -1,0 +1,216 @@
+digraph individual {
+	concentrate=true;
+	
+	subgraph clustercontextKey {
+		fontname=Helvetica;
+		label="Parameters";
+		style="filled";
+		fillcolor=ghostwhite;
+		color=white;
+		labeljust=l;
+		contextOverview [style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="black",label=""];
+	}
+	subgraph clusterindividualKey {
+		fontname=Helvetica;
+		nodesep=0.1;
+		style="filled";
+		fillcolor=ghostwhite;
+		label="Individual";
+		color=white;
+		labeljust=l;
+		initialPlacementOverview [fontname=Helvetica,style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="0.5, 0.9 , 0.8",label="",URL="individual__Overview.svg"];
+		initializeStateOverview [fontname=Helvetica,style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="0.555, 0.9 , 0.8",label="",URL="individual__Overview.svg"];
+		watchTBStatusOverview [fontname=Helvetica,style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="0.833, 0.9 , 0.8",label="",URL="individual__Overview.svg"];
+		watchTreatmentStatusOverview [fontname=Helvetica,style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="0.888, 0.9 , 0.8",label="",URL="individual__Overview.svg"];
+		watchGenderOverview [fontname=Helvetica,style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="0.777, 0.9 , 0.8",label="",URL="individual__Overview.svg"];
+initialPlacementOverview -> initializeStateOverview -> watchTBStatusOverview -> watchTreatmentStatusOverview -> watchGenderOverview [style=invis];
+	}
+
+//subgraph clusterinitialPlacement {
+	//style=filled;
+	//color=white;
+	//fillcolor="0.0, 0.0, 0.98";
+		initialPlacement [shape=box,style="rounded,filled",fontname=Helvetica,color=black,fillcolor="0.5, 0.2, 1.0",label="Initial Placement",URL="individual_initialPlacement.svg"];
+	initialPlacement ->  initialLocation [color="0.5, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		availableQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.574, 0.2, 1.0",label="Available"];
+	availableQuery ->  moveIndividual [color="0.574, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		initialLocation [shape=none,style="rounded,filled",fontname=Helvetica,color=gray,fillcolor="0.574, 0.2, 1.0",label="Initial Location"];
+	initialLocation ->  availableQuery [color="0.574, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		moveIndividual [shape=none,style="rounded,filled",fontname=Helvetica,color="0.5, 0.2, 1.0",label="Move"];
+	initialPlacement ->  moveIndividual:nw [style=dashed,color="0.5, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	initialLocation -> moveIndividual:ne [style=dashed,color="0.574, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+//}
+		individualtreatmentStatusRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualtreatmentStatus> Treatment Status | {<individualtreatmentStatusnotInfected> Not Infected|<individualtreatmentStatusnoTreatment> No Treatment|<individualtreatmentStatusclinicalTreatment> Clinical Treatment}}"];
+		individualtBStatusRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualtBStatus> TB Status | {<individualtBStatussuseptible> Suseptible|<individualtBStatuslatent> Latent|<individualtBStatusactive> Active}}"];
+		individualtreatmentStatusRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualtreatmentStatus> Treatment Status | {<individualtreatmentStatusnotInfected> Not Infected|<individualtreatmentStatusnoTreatment> No Treatment|<individualtreatmentStatusclinicalTreatment> Clinical Treatment}}"];
+		individualtBInfectionsPerLifetime [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label="TB Infections Per Lifetime"];
+		individualtBStatusRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualtBStatus> TB Status | {<individualtBStatussuseptible> Suseptible|<individualtBStatuslatent> Latent|<individualtBStatusactive> Active}}"];
+
+//subgraph clusterwatchTBStatus {
+	//style=filled;
+	//color=white;
+	//fillcolor="0.0, 0.0, 0.98";
+		watchTBStatus [shape=box,style="rounded,filled",fontname=Helvetica,color=black,fillcolor="0.833, 0.2, 1.0",label="Watch TB Status",URL="individual_watchTBStatus.svg"];
+		individualtBStatusRecord:individualtBStatus ->  watchTBStatus [color="0.833, 0.9 , 0.8",penwidth=2.0,arrowhead=vee];
+	watchTBStatus ->  tBStatusIdenticalLatentQueryCopy [color="0.833, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	watchTBStatus ->  tBStatusIdenticalSuseptibleQueryCopy [color="0.833, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		tBStatusIdenticalSuseptibleQueryCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.833, 0.2, 1.0",label="Is?"];
+			tBStatusIdenticalSuseptibleQueryCopy ->  individualtreatmentStatusRecord:individualtreatmentStatusnotInfected [color="0.833, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		tBStatusIdenticalLatentQueryCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.833, 0.2, 1.0",label="Is?"];
+	tBStatusIdenticalLatentQueryCopy ->  incrementTBInfectionsPerLifetime [color="0.833, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+			tBStatusIdenticalLatentQueryCopy ->  individualtreatmentStatusRecord:individualtreatmentStatusnoTreatment [color="0.833, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		incrementTBInfectionsPerLifetime [shape=none,style="rounded,filled",fontname=Helvetica,color="0.833, 0.2, 1.0",label="Increment"];
+			incrementTBInfectionsPerLifetime ->  individualtBInfectionsPerLifetime [color="0.833, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+//}
+		individualtBStatusRecord:individualtBStatussuseptible -> tBStatusIdenticalSuseptibleQueryCopy:ne [style=dotted,arrowhead=dot,color="0.833, 0.9 , 0.8",penwidth=2.0];
+		individualtBStatusRecord:individualtBStatuslatent -> tBStatusIdenticalLatentQueryCopy:ne [style=dotted,arrowhead=dot,color="0.833, 0.9 , 0.8",penwidth=2.0];
+		individualtBInfectionsPerLifetime -> incrementTBInfectionsPerLifetime:nw [style=dotted,arrowhead=dot,color="0.833, 0.9 , 0.8",penwidth=2.0];
+		individualtreatmentStatusRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualtreatmentStatus> Treatment Status | {<individualtreatmentStatusnotInfected> Not Infected|<individualtreatmentStatusnoTreatment> No Treatment|<individualtreatmentStatusclinicalTreatment> Clinical Treatment}}"];
+		individualtBStatusRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualtBStatus> TB Status | {<individualtBStatussuseptible> Suseptible|<individualtBStatuslatent> Latent|<individualtBStatusactive> Active}}"];
+		individualdaysUntilRecovered [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label="Days Until Recovered"];
+		tBmodelminDaysClinicalTreatmenttoRecovered [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label=<<i>Min Days Clinical Treatment to Recovered</i>>];
+		tBmodelmaxDaysClinicalTreatmenttoRecovered [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label=<<i>Max Days Clinical Treatment to Recovered</i>>];
+		tBmodelminDaysClinicalTreatmenttoLatent [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label=<<i>Min Days Clinical Treatment to Latent</i>>];
+		tBmodelmaxDaysClinicalTreatmenttoLatent [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label=<<i>Max Days Clinical Treatment to Latent</i>>];
+		individualdaysUntilLatent [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label="Days Until Latent"];
+		individualtreatmentStatusRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualtreatmentStatus> Treatment Status | {<individualtreatmentStatusnotInfected> Not Infected|<individualtreatmentStatusnoTreatment> No Treatment|<individualtreatmentStatusclinicalTreatment> Clinical Treatment}}"];
+
+//subgraph clusterwatchTreatmentStatus {
+	//style=filled;
+	//color=white;
+	//fillcolor="0.0, 0.0, 0.98";
+		watchTreatmentStatus [shape=box,style="rounded,filled",fontname=Helvetica,color=black,fillcolor="0.888, 0.2, 1.0",label="Watch Treatment Status",URL="individual_watchTreatmentStatus.svg"];
+		individualtreatmentStatusRecord:individualtreatmentStatus ->  watchTreatmentStatus [color="0.888, 0.9 , 0.8",penwidth=2.0,arrowhead=vee];
+	watchTreatmentStatus ->  treatmentStatusIdenticalClinicalTreatmentQuery [color="0.888, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		treatmentStatusIdenticalClinicalTreatmentQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.888, 0.2, 1.0",label="Is?"];
+	treatmentStatusIdenticalClinicalTreatmentQuery ->  tBStatusIdenticalActiveQueryCopyCopy [color="0.888, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	treatmentStatusIdenticalClinicalTreatmentQuery ->  drawDaysuntilRecovered [color="0.888, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		tBStatusIdenticalActiveQueryCopyCopy [shape=none,style="rounded,filled",fontname=Helvetica,color="0.888, 0.2, 1.0",label="Is?"];
+	tBStatusIdenticalActiveQueryCopyCopy ->  drawDaysuntilLatent [color="0.888, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		drawDaysuntilRecovered [shape=none,style="rounded,filled",fontname=Helvetica,color="0.888, 0.2, 1.0",label="Random In Range?"];
+			drawDaysuntilRecovered ->  individualdaysUntilRecovered [color="0.888, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		drawDaysuntilLatent [shape=none,style="rounded,filled",fontname=Helvetica,color="0.888, 0.2, 1.0",label="Random In Range?"];
+			drawDaysuntilLatent ->  individualdaysUntilLatent [color="0.888, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+//}
+		individualtreatmentStatusRecord:individualtreatmentStatusclinicalTreatment -> treatmentStatusIdenticalClinicalTreatmentQuery:ne [style=dotted,arrowhead=dot,color="0.888, 0.9 , 0.8",penwidth=2.0];
+		individualtBStatusRecord:individualtBStatusactive -> tBStatusIdenticalActiveQueryCopyCopy:ne [style=dotted,arrowhead=dot,color="0.888, 0.9 , 0.8",penwidth=2.0];
+		tBmodelminDaysClinicalTreatmenttoRecovered -> drawDaysuntilRecovered:nw [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+		tBmodelmaxDaysClinicalTreatmenttoRecovered -> drawDaysuntilRecovered:ne [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+		tBmodelminDaysClinicalTreatmenttoLatent -> drawDaysuntilLatent:nw [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+		tBmodelmaxDaysClinicalTreatmenttoLatent -> drawDaysuntilLatent:ne [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+		individualgenderRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualgender> Gender | {<individualgenderfemale> Female|<individualgendermale> Male}}"];
+		tBmodelageDistributionFemale [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label=<<i>Age Distribution Female</i>>];
+		individualageIndex [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label="Age Index"];
+		tBmodelageDistributionMale [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label=<<i>Age Distribution Male</i>>];
+		individualgenderRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualgender> Gender | {<individualgenderfemale> Female|<individualgendermale> Male}}"];
+
+//subgraph clusterwatchGender {
+	//style=filled;
+	//color=white;
+	//fillcolor="0.0, 0.0, 0.98";
+		watchGender [shape=box,style="rounded,filled",fontname=Helvetica,color=black,fillcolor="0.777, 0.2, 1.0",label="Watch Gender",URL="individual_watchGender.svg"];
+		individualgenderRecord:individualgender ->  watchGender [color="0.777, 0.9 , 0.8",penwidth=2.0,arrowhead=vee];
+	watchGender ->  genderIdenticalMaleQuery [color="0.777, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	watchGender ->  genderIdenticalFemaleQuery [color="0.777, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		randomWeighted_AgeDistributionFemale_ [shape=none,style="rounded,filled",fontname=Helvetica,color="0.777, 0.2, 1.0",label="Random Weighted?"];
+			randomWeighted_AgeDistributionFemale_ ->  individualageIndex [color="0.777, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		genderIdenticalFemaleQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.777, 0.2, 1.0",label="Is?"];
+	genderIdenticalFemaleQuery ->  randomWeighted_AgeDistributionFemale_ [color="0.777, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		genderIdenticalMaleQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.777, 0.2, 1.0",label="Is?"];
+	genderIdenticalMaleQuery ->  randomWeighted_AgeDistributionMale_ [color="0.777, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		randomWeighted_AgeDistributionMale_ [shape=none,style="rounded,filled",fontname=Helvetica,color="0.777, 0.2, 1.0",label="Random Weighted?"];
+			randomWeighted_AgeDistributionMale_ ->  individualageIndex [color="0.777, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+//}
+		tBmodelageDistributionFemale -> randomWeighted_AgeDistributionFemale_:nw [style=dotted,arrowhead=dot,color="0.777, 0.9 , 0.8",penwidth=2.0];
+		individualgenderRecord:individualgenderfemale -> genderIdenticalFemaleQuery:ne [style=dotted,arrowhead=dot,color="0.777, 0.9 , 0.8",penwidth=2.0];
+		individualgenderRecord:individualgendermale -> genderIdenticalMaleQuery:ne [style=dotted,arrowhead=dot,color="0.777, 0.9 , 0.8",penwidth=2.0];
+		tBmodelageDistributionMale -> randomWeighted_AgeDistributionMale_:nw [style=dotted,arrowhead=dot,color="0.777, 0.9 , 0.8",penwidth=2.0];
+		individualtreatmentStatusRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualtreatmentStatus> Treatment Status | {<individualtreatmentStatusnotInfected> Not Infected|<individualtreatmentStatusnoTreatment> No Treatment|<individualtreatmentStatusclinicalTreatment> Clinical Treatment}}"];
+		individualtBStatusRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualtBStatus> TB Status | {<individualtBStatussuseptible> Suseptible|<individualtBStatuslatent> Latent|<individualtBStatusactive> Active}}"];
+		individualcomplianceBehaviorRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualcomplianceBehavior> Compliance Behavior | {<individualcomplianceBehaviorneverCompliant> Never Compliant|<individualcomplianceBehaviorsometimesCompliant> Sometimes Compliant|<individualcomplianceBehavioralwaysCompliant> Always Compliant}}"];
+		individualnutritionRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualnutrition> Nutrition | {<individualnutritionmalnourished> Malnourished}}"];
+		individualeconomicStatusRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualeconomicStatus> Economic Status | {<individualeconomicStatusimpoverished> Impoverished}}"];
+		individualgenderRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualgender> Gender | {<individualgenderfemale> Female|<individualgendermale> Male}}"];
+		individualtreatmentStatusRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualtreatmentStatus> Treatment Status | {<individualtreatmentStatusnotInfected> Not Infected|<individualtreatmentStatusnoTreatment> No Treatment|<individualtreatmentStatusclinicalTreatment> Clinical Treatment}}"];
+		individualtBStatusRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualtBStatus> TB Status | {<individualtBStatussuseptible> Suseptible|<individualtBStatuslatent> Latent|<individualtBStatusactive> Active}}"];
+		individualcomplianceBehaviorRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualcomplianceBehavior> Compliance Behavior | {<individualcomplianceBehaviorneverCompliant> Never Compliant|<individualcomplianceBehaviorsometimesCompliant> Sometimes Compliant|<individualcomplianceBehavioralwaysCompliant> Always Compliant}}"];
+		individualnutritionRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualnutrition> Nutrition | {<individualnutritionmalnourished> Malnourished}}"];
+		tBmodelpAlwaysCompliantCategory [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label=<<i>P Always Compliant Category</i>>];
+		tBmodelpInitialMalnourished [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label=<<i>P Initial Malnourished</i>>];
+		individualeconomicStatusRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualeconomicStatus> Economic Status | {<individualeconomicStatusimpoverished> Impoverished}}"];
+		tBmodelpInitialImpoverished [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label=<<i>P Initial Impoverished</i>>];
+		tBmodelpFemale [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label=<<i>P Female</i>>];
+		tBmodelpSometimesCompliantCategory [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label=<<i>P Sometimes Compliant Category</i>>];
+		tBmodelpInitialTBPositive [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label=<<i>P Initial TB Positive</i>>];
+		tBmodelpInitialActive [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label=<<i>P Initial Active</i>>];
+		individualgenderRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualgender> Gender | {<individualgenderfemale> Female|<individualgendermale> Male}}"];
+
+//subgraph clusterinitializeState {
+	//style=filled;
+	//color=white;
+	//fillcolor="0.0, 0.0, 0.98";
+		initializeState [shape=box,style="rounded,filled",fontname=Helvetica,color=black,fillcolor="0.555, 0.2, 1.0",label="Initialize State",URL="individual_initializeState.svg"];
+	initializeState ->  tBStatusDraw [color="0.555, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	initializeState ->  complianceCategoryDraw [color="0.555, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	initializeState ->  ageDraw [color="0.555, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	initializeState ->  povertyDraw [color="0.555, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		complianceCategoryDraw [shape=none,style="rounded,filled",fontname=Helvetica,color="0.555, 0.2, 1.0",label="Random Unit"];
+	complianceCategoryDraw ->  complianceCategoryDrawLesserPAlwaysCompliantCategoryQuery [color="0.555, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	complianceCategoryDraw ->  complianceCategoryDrawGreaterorEqualPAlwaysCompliantCategoryQuery [color="0.555, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		complianceCategoryDrawLesserPAlwaysCompliantCategoryQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.555, 0.2, 1.0",label="Lesser?"];
+			complianceCategoryDrawLesserPAlwaysCompliantCategoryQuery ->  individualcomplianceBehaviorRecord:individualcomplianceBehavioralwaysCompliant [color="0.555, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		povertyDrawLesserPInitialMalnourishedQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.555, 0.2, 1.0",label="Lesser?"];
+			povertyDrawLesserPInitialMalnourishedQuery ->  individualnutritionRecord:individualnutritionmalnourished [color="0.555, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		complianceCategoryDrawLesserPAlwaysCompliantCategoryAddPSometimesCompliantCategoryQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.555, 0.2, 1.0",label="Lesser?"];
+			complianceCategoryDrawLesserPAlwaysCompliantCategoryAddPSometimesCompliantCategoryQuery ->  individualcomplianceBehaviorRecord:individualcomplianceBehaviorsometimesCompliant [color="0.555, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		not__Or_AgeDrawGreaterorEqualPFemaleQuery_ [shape=none,style="rounded,filled",fontname=Helvetica,color="0.555, 0.2, 1.0",label="Else"];
+			not__Or_AgeDrawGreaterorEqualPFemaleQuery_ ->  individualgenderRecord:individualgenderfemale [color="0.555, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		povertyDraw [shape=none,style="rounded,filled",fontname=Helvetica,color="0.555, 0.2, 1.0",label="Random Unit"];
+	povertyDraw ->  randomUnitCopyLesserQuery [color="0.555, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	povertyDraw ->  povertyDrawLesserPInitialMalnourishedQuery [color="0.555, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		randomUnitCopyLesserQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.555, 0.2, 1.0",label="Lesser?"];
+			randomUnitCopyLesserQuery ->  individualeconomicStatusRecord:individualeconomicStatusimpoverished [color="0.555, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		ageDrawGreaterorEqualPFemaleQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.555, 0.2, 1.0",label="Greater or Equal?"];
+	ageDrawGreaterorEqualPFemaleQuery ->  not__Or_AgeDrawGreaterorEqualPFemaleQuery_ [color="0.555, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+			ageDrawGreaterorEqualPFemaleQuery ->  individualgenderRecord:individualgendermale [color="0.555, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		pAlwaysCompliantCategoryAddPSometimesCompliantCategory [shape=none,style="rounded,filled",fontname=Helvetica,color="0.555, 0.2, 1.0",label="Add"];
+	pAlwaysCompliantCategoryAddPSometimesCompliantCategory ->  complianceCategoryDrawLesserPAlwaysCompliantCategoryAddPSometimesCompliantCategoryQuery [color="0.555, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	pAlwaysCompliantCategoryAddPSometimesCompliantCategory ->  complianceCategoryDrawGreaterorEqualPAlwaysCompliantCategoryAddPSometimesCompliantCategoryQuery [color="0.555, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		ageDraw [shape=none,style="rounded,filled",fontname=Helvetica,color="0.555, 0.2, 1.0",label="Random Unit"];
+	ageDraw ->  ageDrawGreaterorEqualPFemaleQuery [color="0.555, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		complianceCategoryDrawGreaterorEqualPAlwaysCompliantCategoryAddPSometimesCompliantCategoryQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.555, 0.2, 1.0",label="Greater or Equal?"];
+			complianceCategoryDrawGreaterorEqualPAlwaysCompliantCategoryAddPSometimesCompliantCategoryQuery ->  individualcomplianceBehaviorRecord:individualcomplianceBehaviorneverCompliant [color="0.555, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		tBStatusDrawLesserPInitialTBPositiveQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.555, 0.2, 1.0",label="Lesser?"];
+		tBStatusDrawLesserPInitialTBPositiveQuery ->  activeDraw [color="0.555, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+			tBStatusDrawLesserPInitialTBPositiveQuery ->  individualtBStatusRecord:individualtBStatuslatent [color="0.555, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		activeDrawLesserPInitialActiveQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.555, 0.2, 1.0",label="Lesser?"];
+			activeDrawLesserPInitialActiveQuery ->  individualtBStatusRecord:individualtBStatusactive [color="0.555, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+			activeDrawLesserPInitialActiveQuery ->  individualtreatmentStatusRecord:individualtreatmentStatusnoTreatment [color="0.555, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		activeDraw [shape=none,style="rounded,filled",fontname=Helvetica,color="0.555, 0.2, 1.0",label="Random Unit"];
+	activeDraw ->  activeDrawLesserPInitialActiveQuery [color="0.555, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		tBStatusDraw [shape=none,style="rounded,filled",fontname=Helvetica,color="0.555, 0.2, 1.0",label="Random Unit"];
+	tBStatusDraw ->  tBStatusDrawLesserPInitialTBPositiveQuery [color="0.555, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		complianceCategoryDrawGreaterorEqualPAlwaysCompliantCategoryQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.555, 0.2, 1.0",label="Greater or Equal?"];
+	complianceCategoryDrawGreaterorEqualPAlwaysCompliantCategoryQuery ->  pAlwaysCompliantCategoryAddPSometimesCompliantCategory [color="0.555, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+//}
+		tBmodelpAlwaysCompliantCategory -> complianceCategoryDrawLesserPAlwaysCompliantCategoryQuery:ne [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+		complianceCategoryDraw -> complianceCategoryDrawLesserPAlwaysCompliantCategoryQuery:nw [style=dotted,arrowhead=dot,color=blue,penwidth=2.0];
+		tBmodelpInitialMalnourished -> povertyDrawLesserPInitialMalnourishedQuery:ne [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+		povertyDraw -> povertyDrawLesserPInitialMalnourishedQuery:nw [style=dotted,arrowhead=dot,color=blue,penwidth=2.0];
+		pAlwaysCompliantCategoryAddPSometimesCompliantCategory -> complianceCategoryDrawLesserPAlwaysCompliantCategoryAddPSometimesCompliantCategoryQuery:ne [style=dotted,arrowhead=dot,color=blue,penwidth=2.0];
+		complianceCategoryDraw -> complianceCategoryDrawLesserPAlwaysCompliantCategoryAddPSometimesCompliantCategoryQuery:nw [style=dotted,arrowhead=dot,color=blue,penwidth=2.0];
+		tBmodelpInitialImpoverished -> randomUnitCopyLesserQuery:ne [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+		povertyDraw -> randomUnitCopyLesserQuery:nw [style=dotted,arrowhead=dot,color=blue,penwidth=2.0];
+		tBmodelpFemale -> ageDrawGreaterorEqualPFemaleQuery:ne [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+		ageDraw -> ageDrawGreaterorEqualPFemaleQuery:nw [style=dotted,arrowhead=dot,color=blue,penwidth=2.0];
+		tBmodelpAlwaysCompliantCategory -> pAlwaysCompliantCategoryAddPSometimesCompliantCategory:nw [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+		tBmodelpSometimesCompliantCategory -> pAlwaysCompliantCategoryAddPSometimesCompliantCategory:ne [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+		pAlwaysCompliantCategoryAddPSometimesCompliantCategory -> complianceCategoryDrawGreaterorEqualPAlwaysCompliantCategoryAddPSometimesCompliantCategoryQuery:ne [style=dotted,arrowhead=dot,color=blue,penwidth=2.0];
+		complianceCategoryDraw -> complianceCategoryDrawGreaterorEqualPAlwaysCompliantCategoryAddPSometimesCompliantCategoryQuery:nw [style=dotted,arrowhead=dot,color=blue,penwidth=2.0];
+		tBmodelpInitialTBPositive -> tBStatusDrawLesserPInitialTBPositiveQuery:ne [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+		tBStatusDraw -> tBStatusDrawLesserPInitialTBPositiveQuery:nw [style=dotted,arrowhead=dot,color=blue,penwidth=2.0];
+		tBmodelpInitialActive -> activeDrawLesserPInitialActiveQuery:ne [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+		activeDraw -> activeDrawLesserPInitialActiveQuery:nw [style=dotted,arrowhead=dot,color=blue,penwidth=2.0];
+		tBmodelpAlwaysCompliantCategory -> complianceCategoryDrawGreaterorEqualPAlwaysCompliantCategoryQuery:ne [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+		complianceCategoryDraw -> complianceCategoryDrawGreaterorEqualPAlwaysCompliantCategoryQuery:nw [style=dotted,arrowhead=dot,color=blue,penwidth=2.0];
+}

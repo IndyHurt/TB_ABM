@@ -1,0 +1,4 @@
+"Disease Process, ONly HIV+ Smokers Transition to Active"
+tests "NoDetectionNoInitialActiveNoSmoker.apar"
+Count (Individual.TreatmentStatus = ClinicalTreatment) = [0,0]
+Count (Individual.TBStatus = Active) = [0,30]

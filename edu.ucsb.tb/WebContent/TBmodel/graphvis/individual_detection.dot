@@ -1,0 +1,69 @@
+digraph detection {
+
+	subgraph clustercontextKey {
+		fontname=Helvetica;
+		label="Parameters";
+		style="filled";
+		fillcolor=ghostwhite;
+		color=white;
+		labeljust=l;
+		contextOverview [style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="black",label=""];
+	}
+	subgraph clusterindividualKey {
+		fontname=Helvetica;
+		nodesep=0.1;
+		style="filled";
+		fillcolor=ghostwhite;
+		label="Individual";
+		color=white;
+		labeljust=l;
+		detectionOverview [fontname=Helvetica,style=filled,shape=point,fixedsize=true,width=.2,height=.2,fontcolor=white,color="0.333, 0.9 , 0.8",label="",URL="individual__Overview.svg"];
+
+	}
+		watchTreatmentStatus [shape=box,style="rounded,filled",fontname=Helvetica,color=black,fillcolor="0.888, 0.2, 1.0",label="Watch Treatment Status",URL="individual_watchTreatmentStatus.svg"];
+		individualtreatmentStatusRecord:individualtreatmentStatus ->  watchTreatmentStatus [color="0.888, 0.9 , 0.8",penwidth=2.0,arrowhead=vee];
+		individualcomplianceBehaviorRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualcomplianceBehavior> Compliance Behavior | {<individualcomplianceBehaviorneverCompliant> Never Compliant|<individualcomplianceBehaviorsometimesCompliant> Sometimes Compliant|<individualcomplianceBehavioralwaysCompliant> Always Compliant}}"];
+		individualtreatmentStatusRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualtreatmentStatus> Treatment Status | {<individualtreatmentStatusnoTreatment> No Treatment|<individualtreatmentStatusclinicalTreatment> Clinical Treatment|<individualtreatmentStatusnonCompliantClinicalTreatment> Non Compliant Clinical Treatment}}"];
+		tBmodelpDetection [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label=<<i>P Detection</i>>];
+		tBmodelpSomtimesCompliantwillComply [shape=none,fontsize=14,style="filled",fontname=Helvetica,color=none,fillcolor=white,label=<<i>P Somtimes Compliant will Comply</i>>];
+		individualtreatmentStatusRecord [shape=record,fontname=Helvetica,style=filled,color=none,fillcolor=white,label="{<individualtreatmentStatus> Treatment Status | {<individualtreatmentStatusnoTreatment> No Treatment|<individualtreatmentStatusclinicalTreatment> Clinical Treatment|<individualtreatmentStatusnonCompliantClinicalTreatment> Non Compliant Clinical Treatment}}"];
+
+//subgraph clusterdetection {
+	//style=filled;
+	//color=white;
+	//fillcolor="0.0, 0.0, 0.98";
+		detection [shape=box,style="rounded,filled",fontname=Helvetica,color=black,fillcolor="0.333, 0.2, 1.0",label="Detection",URL="individual_detection.svg"];
+	detection ->  treatmentStatusIdenticalNoTreatmentQuery [color="0.333, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		complianceBehaviorIdenticalNeverCompliantQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.333, 0.2, 1.0",label="Is?"];
+			complianceBehaviorIdenticalNeverCompliantQuery ->  individualtreatmentStatusRecord:individualtreatmentStatusnonCompliantClinicalTreatment [color="0.333, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		complianceBehaviorIdenticalSometimesCompliantQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.333, 0.2, 1.0",label="Is?"];
+	complianceBehaviorIdenticalSometimesCompliantQuery ->  complianceDraw [color="0.333, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		detectionDraw [shape=none,style="rounded,filled",fontname=Helvetica,color="0.333, 0.2, 1.0",label="Random Unit"];
+	detectionDraw ->  detectionDrawLesserPDetectionQuery [color="0.333, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		detectionDrawLesserPDetectionQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.333, 0.2, 1.0",label="Lesser?"];
+	detectionDrawLesserPDetectionQuery ->  complianceBehaviorIdenticalAlwaysCompliantQuery [color="0.333, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	detectionDrawLesserPDetectionQuery ->  complianceBehaviorIdenticalNeverCompliantQuery [color="0.333, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	detectionDrawLesserPDetectionQuery ->  complianceBehaviorIdenticalSometimesCompliantQuery [color="0.333, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		treatmentStatusIdenticalNoTreatmentQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.333, 0.2, 1.0",label="Is?"];
+	treatmentStatusIdenticalNoTreatmentQuery ->  detectionDraw [color="0.333, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		complianceDrawGreaterorEqualPSomtimesCompliantwillComplyQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.333, 0.2, 1.0",label="Greater or Equal?"];
+			complianceDrawGreaterorEqualPSomtimesCompliantwillComplyQuery ->  individualtreatmentStatusRecord:individualtreatmentStatusnonCompliantClinicalTreatment [color="0.333, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		complianceDrawLesserPSomtimesCompliantwillComplyQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.333, 0.2, 1.0",label="Lesser?"];
+			complianceDrawLesserPSomtimesCompliantwillComplyQuery ->  individualtreatmentStatusRecord:individualtreatmentStatusclinicalTreatment [color="0.333, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		complianceDraw [shape=none,style="rounded,filled",fontname=Helvetica,color="0.333, 0.2, 1.0",label="Random Unit"];
+	complianceDraw ->  complianceDrawGreaterorEqualPSomtimesCompliantwillComplyQuery [color="0.333, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+	complianceDraw ->  complianceDrawLesserPSomtimesCompliantwillComplyQuery [color="0.333, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+		complianceBehaviorIdenticalAlwaysCompliantQuery [shape=none,style="rounded,filled",fontname=Helvetica,color="0.333, 0.2, 1.0",label="Is?"];
+			complianceBehaviorIdenticalAlwaysCompliantQuery ->  individualtreatmentStatusRecord:individualtreatmentStatusclinicalTreatment [color="0.333, 0.9 , 0.8",penwidth=3.0,arrowsize=2.0];
+//}
+		individualcomplianceBehaviorRecord:individualcomplianceBehaviorneverCompliant -> complianceBehaviorIdenticalNeverCompliantQuery:ne [style=dotted,arrowhead=dot,color="0.333, 0.9 , 0.8",penwidth=2.0];
+		individualcomplianceBehaviorRecord:individualcomplianceBehaviorsometimesCompliant -> complianceBehaviorIdenticalSometimesCompliantQuery:ne [style=dotted,arrowhead=dot,color="0.333, 0.9 , 0.8",penwidth=2.0];
+		tBmodelpDetection -> detectionDrawLesserPDetectionQuery:ne [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+		detectionDraw -> detectionDrawLesserPDetectionQuery:nw [style=dotted,arrowhead=dot,color=blue,penwidth=2.0];
+		individualtreatmentStatusRecord:individualtreatmentStatusnoTreatment -> treatmentStatusIdenticalNoTreatmentQuery:ne [style=dotted,arrowhead=dot,color="0.333, 0.9 , 0.8",penwidth=2.0];
+		tBmodelpSomtimesCompliantwillComply -> complianceDrawGreaterorEqualPSomtimesCompliantwillComplyQuery:ne [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+		complianceDraw -> complianceDrawGreaterorEqualPSomtimesCompliantwillComplyQuery:nw [style=dotted,arrowhead=dot,color=blue,penwidth=2.0];
+		tBmodelpSomtimesCompliantwillComply -> complianceDrawLesserPSomtimesCompliantwillComplyQuery:ne [style=dotted,arrowhead=dot,color=black,penwidth=2.0];
+		complianceDraw -> complianceDrawLesserPSomtimesCompliantwillComplyQuery:nw [style=dotted,arrowhead=dot,color=blue,penwidth=2.0];
+		individualcomplianceBehaviorRecord:individualcomplianceBehavioralwaysCompliant -> complianceBehaviorIdenticalAlwaysCompliantQuery:ne [style=dotted,arrowhead=dot,color="0.333, 0.9 , 0.8",penwidth=2.0];
+}
