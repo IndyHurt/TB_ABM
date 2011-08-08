@@ -16,7 +16,7 @@
 			</arguments>
 		</buildCommand>
 		<buildCommand>
-			<name>org.eclipse.amp.escape.amf.ide.escapeBuilder3D</name>
+			<name>org.eclipse.amp.escape.amf.ide3d.escapeBuilder3D</name>
 			<arguments>
 			</arguments>
 		</buildCommand>

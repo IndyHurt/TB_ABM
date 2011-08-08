@@ -28,23 +28,23 @@ public class TBmodelGraphicsAdapter extends GraphicsAdapter {
 	private static IGraphicsAdapter singleton;
 
 	IColorProvider[] tBmodelColorProviders = new IColorProvider[]{};
-	IColorProvider[] individualColorProviders = new IColorProvider[]{IndividualStyle2DColorProvider
-			.getDefault()};
 	IColorProvider[] houseColorProviders = new IColorProvider[]{HouseStyle2DColorProvider
-			.getDefault()};
-	IColorProvider[] mapLocationColorProviders = new IColorProvider[]{MapLocationStyle2DColorProvider
 			.getDefault()};
 	IColorProvider[] workLocationColorProviders = new IColorProvider[]{WorkLocationStyle2DColorProvider
 			.getDefault()};
+	IColorProvider[] individualColorProviders = new IColorProvider[]{IndividualStyle2DColorProvider
+			.getDefault()};
+	IColorProvider[] mapLocationColorProviders = new IColorProvider[]{MapLocationStyle2DColorProvider
+			.getDefault()};
 
 	IFigureProvider[] tBmodelFigureProviders = new IFigureProvider[]{};
-	IFigureProvider[] individualFigureProviders = new IFigureProvider[]{IndividualStyle2DFigureProvider
-			.getDefault()};
 	IFigureProvider[] houseFigureProviders = new IFigureProvider[]{HouseStyle2DFigureProvider
 			.getDefault()};
-	IFigureProvider[] mapLocationFigureProviders = new IFigureProvider[]{MapLocationStyle2DFigureProvider
-			.getDefault()};
 	IFigureProvider[] workLocationFigureProviders = new IFigureProvider[]{WorkLocationStyle2DFigureProvider
+			.getDefault()};
+	IFigureProvider[] individualFigureProviders = new IFigureProvider[]{IndividualStyle2DFigureProvider
+			.getDefault()};
+	IFigureProvider[] mapLocationFigureProviders = new IFigureProvider[]{MapLocationStyle2DFigureProvider
 			.getDefault()};
 
 	/**
@@ -59,17 +59,17 @@ public class TBmodelGraphicsAdapter extends GraphicsAdapter {
 		if (type == TBmodel.class) {
 			return tBmodelColorProviders;
 		}
-		if (type == Individual.class) {
-			return individualColorProviders;
-		}
 		if (type == House.class) {
 			return houseColorProviders;
 		}
-		if (type == MapLocation.class) {
-			return mapLocationColorProviders;
-		}
 		if (type == WorkLocation.class) {
 			return workLocationColorProviders;
+		}
+		if (type == Individual.class) {
+			return individualColorProviders;
+		}
+		if (type == MapLocation.class) {
+			return mapLocationColorProviders;
 		}
 		return null;
 	}
@@ -86,17 +86,17 @@ public class TBmodelGraphicsAdapter extends GraphicsAdapter {
 		if (type == TBmodel.class) {
 			return tBmodelFigureProviders;
 		}
-		if (type == Individual.class) {
-			return individualFigureProviders;
-		}
 		if (type == House.class) {
 			return houseFigureProviders;
 		}
-		if (type == MapLocation.class) {
-			return mapLocationFigureProviders;
-		}
 		if (type == WorkLocation.class) {
 			return workLocationFigureProviders;
+		}
+		if (type == Individual.class) {
+			return individualFigureProviders;
+		}
+		if (type == MapLocation.class) {
+			return mapLocationFigureProviders;
 		}
 		return null;
 	}

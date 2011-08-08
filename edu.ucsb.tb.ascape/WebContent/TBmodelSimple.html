@@ -88,7 +88,7 @@
 				<H5>TB Avoidance Threshold  (double, default: .25)</H5>
 				<i>The level of assumed bacterial present from which the individual will attempt to avoid.</i><BR/>
 		
-				<H5>Avoid TB Locations  (boolean, default: true)</H5>
+				<H5>Avoid TB Locations  (int, default: 1)</H5>
 				<i></i><BR/>
 		
 				<H5>P Initial Impoverished  (double, default: .45)</H5>
@@ -157,14 +157,57 @@
 				<H5>Immune Clearing Impoverished Factor  (double, default: -2)</H5>
 				<i></i><BR/>
 		
-				<H5>Periods in Day  (int, default: 2)</H5>
+				<H5>Periods in Day  (int, default: 24)</H5>
 				<i></i><BR/>
 		
 				<H5>Maximum Seperation  (int, default: 100)</H5>
 				<i></i><BR/>
 		
+				<H5>P High Social Status  (double, default: 0.08)</H5>
+				<i></i><BR/>
+		
+				<H5>Next House ID  (int, default: )</H5>
+				<i></i><BR/>
+		
+				<H5>Next Work ID  (int, default: )</H5>
+				<i></i><BR/>
+		
 
 					<h2><ul>Agents</ul></h2>
+						
+							<H3>House</H3>
+							
+							<H4>Attributes</H4>
+							
+		
+				<H5>House ID  (int, default: )</H5>
+				<i></i><BR/>
+		
+
+							<H4>Behaviors</H4>
+							
+		
+				<H5>Initialize</H5>
+				<i>Initialize Initialization. Executed once at the beginning of each model run.</i><BR/>
+		
+
+						
+							<H3>Work Location</H3>
+							
+							<H4>Attributes</H4>
+							
+		
+				<H5>Work ID  (int, default: )</H5>
+				<i></i><BR/>
+		
+
+							<H4>Behaviors</H4>
+							
+		
+				<H5>Initialize</H5>
+				<i>Initialize Initialization. Executed once at the beginning of each model run.</i><BR/>
+		
+
 						
 							<H3>Individual</H3>
 							
@@ -225,6 +268,15 @@
 				<H5>Daytime  (boolean, default: )</H5>
 				<i></i><BR/>
 		
+				<H5>Social Status  (SocialStatusEnum, default: Normal)</H5>
+				<i></i><BR/>
+		
+				<H5>House ID  (int, default: )</H5>
+				<i></i><BR/>
+		
+				<H5>Work ID  (int, default: )</H5>
+				<i></i><BR/>
+		
 
 							<H4>Behaviors</H4>
 							
@@ -235,11 +287,14 @@
 				<H5>Initialize State</H5>
 				<i>Initialize State Initialization. Executed once at the beginning of each model run.</i><BR/>
 		
+				<H5>Individual Rule</H5>
+				<i>Individual Rule Rule. Executed every period.</i><BR/>
+		
 				<H5>Movement</H5>
 				<i>Movement Rule. Executed every period.</i><BR/>
 		
-				<H5>Place Movement</H5>
-				<i>Place Movement Rule. Executed every period.</i><BR/>
+				<H5>Avoidance</H5>
+				<i>Avoidance Rule. Executed every period.</i><BR/>
 		
 				<H5>Disease Process</H5>
 				<i>Disease Process Rule. Executed every period.</i><BR/>
@@ -271,8 +326,8 @@
 				<H5>Death Process</H5>
 				<i>Death Process Rule. Executed every period.</i><BR/>
 		
-				<H5>Acquire</H5>
-				<i>Acquire Rule. Executed every period.</i><BR/>
+				<H5>Transmit</H5>
+				<i>Transmit Rule. Executed every period.</i><BR/>
 		
 				<H5>Derive Bacterial Clearing Rate</H5>
 				<i>Derive Bacterial Clearing Rate.</i><BR/>
@@ -282,48 +337,20 @@
 		
 
 						
-							<H3>House</H3>
-							
-							<H4>Attributes</H4>
-							
-		
-
-							<H4>Behaviors</H4>
-							
-		
-				<H5>Initialize</H5>
-				<i>Initialize Initialization. Executed once at the beginning of each model run.</i><BR/>
-		
-
-						
 							<H3>Map Location</H3>
 							
 							<H4>Attributes</H4>
 							
 		
-				<H5>TB Bacterial Presense  (double, default: )</H5>
+				<H5>Active Site  (boolean, default: )</H5>
 				<i></i><BR/>
 		
 
 							<H4>Behaviors</H4>
 							
 		
-				<H5>Diffuse</H5>
-				<i>Diffuse.</i><BR/>
-		
-
-						
-							<H3>Work Location</H3>
-							
-							<H4>Attributes</H4>
-							
-		
-
-							<H4>Behaviors</H4>
-							
-		
-				<H5>Initialize</H5>
-				<i>Initialize Initialization. Executed once at the beginning of each model run.</i><BR/>
+				<H5>Map Location Rule</H5>
+				<i>Map Location Rule Rule. Executed every period.</i><BR/>
 		
 
 						
@@ -332,12 +359,6 @@
 					
 		
 				<H5>Village  (2-Dimensional Grid)</H5>
-				<i></i><BR/>
-		
-				<H5>Housing  (Network)</H5>
-				<i></i><BR/>
-		
-				<H5>Workplaces  (Network)</H5>
 				<i></i><BR/>
 		
 

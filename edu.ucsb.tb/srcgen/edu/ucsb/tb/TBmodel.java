@@ -238,18 +238,11 @@ public class TBmodel extends Scape
 	private double bacterialEmissionRate = .8;
 	/**
 	 * <!-- begin-user-doc -->
-	 * The level of assumed bacterial present from which the individual will attempt to avoid.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private double tBAvoidanceThreshold = .25;
-	/**
-	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private boolean avoidTBLocations = true;
+	private int avoidTBLocations = 1;
 	/**
 	 * <!-- begin-user-doc -->
 	 * 
@@ -410,7 +403,7 @@ public class TBmodel extends Scape
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private int periodsinDay = 2;
+	private int periodsinDay = 24;
 	/**
 	 * <!-- begin-user-doc -->
 	 * 
@@ -418,6 +411,27 @@ public class TBmodel extends Scape
 	 * @generated
 	 */
 	private int maximumSeperation = 100;
+	/**
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private double pHighSocialStatus = 0.08;
+	/**
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private int nextHouseID = 0;
+	/**
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private int nextWorkID = 0;
 	/**
 	 * <!-- begin-user-doc -->
 	 * The horizontal extent of the space.
@@ -439,20 +453,6 @@ public class TBmodel extends Scape
 	 * @generated
 	 */
 	private Scape village = null;
-	/**
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private Scape housing = null;
-	/**
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private Scape workplaces = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -541,22 +541,10 @@ public class TBmodel extends Scape
 		}
 	}
 
-	org.ascape.model.Scape individualScape;
 	org.ascape.model.Scape houseScape;
 	org.ascape.model.Scape workLocationScape;
+	org.ascape.model.Scape individualScape;
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * Create an instance of Individual that will be used to populate the individualScape.
-	 * Overide to customize the prototype, for example to change the views created for a member scape.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected Individual createIndividualPrototype() {
-		Individual individual = new Individual();
-		individual.setCoordinate(new Coordinate2DDiscrete(0, 0));
-		return individual;
-	}
 	/**
 	 * <!-- begin-user-doc -->
 	 * Create an instance of House that will be used to populate the houseScape.
@@ -578,7 +566,20 @@ public class TBmodel extends Scape
 	 */
 	protected WorkLocation createWorkLocationPrototype() {
 		WorkLocation workLocation = new WorkLocation();
+		workLocation.setCoordinate(new Coordinate2DDiscrete(0, 0));
 		return workLocation;
+	}
+	/**
+	 * <!-- begin-user-doc -->
+	 * Create an instance of Individual that will be used to populate the individualScape.
+	 * Overide to customize the prototype, for example to change the views created for a member scape.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected Individual createIndividualPrototype() {
+		Individual individual = new Individual();
+		individual.setCoordinate(new Coordinate2DDiscrete(0, 0));
+		return individual;
 	}
 
 	/**
@@ -621,14 +622,6 @@ public class TBmodel extends Scape
 					});
 
 		}
-		Individual individualProto = createIndividualPrototype();
-		individualScape = new Scape();
-		individualScape.setName("Individuals");
-		individualScape.setPrototypeAgent(individualProto);
-		individualScape.setExecutionOrder(Scape.RULE_ORDER);
-
-		createExtensions(individualProto);
-
 		House houseProto = createHousePrototype();
 		houseScape = new Scape();
 		houseScape.setName("Houses");
@@ -645,6 +638,14 @@ public class TBmodel extends Scape
 
 		createExtensions(workLocationProto);
 
+		Individual individualProto = createIndividualPrototype();
+		individualScape = new Scape();
+		individualScape.setName("Individuals");
+		individualScape.setPrototypeAgent(individualProto);
+		individualScape.setExecutionOrder(Scape.RULE_ORDER);
+
+		createExtensions(individualProto);
+
 		individualScape.setSize(getIndividualCount());
 		houseScape.setSize(getHouseCount());
 		workLocationScape.setSize(getWorkLocationCount());
@@ -660,16 +661,6 @@ public class TBmodel extends Scape
 		add(village);
 		org.ascape.model.Scape mapLocationScape = village;
 		createExtensions(protoMapLocation);
-		housing = new Scape(new org.ascape.model.space.Graph());
-		housing.setName("Housings");
-		add(housing);
-		workplaces = new Scape(new org.ascape.model.space.Graph());
-		workplaces.setName("Workplacess");
-		add(workplaces);
-
-		add(individualScape);
-
-		createExtensions(individualProto);
 
 		add(houseScape);
 
@@ -679,8 +670,36 @@ public class TBmodel extends Scape
 
 		createExtensions(workLocationProto);
 
+		add(individualScape);
+
+		createExtensions(individualProto);
+
 		individualProto.setHostScape(village);
 		houseProto.setHostScape(village);
+		workLocationProto.setHostScape(village);
+
+		houseScape.addStatCollector(new org.ascape.util.data.StatCollectorCond(
+				houseScape.getName() + " Population") {
+			private static final long serialVersionUID = 1L;
+			@SuppressWarnings("unused")
+			public final boolean meetsCondition(Object object) {
+				return true;
+			}
+		});
+
+		createExtensions(houseProto);
+
+		workLocationScape
+				.addStatCollector(new org.ascape.util.data.StatCollectorCond(
+						workLocationScape.getName() + " Population") {
+					private static final long serialVersionUID = 1L;
+					@SuppressWarnings("unused")
+					public final boolean meetsCondition(Object object) {
+						return true;
+					}
+				});
+
+		createExtensions(workLocationProto);
 
 		individualScape
 				.addStatCollector(new org.ascape.util.data.StatCollectorCond(
@@ -1009,28 +1028,33 @@ public class TBmodel extends Scape
 
 		createExtensions(individualProto);
 
-		houseScape.addStatCollector(new org.ascape.util.data.StatCollectorCond(
-				houseScape.getName() + " Population") {
+		houseScape.addInitialRule(new Rule("Initialize") {
 			private static final long serialVersionUID = 1L;
-			@SuppressWarnings("unused")
-			public final boolean meetsCondition(Object object) {
-				return true;
+
+			/**
+			 * <!-- begin-user-doc -->
+			 * 
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			public void execute(Agent a) {
+				((edu.ucsb.tb.House) a).intializeNonFramework();
 			}
 		});
 
-		createExtensions(houseProto);
+		workLocationScape.addInitialRule(new Rule("Initialize") {
+			private static final long serialVersionUID = 1L;
 
-		workLocationScape
-				.addStatCollector(new org.ascape.util.data.StatCollectorCond(
-						workLocationScape.getName() + " Population") {
-					private static final long serialVersionUID = 1L;
-					@SuppressWarnings("unused")
-					public final boolean meetsCondition(Object object) {
-						return true;
-					}
-				});
-
-		createExtensions(workLocationProto);
+			/**
+			 * <!-- begin-user-doc -->
+			 * 
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			public void execute(Agent a) {
+				((edu.ucsb.tb.WorkLocation) a).intializeNonFramework();
+			}
+		});
 
 		individualScape.addInitialRule(new Rule("Initial Placement") {
 			private static final long serialVersionUID = 1L;
@@ -1059,6 +1083,19 @@ public class TBmodel extends Scape
 				((edu.ucsb.tb.Individual) a).initializeState();
 			}
 		});
+		individualScape.addRule(new Rule("Individual Rule") {
+			private static final long serialVersionUID = 1L;
+
+			/**
+			 * <!-- begin-user-doc -->
+			 * 
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			public void execute(Agent a) {
+				((edu.ucsb.tb.Individual) a).individualRule();
+			}
+		});
 		individualScape.addRule(new Rule("Movement") {
 			private static final long serialVersionUID = 1L;
 
@@ -1072,7 +1109,7 @@ public class TBmodel extends Scape
 				((edu.ucsb.tb.Individual) a).movement();
 			}
 		});
-		individualScape.addRule(new Rule("Place Movement") {
+		individualScape.addRule(new Rule("Avoidance") {
 			private static final long serialVersionUID = 1L;
 
 			/**
@@ -1082,7 +1119,7 @@ public class TBmodel extends Scape
 			 * @generated
 			 */
 			public void execute(Agent a) {
-				((edu.ucsb.tb.Individual) a).placeMovement();
+				((edu.ucsb.tb.Individual) a).avoidance();
 			}
 		});
 		individualScape.addRule(new Rule("Disease Process") {
@@ -1137,7 +1174,7 @@ public class TBmodel extends Scape
 				((edu.ucsb.tb.Individual) a).deathProcess();
 			}
 		});
-		individualScape.addRule(new Rule("Acquire") {
+		individualScape.addRule(new Rule("Transmit") {
 			private static final long serialVersionUID = 1L;
 
 			/**
@@ -1147,11 +1184,10 @@ public class TBmodel extends Scape
 			 * @generated
 			 */
 			public void execute(Agent a) {
-				((edu.ucsb.tb.Individual) a).acquire();
+				((edu.ucsb.tb.Individual) a).transmit();
 			}
 		});
-
-		houseScape.addInitialRule(new Rule("Initialize") {
+		mapLocationScape.addRule(new Rule("Map Location Rule") {
 			private static final long serialVersionUID = 1L;
 
 			/**
@@ -1161,22 +1197,7 @@ public class TBmodel extends Scape
 			 * @generated
 			 */
 			public void execute(Agent a) {
-				((edu.ucsb.tb.House) a).intializeNonFramework();
-			}
-		});
-		mapLocationScape.addRule(MapLocation.DIFFUSE_RULE);
-
-		workLocationScape.addInitialRule(new Rule("Initialize") {
-			private static final long serialVersionUID = 1L;
-
-			/**
-			 * <!-- begin-user-doc -->
-			 * 
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			public void execute(Agent a) {
-				((edu.ucsb.tb.WorkLocation) a).intializeNonFramework();
+				((edu.ucsb.tb.MapLocation) a).mapLocationRule();
 			}
 		});
 		createExtensions(this);
@@ -1192,8 +1213,6 @@ public class TBmodel extends Scape
 		super.createGraphicViews();
 		createChartViews();
 		create2DViews();
-
-		createGraphViews();
 	}
 
 	/**
@@ -1212,15 +1231,6 @@ public class TBmodel extends Scape
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * Returns the Scape containing Individuals.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public org.ascape.model.Scape getIndividualScape() {
-		return individualScape;
-	}
-	/**
-	 * <!-- begin-user-doc -->
 	 * Returns the Scape containing Houses.
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1237,6 +1247,15 @@ public class TBmodel extends Scape
 	public org.ascape.model.Scape getWorkLocationScape() {
 		return workLocationScape;
 	}
+	/**
+	 * <!-- begin-user-doc -->
+	 * Returns the Scape containing Individuals.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public org.ascape.model.Scape getIndividualScape() {
+		return individualScape;
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1246,6 +1265,42 @@ public class TBmodel extends Scape
 	 */
 	protected void createChartViews() {
 		ChartView chart = new ChartView();
+
+		final TBmodel houseScape = new TBmodel();
+		houseScape.setRunner(new NonGraphicRunner());
+		House house = new House() {
+			public void requestUpdate() {
+			}
+			public TBmodel getTBmodel() {
+				return houseScape;
+			}
+		};
+		houseScape.add(house);
+		HostCell houseHost = new HostCell() {
+			public void requestUpdate() {
+			}
+		};
+		houseHost.setOccupant((CellOccupant) house);
+
+		IColorProvider houseStyle2DColorProvider = new HouseStyle2DColorProvider();
+
+		final TBmodel workLocationScape = new TBmodel();
+		workLocationScape.setRunner(new NonGraphicRunner());
+		WorkLocation workLocation = new WorkLocation() {
+			public void requestUpdate() {
+			}
+			public TBmodel getTBmodel() {
+				return workLocationScape;
+			}
+		};
+		workLocationScape.add(workLocation);
+		HostCell workLocationHost = new HostCell() {
+			public void requestUpdate() {
+			}
+		};
+		workLocationHost.setOccupant((CellOccupant) workLocation);
+
+		IColorProvider workLocationStyle2DColorProvider = new WorkLocationStyle2DColorProvider();
 
 		final TBmodel individualScape = new TBmodel();
 		individualScape.setRunner(new NonGraphicRunner());
@@ -1413,24 +1468,6 @@ public class TBmodel extends Scape
 				getInferredChartColor(individual,
 						individualStyle2DColorProvider));
 
-		final TBmodel houseScape = new TBmodel();
-		houseScape.setRunner(new NonGraphicRunner());
-		House house = new House() {
-			public void requestUpdate() {
-			}
-			public TBmodel getTBmodel() {
-				return houseScape;
-			}
-		};
-		houseScape.add(house);
-		HostCell houseHost = new HostCell() {
-			public void requestUpdate() {
-			}
-		};
-		houseHost.setOccupant((CellOccupant) house);
-
-		IColorProvider houseStyle2DColorProvider = new HouseStyle2DColorProvider();
-
 		final TBmodel mapLocationScape = new TBmodel();
 		mapLocationScape.setRunner(new NonGraphicRunner());
 		MapLocation mapLocation = new MapLocation() {
@@ -1443,24 +1480,6 @@ public class TBmodel extends Scape
 		mapLocationScape.add(mapLocation);
 
 		IColorProvider mapLocationStyle2DColorProvider = new MapLocationStyle2DColorProvider();
-
-		final TBmodel workLocationScape = new TBmodel();
-		workLocationScape.setRunner(new NonGraphicRunner());
-		WorkLocation workLocation = new WorkLocation() {
-			public void requestUpdate() {
-			}
-			public TBmodel getTBmodel() {
-				return workLocationScape;
-			}
-		};
-		workLocationScape.add(workLocation);
-		HostCell workLocationHost = new HostCell() {
-			public void requestUpdate() {
-			}
-		};
-		workLocationHost.setOccupant((CellOccupant) workLocation);
-
-		IColorProvider workLocationStyle2DColorProvider = new WorkLocationStyle2DColorProvider();
 		addView(chart);
 	}
 
@@ -1481,8 +1500,6 @@ public class TBmodel extends Scape
 	 * @generated
 	 */
 	protected void createGraphViews() {
-		housing.addView(new GraphView());
-		workplaces.addView(new GraphView());
 	}
 
 	/**
@@ -1534,11 +1551,15 @@ public class TBmodel extends Scape
 		startSimulationAgentChild(timeStep);
 
 		//A normal movable agent
-		((Individual) individualScape.getPrototypeAgent())
+		((House) houseScape.getPrototypeAgent())
 				.startSimulationAgentChild(timeStep);
 
 		//A normal movable agent
-		((House) houseScape.getPrototypeAgent())
+		((WorkLocation) workLocationScape.getPrototypeAgent())
+				.startSimulationAgentChild(timeStep);
+
+		//A normal movable agent
+		((Individual) individualScape.getPrototypeAgent())
 				.startSimulationAgentChild(timeStep);
 
 		//this is an agent that represent a cell and cannot move.
@@ -1546,27 +1567,23 @@ public class TBmodel extends Scape
 		((MapLocation) village.getPrototypeAgent())
 				.startSimulationAgentChild(timeStep);
 
-		//A normal movable agent
-		((WorkLocation) workLocationScape.getPrototypeAgent())
-				.startSimulationAgentChild(timeStep);
-
 		super.executeOnMembers();
 		calculateTimeStep(timeStep);
+
+		//A normal movable agent
+		((House) houseScape.getPrototypeAgent()).calculateTimeStep(timeStep);
+
+		//A normal movable agent
+		((WorkLocation) workLocationScape.getPrototypeAgent())
+				.calculateTimeStep(timeStep);
 
 		//A normal movable agent
 		((Individual) individualScape.getPrototypeAgent())
 				.calculateTimeStep(timeStep);
 
-		//A normal movable agent
-		((House) houseScape.getPrototypeAgent()).calculateTimeStep(timeStep);
-
 		//this is an agent that represent a cell and cannot move.
 
 		((MapLocation) village.getPrototypeAgent()).calculateTimeStep(timeStep);
-
-		//A normal movable agent
-		((WorkLocation) workLocationScape.getPrototypeAgent())
-				.calculateTimeStep(timeStep);
 
 	}
 
@@ -2180,35 +2197,12 @@ public class TBmodel extends Scape
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * Gets the TB Avoidance Threshold property for TBmodel.
-	 * @return The level of assumed bacterial present from which the individual will attempt to avoid.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public double getTBAvoidanceThreshold() {
-		return tBAvoidanceThreshold;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * Sets the TB Avoidance Threshold property for TBmodel.
-	 * The level of assumed bacterial present from which the individual will attempt to avoid.
-	 * @param _tBAvoidanceThreshold the new TB Avoidance Threshold value
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setTBAvoidanceThreshold(double _tBAvoidanceThreshold) {
-		tBAvoidanceThreshold = _tBAvoidanceThreshold;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
 	 * Gets the Avoid TB Locations property for TBmodel.
 	 * @return 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isAvoidTBLocations() {
+	public int getAvoidTBLocations() {
 		return avoidTBLocations;
 	}
 
@@ -2220,7 +2214,7 @@ public class TBmodel extends Scape
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAvoidTBLocations(boolean _avoidTBLocations) {
+	public void setAvoidTBLocations(int _avoidTBLocations) {
 		avoidTBLocations = _avoidTBLocations;
 	}
 
@@ -2796,6 +2790,75 @@ public class TBmodel extends Scape
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Gets the P High Social Status property for TBmodel.
+	 * @return 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public double getPHighSocialStatus() {
+		return pHighSocialStatus;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Sets the P High Social Status property for TBmodel.
+	 * 
+	 * @param _pHighSocialStatus the new P High Social Status value
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPHighSocialStatus(double _pHighSocialStatus) {
+		pHighSocialStatus = _pHighSocialStatus;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Gets the Next House ID property for TBmodel.
+	 * @return 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getNextHouseID() {
+		return nextHouseID;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Sets the Next House ID property for TBmodel.
+	 * 
+	 * @param _nextHouseID the new Next House ID value
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setNextHouseID(int _nextHouseID) {
+		nextHouseID = _nextHouseID;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Gets the Next Work ID property for TBmodel.
+	 * @return 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getNextWorkID() {
+		return nextWorkID;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Sets the Next Work ID property for TBmodel.
+	 * 
+	 * @param _nextWorkID the new Next Work ID value
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setNextWorkID(int _nextWorkID) {
+		nextWorkID = _nextWorkID;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * Gets the Width property for Village.
 	 * @return The horizontal extent of the space.
 	 * <!-- end-user-doc -->
@@ -2861,52 +2924,6 @@ public class TBmodel extends Scape
 	 */
 	public void setVillage(Scape _village) {
 		village = _village;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * Gets the Housing property for TBmodel.
-	 * @return 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Scape getHousing() {
-		return housing;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * Sets the Housing property for TBmodel.
-	 * 
-	 * @param _housing the new Housing value
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setHousing(Scape _housing) {
-		housing = _housing;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * Gets the Workplaces property for TBmodel.
-	 * @return 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Scape getWorkplaces() {
-		return workplaces;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * Sets the Workplaces property for TBmodel.
-	 * 
-	 * @param _workplaces the new Workplaces value
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setWorkplaces(Scape _workplaces) {
-		workplaces = _workplaces;
 	}
 
 	/**

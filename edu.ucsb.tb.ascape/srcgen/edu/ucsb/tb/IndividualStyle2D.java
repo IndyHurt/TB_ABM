@@ -46,9 +46,8 @@ public class IndividualStyle2D extends DrawFeature {
 					;
 
 					g.setColor(hIVPositiveColor);
-//					java.awt.Shape shapeMarker2 = defaultIndividualStyle
-//							.shapeMarker2();
-
+					shape = new Ellipse2D.Double(width * .25 - 1,
+							width * .25 - 1, width * .5 - 1, width * .5 - 1);
 				}
 				if (defaultIndividualStyle.getHIVStatus() == HIVStatusEnum.hIVNegative) {
 					java.awt.Color hIVNegativeColor = java.awt.Color.BLUE
@@ -56,9 +55,8 @@ public class IndividualStyle2D extends DrawFeature {
 					;
 
 					g.setColor(hIVNegativeColor);
-//					java.awt.Shape shapeMarker2 = defaultIndividualStyle
-//							.shapeMarker2();
-
+					shape = new Ellipse2D.Double(width * .25 - 1,
+							width * .25 - 1, width * .5 - 1, width * .5 - 1);
 				}
 			}
 			if (defaultIndividualStyle.getTBStatus() == TBStatusEnum.latent) {
@@ -75,9 +73,8 @@ public class IndividualStyle2D extends DrawFeature {
 					;
 
 					g.setColor(hIVPositiveColor);
-//					java.awt.Shape shapeMarker2 = defaultIndividualStyle
-//							.shapeMarker2();
-
+					shape = new Ellipse2D.Double(width * .25 - 1,
+							width * .25 - 1, width * .5 - 1, width * .5 - 1);
 				}
 				if (defaultIndividualStyle.getHIVStatus() == HIVStatusEnum.hIVNegative) {
 					java.awt.Color hIVNegativeColor = java.awt.Color.BLUE
@@ -85,9 +82,8 @@ public class IndividualStyle2D extends DrawFeature {
 					;
 
 					g.setColor(hIVNegativeColor);
-//					java.awt.Shape shapeMarker2 = defaultIndividualStyle
-//							.shapeMarker2();
-
+					shape = new Ellipse2D.Double(width * .25 - 1,
+							width * .25 - 1, width * .5 - 1, width * .5 - 1);
 				}
 			}
 			if (defaultIndividualStyle.getTBStatus() == TBStatusEnum.active) {
@@ -104,9 +100,8 @@ public class IndividualStyle2D extends DrawFeature {
 					;
 
 					g.setColor(hIVPositiveColor);
-//					java.awt.Shape shapeMarker2 = defaultIndividualStyle
-//							.shapeMarker2();
-
+					shape = new Ellipse2D.Double(width * .25 - 1,
+							width * .25 - 1, width * .5 - 1, width * .5 - 1);
 				}
 				if (defaultIndividualStyle.getHIVStatus() == HIVStatusEnum.hIVNegative) {
 					java.awt.Color hIVNegativeColor = java.awt.Color.BLUE
@@ -114,9 +109,8 @@ public class IndividualStyle2D extends DrawFeature {
 					;
 
 					g.setColor(hIVNegativeColor);
-//					java.awt.Shape shapeMarker2 = defaultIndividualStyle
-//							.shapeMarker2();
-
+					shape = new Ellipse2D.Double(width * .25 - 1,
+							width * .25 - 1, width * .5 - 1, width * .5 - 1);
 				}
 			}
 			if (defaultIndividualStyle.getTreatmentStatus() == TreatmentStatusEnum.clinicalTreatment) {

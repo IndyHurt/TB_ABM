@@ -55,7 +55,7 @@ public class MapLocation extends HostCell implements IAgentChildProvider {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private double tBBacterialPresense = 0.0;
+	private boolean activeSite = false;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -157,77 +157,6 @@ public class MapLocation extends HostCell implements IAgentChildProvider {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getNetwork() {
-		return Collections.emptyList();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private double diffuseTemp;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final Rule DIFFUSE_RULE = new ExecuteThenUpdate("Diffuse") {
-
-		/**
-		 * <!-- begin-user-doc -->
-		 * 
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		private static final long serialVersionUID = 6846144446402098983L;
-		/**
-		 * <!-- begin-user-doc -->
-		 * Calculate and store diffusion value to neighbors.
-		 * 
-		 * @param agent the playing agent
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		public void execute(Agent agent) {
-			MapLocation mapLocation = (MapLocation) agent;
-			double valueSum = 0.0f;
-			List neighbors = ((Cell) agent).findNeighbors();
-			for (Object neighbor : neighbors) {
-				MapLocation mapLocationNeighbor = (MapLocation) neighbor;
-				valueSum += mapLocationNeighbor.getTBBacterialPresense();
-			}
-			valueSum -= neighbors.size() * mapLocation.getTBBacterialPresense();
-			valueSum /= neighbors.size();
-			valueSum = mapLocation.getTBBacterialPresense() + valueSum
-					* mapLocation.getTBmodel().getBacterialDiffusionRate();
-			valueSum *= 1.0f - mapLocation.getTBmodel().getBacterialDecayRate();
-			mapLocation.diffuseTemp = valueSum;
-		}
-		/**
-		 * <!-- begin-user-doc -->
-		 * Update diffusion value. Occurs only when all diffusion has been
-		 * calculated.
-		 * 
-		 * @param agent the agent
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		public void update(Agent agent) {
-			MapLocation mapLocation = (MapLocation) agent;
-			mapLocation.setTBBacterialPresense(mapLocation.diffuseTemp);
-		}
-	};
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 
 	public void startSimulationAgentChild(int timeStep) {
 		if (timeStep == getRoot().getRunner().getEarliestPeriod()) {
@@ -252,25 +181,35 @@ public class MapLocation extends HostCell implements IAgentChildProvider {
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * Gets the TB Bacterial Presense property for Map Location.
+	 * Map Location Rule Rule. Executed every period.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void mapLocationRule() {
+		boolean _Unspecified_ = false;
+		setActiveSite(_Unspecified_);
+	}
+	/**
+	 * <!-- begin-user-doc -->
+	 * Gets the Active Site property for Map Location.
 	 * @return 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public double getTBBacterialPresense() {
-		return tBBacterialPresense;
+	public boolean isActiveSite() {
+		return activeSite;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * Sets the TB Bacterial Presense property for Map Location.
+	 * Sets the Active Site property for Map Location.
 	 * 
-	 * @param _tBBacterialPresense the new TB Bacterial Presense value
+	 * @param _activeSite the new Active Site value
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTBBacterialPresense(double _tBBacterialPresense) {
-		tBBacterialPresense = _tBBacterialPresense;
+	public void setActiveSite(boolean _activeSite) {
+		activeSite = _activeSite;
 	}
 
 	/**

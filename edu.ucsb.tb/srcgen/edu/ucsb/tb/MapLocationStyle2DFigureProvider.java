@@ -42,23 +42,34 @@ public class MapLocationStyle2DFigureProvider extends DefaultFigureProvider {
 		IFigure figure = null;
 		Color color = null;
 		MapLocation actions = (MapLocation) object;
-		MapLocation defaultTBmodelAgentStyle = actions;
-		double tBBacterialPresenseDivideActiveBacterialTransmissionRate = defaultTBmodelAgentStyle
-				.getTBBacterialPresense()
-				/ defaultTBmodelAgentStyle.getTBmodel()
-						.getActiveBacterialTransmissionRate();
+		MapLocation defaultTBmodelAgentStyle = actions; /* 
+														Evaluation:
+														Expression:
+														!defaultTBmodelAgentStyle.isActiveSite()
+														 */
+		/* 
+		Evaluation:
+		Expression:
+		defaultTBmodelAgentStyle.isActiveSite()
+		 */
+		if (!defaultTBmodelAgentStyle.isActiveSite()) {
+			if (figure == null) {
+				figure = Shapes.createRectangle();
+			}
+			color = ColorConstants.black;
 
-		if (figure == null) {
-			figure = Shapes.createRectangle();
+			figure.setBackgroundColor(color);
+			((Shape) figure).setFill(true);
 		}
-		color = new Color(
-				Display.getCurrent(),
-				(int) (0 * 255),
-				(int) (tBBacterialPresenseDivideActiveBacterialTransmissionRate * 255),
-				(int) (0 * 255));
+		if (defaultTBmodelAgentStyle.isActiveSite()) {
+			if (figure == null) {
+				figure = Shapes.createRectangle();
+			}
+			color = ColorConstants.green;
 
-		figure.setBackgroundColor(color);
-		((Shape) figure).setFill(true);
+			figure.setBackgroundColor(color);
+			((Shape) figure).setFill(true);
+		}
 		return figure;
 	}
 

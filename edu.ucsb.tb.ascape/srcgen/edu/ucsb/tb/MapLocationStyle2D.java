@@ -30,20 +30,23 @@ public class MapLocationStyle2D extends DrawFeature {
 		Shape shape = null;
 		MapLocation actions = (MapLocation) object;
 		MapLocation defaultTBmodelAgentStyle = actions;
-		double tBBacterialPresenseDivideActiveBacterialTransmissionRate = defaultTBmodelAgentStyle
-				.getTBBacterialPresense()
-				/ defaultTBmodelAgentStyle.getTBmodel()
-						.getActiveBacterialTransmissionRate();
+		if (!defaultTBmodelAgentStyle.isActiveSite()) {
+			java.awt.Color defaultTBmodelAgentColor = java.awt.Color.BLACK
 
-		java.awt.Color defaultTBmodelAgentColor = new java.awt.Color(
-				(float) 0,
-				(float) tBBacterialPresenseDivideActiveBacterialTransmissionRate,
-				(float) 0)
+			;
 
-		;
+			g.setColor(defaultTBmodelAgentColor);
+			shape = new Rectangle2D.Double(0, 0, width, height);
+			((Graphics2D) g).fill(shape);
+		}
+		if (defaultTBmodelAgentStyle.isActiveSite()) {
+			java.awt.Color colorGreen = java.awt.Color.GREEN
 
-		g.setColor(defaultTBmodelAgentColor);
-		shape = new Rectangle2D.Double(0, 0, width, height);
-		((Graphics2D) g).fill(shape);
+			;
+
+			g.setColor(colorGreen);
+			shape = new Rectangle2D.Double(0, 0, width, height);
+			((Graphics2D) g).fill(shape);
+		}
 	}
 }

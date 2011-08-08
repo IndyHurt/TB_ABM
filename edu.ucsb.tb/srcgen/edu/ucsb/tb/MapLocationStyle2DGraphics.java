@@ -49,28 +49,47 @@ public class MapLocationStyle2DGraphics extends DrawFeature {
 
 		MapLocation actions = (MapLocation) object;
 		MapLocation defaultTBmodelAgentStyle = actions;
-		double tBBacterialPresenseDivideActiveBacterialTransmissionRate = defaultTBmodelAgentStyle
-				.getTBBacterialPresense()
-				/ defaultTBmodelAgentStyle.getTBmodel()
-						.getActiveBacterialTransmissionRate();
+		/* 
+		Evaluation:
+		Expression:
+		!defaultTBmodelAgentStyle.isActiveSite()
+		 */
+		/* 
+		Evaluation:
+		Expression:
+		defaultTBmodelAgentStyle.isActiveSite()
+		 */
+		if (!defaultTBmodelAgentStyle.isActiveSite()) {
+			Color defaultTBmodelAgentColor = ColorConstants.black;
 
-		Color defaultTBmodelAgentColor = new Color(
-				Display.getCurrent(),
-				(int) (0 * 255),
-				(int) (tBBacterialPresenseDivideActiveBacterialTransmissionRate * 255),
-				(int) (0 * 255));
+			g.setForegroundColor(defaultTBmodelAgentColor);
+			g.setBackgroundColor(defaultTBmodelAgentColor);
+			shape = shape.rectangle;
+			if (shape == Shapes.oval) {
+				g.fillOval(0, 0, width, height);
+			} else if (shape == Shapes.marker) {
+				int d = (int) (width * .25 - 1);
+				int d2 = (int) (width * .5 - 1);
+				g.fillOval(d, d, d2, d2);
+			} else if (shape == Shapes.rectangle) {
+				g.fillRectangle(0, 0, width, height);
+			}
+		}
+		if (defaultTBmodelAgentStyle.isActiveSite()) {
+			Color colorGreen = ColorConstants.green;
 
-		g.setForegroundColor(defaultTBmodelAgentColor);
-		g.setBackgroundColor(defaultTBmodelAgentColor);
-		shape = shape.rectangle;
-		if (shape == Shapes.oval) {
-			g.fillOval(0, 0, width, height);
-		} else if (shape == Shapes.marker) {
-			int d = (int) (width * .25 - 1);
-			int d2 = (int) (width * .5 - 1);
-			g.fillOval(d, d, d2, d2);
-		} else if (shape == Shapes.rectangle) {
-			g.fillRectangle(0, 0, width, height);
+			g.setForegroundColor(colorGreen);
+			g.setBackgroundColor(colorGreen);
+			shape = shape.rectangle;
+			if (shape == Shapes.oval) {
+				g.fillOval(0, 0, width, height);
+			} else if (shape == Shapes.marker) {
+				int d = (int) (width * .25 - 1);
+				int d2 = (int) (width * .5 - 1);
+				g.fillOval(d, d, d2, d2);
+			} else if (shape == Shapes.rectangle) {
+				g.fillRectangle(0, 0, width, height);
+			}
 		}
 	}
 }

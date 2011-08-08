@@ -175,6 +175,27 @@ public class Individual extends CellOccupant implements IAgentChildProvider {
 	 * @generated
 	 */
 	private boolean daytime = false;
+	/**
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private SocialStatusEnum socialStatus = SocialStatusEnum.normal;
+	/**
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private int houseID = 0;
+	/**
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private int workID = 0;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -276,16 +297,6 @@ public class Individual extends CellOccupant implements IAgentChildProvider {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getNetwork() {
-		return Collections.emptyList();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 
 	public void startSimulationAgentChild(int timeStep) {
 		if (timeStep == getRoot().getRunner().getEarliestPeriod()) {
@@ -324,6 +335,57 @@ public class Individual extends CellOccupant implements IAgentChildProvider {
 			}
 			moveTo(((HostCell) initialLocation));
 		}
+		Conditional individualCopyCondition = new Conditional() {
+			private static final long serialVersionUID = 1L;
+			public boolean meetsCondition(Object individualCopyCell) {
+				individualCopyCell = ((org.ascape.model.HostCell) individualCopyCell)
+						.getOccupant();
+				if (individualCopyCell instanceof House) {
+					return true;
+				} else {
+					return false;
+				}
+			}
+		};
+		final Location individualCopyLocation = ((org.ascape.model.space.Discrete) getTBmodel()
+				.getVillage().getSpace()).findNearest(
+				((org.ascape.model.CellOccupant) this).getHostCell(),
+				individualCopyCondition, false, Double.MAX_VALUE);
+		if (individualCopyLocation != null) {
+			final House individualCopy = (House) ((org.ascape.model.HostCell) individualCopyLocation)
+					.getOccupant();
+			if (individualCopy != null) {
+				int houseIDAddZero = individualCopy.getHouseID() + 0;
+				setHouseID(houseIDAddZero);
+			}
+		}
+		Conditional individualCopyCopyCopyCopyCopyCopyCondition = new Conditional() {
+			private static final long serialVersionUID = 1L;
+			public boolean meetsCondition(
+					Object individualCopyCopyCopyCopyCopyCopyCell) {
+				individualCopyCopyCopyCopyCopyCopyCell = ((org.ascape.model.HostCell) individualCopyCopyCopyCopyCopyCopyCell)
+						.getOccupant();
+				if (individualCopyCopyCopyCopyCopyCopyCell instanceof WorkLocation) {
+					return true;
+				} else {
+					return false;
+				}
+			}
+		};
+		final Location individualCopyCopyCopyCopyCopyCopyLocation = ((org.ascape.model.space.Discrete) getTBmodel()
+				.getVillage().getSpace()).findNearest(
+				((org.ascape.model.CellOccupant) this).getHostCell(),
+				individualCopyCopyCopyCopyCopyCopyCondition, false,
+				Double.MAX_VALUE);
+		if (individualCopyCopyCopyCopyCopyCopyLocation != null) {
+			final WorkLocation individualCopyCopyCopyCopyCopyCopy = (WorkLocation) ((org.ascape.model.HostCell) individualCopyCopyCopyCopyCopyCopyLocation)
+					.getOccupant();
+			if (individualCopyCopyCopyCopyCopyCopy != null) {
+				int workIDAddZero = individualCopyCopyCopyCopyCopyCopy
+						.getWorkID() + 0;
+				setWorkID(workIDAddZero);
+			}
+		}
 	}
 	/**
 	 * <!-- begin-user-doc -->
@@ -336,6 +398,7 @@ public class Individual extends CellOccupant implements IAgentChildProvider {
 		double complianceCategoryDraw = getRandom().nextDouble();
 		double ageDraw = getRandom().nextDouble();
 		double povertyDraw = getRandom().nextDouble();
+		double statusDraw = getRandom().nextDouble();
 		if (tBStatusDraw < getTBmodel().getPInitialTBPositive()) {
 			setTBStatus(TBStatusEnum.latent);
 			double activeDraw = getRandom().nextDouble();
@@ -370,6 +433,26 @@ public class Individual extends CellOccupant implements IAgentChildProvider {
 		if (povertyDraw < getTBmodel().getPInitialMalnourished()) {
 			setNutrition(NutritionEnum.malnourished);
 		}
+		if (statusDraw < getTBmodel().getPHighSocialStatus()) {
+			setSocialStatus(SocialStatusEnum.high);
+		}
+	}
+	/**
+	 * <!-- begin-user-doc -->
+	 * Individual Rule Rule. Executed every period.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void individualRule() {
+		boolean tBStatusIdenticalActive = getTBStatus() == TBStatusEnum.active;
+		final Location individualLocation = this;
+		if (individualLocation != null) {
+			final MapLocation individual = (MapLocation) ((org.ascape.model.CellOccupant) individualLocation)
+					.getHostCell();
+			if (individual != null) {
+				individual.setActiveSite(tBStatusIdenticalActive);
+			}
+		}
 	}
 	/**
 	 * <!-- begin-user-doc -->
@@ -378,146 +461,145 @@ public class Individual extends CellOccupant implements IAgentChildProvider {
 	 * @generated
 	 */
 	public void movement() {
-		if (getTBStatus() != TBStatusEnum.dead) {
-			final Object neighboringCell = (Object) ((org.ascape.model.space.Discrete) getTBmodel()
-					.getVillage().getSpace())
-					.findRandomAvailableNeighbor(((org.ascape.model.CellOccupant) this)
-							.getHostCell());
-			if (neighboringCell != null) {
-				if (getHostScape() != ((Agent) neighboringCell).getScape()) {
-					die();
-					getTBmodel().getIndividualScape().add(this);
+		if (!isDaytime() && getTBStatus() != TBStatusEnum.dead) {
+			Conditional targetHouseCondition = new Conditional() {
+				private static final long serialVersionUID = 1L;
+				public boolean meetsCondition(Object targetHouseCell) {
+					targetHouseCell = ((org.ascape.model.HostCell) targetHouseCell)
+							.getOccupant();
+					if (targetHouseCell instanceof House) {
+						House targetHouse = (House) targetHouseCell;
+						return (targetHouse.getHouseID() == getHouseID());
+					} else {
+						return false;
+					}
 				}
-				moveTo(((HostCell) neighboringCell));
-			}
-			if (getTBmodel().isAvoidTBLocations()
-					&& (getTBStatus() != TBStatusEnum.active && getTBStatus() != TBStatusEnum.dead)) {
-				Conditional nearestTBPositiveCondition = new Conditional() {
-					private static final long serialVersionUID = 1L;
-					public boolean meetsCondition(Object nearestTBPositiveCell) {
-						nearestTBPositiveCell = nearestTBPositiveCell;
-						if (nearestTBPositiveCell instanceof MapLocation) {
-							MapLocation nearestTBPositive = (MapLocation) nearestTBPositiveCell;
-							return (nearestTBPositive.getTBBacterialPresense() > getTBmodel()
-									.getTBAvoidanceThreshold());
-						} else {
-							return false;
+			};
+			final Location targetHouseLocation = ((org.ascape.model.space.Discrete) getTBmodel()
+					.getVillage().getSpace()).findNearest(
+					((org.ascape.model.CellOccupant) this).getHostCell(),
+					targetHouseCondition, false, Double.MAX_VALUE);
+			if (targetHouseLocation != null) {
+				final House targetHouse = (House) ((org.ascape.model.HostCell) targetHouseLocation)
+						.getOccupant();
+				if (targetHouse != null) {
+					Conditional nearHouseCondition = new Conditional() {
+						private static final long serialVersionUID = 1L;
+						public boolean meetsCondition(Object nearHouseCell) {
+							nearHouseCell = nearHouseCell;
+							if (nearHouseCell instanceof MapLocation) {
+								MapLocation nearHouse = (MapLocation) nearHouseCell;
+								return (true);
+							} else {
+								return false;
+							}
+						}
+					};
+					final MapLocation nearHouse = (MapLocation) ((org.ascape.model.space.Discrete) targetHouse
+							.getTBmodel().getVillage().getSpace())
+							.findNearestAvailable(
+									((org.ascape.model.CellOccupant) targetHouse)
+											.getHostCell(), nearHouseCondition,
+									false, Double.MAX_VALUE);
+					if (nearHouse != null) {
+						if (getHostScape() != ((Agent) nearHouse).getScape()) {
+							die();
+							getTBmodel().getIndividualScape().add(this);
+						}
+						moveTo(nearHouse);
+						if (getTBStatus() == TBStatusEnum.active) {
+							nearHouse
+									.setActiveSite(getTBStatus() == TBStatusEnum.active);
 						}
 					}
-				};
-				final MapLocation nearestTBPositive = (MapLocation) ((org.ascape.model.space.Discrete) getTBmodel()
-						.getVillage().getSpace()).findNearest(
-						((org.ascape.model.CellOccupant) this).getHostCell(),
-						nearestTBPositiveCondition, false, Double.MAX_VALUE);
-				if (nearestTBPositive != null) {
-					if (getHostScape() != ((Agent) nearestTBPositive)
-							.getScape()) {
-						die();
-						getTBmodel().getIndividualScape().add(this);
+				}
+			}
+		}
+		if (isDaytime() && getTBStatus() != TBStatusEnum.dead) {
+			Conditional closetoWorkCondition = new Conditional() {
+				private static final long serialVersionUID = 1L;
+				public boolean meetsCondition(Object closetoWorkCell) {
+					closetoWorkCell = ((org.ascape.model.HostCell) closetoWorkCell)
+							.getOccupant();
+					if (closetoWorkCell instanceof WorkLocation) {
+						WorkLocation closetoWork = (WorkLocation) closetoWorkCell;
+						return (closetoWork.getWorkID() == getWorkID());
+					} else {
+						return false;
 					}
-					moveAway(nearestTBPositive);
+				}
+			};
+			final Location closetoWorkLocation = ((org.ascape.model.space.Discrete) getTBmodel()
+					.getVillage().getSpace()).findNearest(
+					((org.ascape.model.CellOccupant) this).getHostCell(),
+					closetoWorkCondition, false, Double.MAX_VALUE);
+			if (closetoWorkLocation != null) {
+				final WorkLocation closetoWork = (WorkLocation) ((org.ascape.model.HostCell) closetoWorkLocation)
+						.getOccupant();
+				if (closetoWork != null) {
+					Conditional nearWorkCondition = new Conditional() {
+						private static final long serialVersionUID = 1L;
+						public boolean meetsCondition(Object nearWorkCell) {
+							nearWorkCell = nearWorkCell;
+							if (nearWorkCell instanceof MapLocation) {
+								MapLocation nearWork = (MapLocation) nearWorkCell;
+								return (true);
+							} else {
+								return false;
+							}
+						}
+					};
+					final MapLocation nearWork = (MapLocation) ((org.ascape.model.space.Discrete) closetoWork
+							.getTBmodel().getVillage().getSpace())
+							.findNearestAvailable(
+									((org.ascape.model.CellOccupant) closetoWork)
+											.getHostCell(), nearWorkCondition,
+									false, Double.MAX_VALUE);
+					if (nearWork != null) {
+						if (getHostScape() != ((Agent) nearWork).getScape()) {
+							die();
+							getTBmodel().getIndividualScape().add(this);
+						}
+						moveTo(nearWork);
+						if (getTBStatus() == TBStatusEnum.active) {
+							nearWork.setActiveSite(getTBStatus() == TBStatusEnum.active);
+						}
+					}
 				}
 			}
 		}
 	}
 	/**
 	 * <!-- begin-user-doc -->
-	 * Place Movement Rule. Executed every period.
+	 * Avoidance Rule. Executed every period.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void placeMovement() {
-		if (getHomeSearch() == HomeSearchEnum.inProgress) {
-			Conditional foundHouseCondition = new Conditional() {
+	public void avoidance() {
+		if (getTBStatus() == TBStatusEnum.suseptible
+				&& getTBmodel().getAvoidTBLocations() == 1) {
+			Conditional activeMapLocationCondition = new Conditional() {
 				private static final long serialVersionUID = 1L;
-				public boolean meetsCondition(Object foundHouseCell) {
-					foundHouseCell = ((org.ascape.model.HostCell) foundHouseCell)
-							.getOccupant();
-					if (foundHouseCell instanceof House) {
-						return true;
+				public boolean meetsCondition(Object activeMapLocationCell) {
+					activeMapLocationCell = activeMapLocationCell;
+					if (activeMapLocationCell instanceof MapLocation) {
+						MapLocation activeMapLocation = (MapLocation) activeMapLocationCell;
+						return (activeMapLocation.isActiveSite());
 					} else {
 						return false;
 					}
 				}
 			};
-			final Location foundHouseLocation = ((org.ascape.model.space.Discrete) getTBmodel()
+			final MapLocation activeMapLocation = (MapLocation) ((org.ascape.model.space.Discrete) getTBmodel()
 					.getVillage().getSpace()).findNearest(
 					((org.ascape.model.CellOccupant) this).getHostCell(),
-					foundHouseCondition, false, Double.MAX_VALUE);
-			if (foundHouseLocation != null) {
-				final House foundHouse = (House) ((org.ascape.model.HostCell) foundHouseLocation)
-						.getOccupant();
-				if (foundHouse != null) {
-					((org.ascape.model.space.Graph) getTBmodel().getHousing()
-							.getSpace())
-							.addNeighborSafe(this, foundHouse, true);
-					setHomeSearch(HomeSearchEnum.complete);
+					activeMapLocationCondition, false, Double.MAX_VALUE);
+			if (activeMapLocation != null) {
+				if (getHostScape() != ((Agent) activeMapLocation).getScape()) {
+					die();
+					getTBmodel().getIndividualScape().add(this);
 				}
-			}
-			Conditional individualCopyCopyCondition = new Conditional() {
-				private static final long serialVersionUID = 1L;
-				public boolean meetsCondition(Object individualCopyCopyCell) {
-					individualCopyCopyCell = ((org.ascape.model.HostCell) individualCopyCopyCell)
-							.getOccupant();
-					if (individualCopyCopyCell instanceof WorkLocation) {
-						return true;
-					} else {
-						return false;
-					}
-				}
-			};
-			final Location individualCopyCopyLocation = ((org.ascape.model.space.Discrete) getTBmodel()
-					.getVillage().getSpace()).findNearest(
-					((org.ascape.model.CellOccupant) this).getHostCell(),
-					individualCopyCopyCondition, false, Double.MAX_VALUE);
-			if (individualCopyCopyLocation != null) {
-				final WorkLocation individualCopyCopy = (WorkLocation) ((org.ascape.model.HostCell) individualCopyCopyLocation)
-						.getOccupant();
-				if (individualCopyCopy != null) {
-					((org.ascape.model.space.Graph) getTBmodel()
-							.getWorkplaces().getSpace()).addNeighborSafe(this,
-							individualCopyCopy, true);
-				}
-			}
-		}
-		if (isDaytime() && getHomeSearch() == HomeSearchEnum.complete) {
-			final WorkLocation individualCopyCopyCopy = (WorkLocation) ((org.ascape.model.space.Discrete) getTBmodel()
-					.getWorkplaces().getSpace()).findRandomNeighbor(this);
-			if (individualCopyCopyCopy != null) {
-				final MapLocation individualCopyCopyCopyCopyCopy = (MapLocation) ((org.ascape.model.space.Discrete) individualCopyCopyCopy
-						.getTBmodel().getVillage().getSpace())
-						.findNearestAvailable(
-								((org.ascape.model.CellOccupant) individualCopyCopyCopy)
-										.getHostCell(), null, false,
-								getTBmodel().getMaximumSeperation());
-				if (individualCopyCopyCopyCopyCopy != null) {
-					if (getHostScape() != ((Agent) individualCopyCopyCopyCopyCopy)
-							.getScape()) {
-						die();
-						getTBmodel().getIndividualScape().add(this);
-					}
-					moveTo(individualCopyCopyCopyCopyCopy);
-				}
-			}
-		}
-		if (!isDaytime() && getHomeSearch() == HomeSearchEnum.complete) {
-			final House targetHouse = (House) ((org.ascape.model.space.Discrete) getTBmodel()
-					.getHousing().getSpace()).findRandomNeighbor(this);
-			if (targetHouse != null) {
-				final MapLocation individualCopyCopyCopyCopy = (MapLocation) ((org.ascape.model.space.Discrete) targetHouse
-						.getTBmodel().getVillage().getSpace())
-						.findNearestAvailable(
-								((org.ascape.model.CellOccupant) targetHouse)
-										.getHostCell(), null, false,
-								getTBmodel().getMaximumSeperation());
-				if (individualCopyCopyCopyCopy != null) {
-					if (getHostScape() != ((Agent) individualCopyCopyCopyCopy)
-							.getScape()) {
-						die();
-						getTBmodel().getIndividualScape().add(this);
-					}
-					moveTo(individualCopyCopyCopyCopy);
-				}
+				moveAway(activeMapLocation);
 			}
 		}
 	}
@@ -548,25 +630,6 @@ public class Individual extends CellOccupant implements IAgentChildProvider {
 			setDaysUntilRecovered(daysUntilRecoveredSubtractUnit);
 			if (getDaysUntilRecovered() == 0) {
 				setTBStatus(TBStatusEnum.suseptible);
-			}
-		}
-		if (getTBStatus() == TBStatusEnum.active) {
-			final Location individualLocation = this;
-			if (individualLocation != null) {
-				final MapLocation individual = (MapLocation) ((org.ascape.model.CellOccupant) individualLocation)
-						.getHostCell();
-				if (individual != null) {
-					double tBBacterialPresenseAddBacterialEmissionRate = individual
-							.getTBBacterialPresense()
-							+ individual.getTBmodel()
-									.getBacterialEmissionRate();
-					double minimum_TBBacterialPresenseAddBacterialEmissionRateActiveBacterialTransmissionRate_ = java.lang.Math
-							.min(tBBacterialPresenseAddBacterialEmissionRate,
-									getTBmodel()
-											.getActiveBacterialTransmissionRate());
-					individual.setTBBacterialPresense(getTBmodel()
-							.getActiveBacterialTransmissionRate());
-				}
 			}
 		}
 	}
@@ -804,19 +867,33 @@ public class Individual extends CellOccupant implements IAgentChildProvider {
 	}
 	/**
 	 * <!-- begin-user-doc -->
-	 * Acquire Rule. Executed every period.
+	 * Transmit Rule. Executed every period.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void acquire() {
-		final Location potentialDiseaseLocationLocation = this;
-		if (potentialDiseaseLocationLocation != null) {
-			final MapLocation potentialDiseaseLocation = (MapLocation) ((org.ascape.model.CellOccupant) potentialDiseaseLocationLocation)
-					.getHostCell();
-			if (potentialDiseaseLocation != null) {
-				double bacterialLoadAddTBBacterialPresense = getBacterialLoad()
-						+ potentialDiseaseLocation.getTBBacterialPresense();
-				setBacterialLoad(bacterialLoadAddTBBacterialPresense);
+	public void transmit() {
+		if (getTBStatus() == TBStatusEnum.active) {
+			Conditional neighboringIndividualsCondition = new Conditional() {
+				private static final long serialVersionUID = 1L;
+				public boolean meetsCondition(Object neighboringIndividualsCell) {
+					if (neighboringIndividualsCell instanceof Individual) {
+						return true;
+					} else {
+						return false;
+					}
+				}
+			};
+			final Individual neighboringIndividuals = (Individual) ((org.ascape.model.space.Discrete) getTBmodel()
+					.getVillage().getSpace()).findRandomNeighbor(this,
+					neighboringIndividualsCondition);
+			if (neighboringIndividuals != null) {
+				if (neighboringIndividuals.getTBStatus() == TBStatusEnum.suseptible) {
+					double bacterialLoadAddActiveBacterialTransmissionRate = neighboringIndividuals
+							.getBacterialLoad()
+							+ getTBmodel().getActiveBacterialTransmissionRate();
+					neighboringIndividuals
+							.setBacterialLoad(bacterialLoadAddActiveBacterialTransmissionRate);
+				}
 			}
 		}
 	}
@@ -1236,6 +1313,75 @@ public class Individual extends CellOccupant implements IAgentChildProvider {
 	 */
 	public void setEconomicStatus(EconomicStatusEnum _economicStatus) {
 		economicStatus = _economicStatus;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Gets the Social Status property for Individual.
+	 * @return 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SocialStatusEnum getSocialStatus() {
+		return socialStatus;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Sets the Social Status property for Individual.
+	 * 
+	 * @param _socialStatus the new Social Status value
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSocialStatus(SocialStatusEnum _socialStatus) {
+		socialStatus = _socialStatus;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Gets the House ID property for Individual.
+	 * @return 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getHouseID() {
+		return houseID;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Sets the House ID property for Individual.
+	 * 
+	 * @param _houseID the new House ID value
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setHouseID(int _houseID) {
+		houseID = _houseID;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Gets the Work ID property for Individual.
+	 * @return 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getWorkID() {
+		return workID;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Sets the Work ID property for Individual.
+	 * 
+	 * @param _workID the new Work ID value
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setWorkID(int _workID) {
+		workID = _workID;
 	}
 
 	/**

@@ -55,6 +55,14 @@ public class House extends CellOccupant implements IAgentChildProvider {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private int houseID = 0;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private List<IAgentChild> children;
 
 	/**
@@ -149,16 +157,6 @@ public class House extends CellOccupant implements IAgentChildProvider {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getNetwork() {
-		return Collections.emptyList();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 
 	public void startSimulationAgentChild(int timeStep) {
 		if (timeStep == getRoot().getRunner().getEarliestPeriod()) {
@@ -188,6 +186,7 @@ public class House extends CellOccupant implements IAgentChildProvider {
 	 * @generated
 	 */
 	public void intializeNonFramework() {
+		setHouseID(getTBmodel().getNextHouseID());
 		final Object house = (Object) ((org.ascape.model.space.Discrete) getTBmodel()
 				.getVillage().getSpace()).findRandomAvailable();
 		if (house != null) {
@@ -197,6 +196,30 @@ public class House extends CellOccupant implements IAgentChildProvider {
 			}
 			moveTo(((HostCell) house));
 		}
+		int incrementNextHouseID = getTBmodel().getNextHouseID() + 1;
+		getTBmodel().setNextHouseID(incrementNextHouseID);
+	}
+	/**
+	 * <!-- begin-user-doc -->
+	 * Gets the House ID property for House.
+	 * @return 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getHouseID() {
+		return houseID;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Sets the House ID property for House.
+	 * 
+	 * @param _houseID the new House ID value
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setHouseID(int _houseID) {
+		houseID = _houseID;
 	}
 
 	/**

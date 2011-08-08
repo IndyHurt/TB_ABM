@@ -112,10 +112,10 @@
     					<li><a href="#behaviorlink">Behaviors</a></li>
     					<li><a href="#agentslink">Agents</a>
     					<ul>
-    					<li><a href="#individuallink">Individual</a></li>
     					<li><a href="#houselink">House</a></li>
-    					<li><a href="#mapLocationlink">Map Location</a></li>
     					<li><a href="#workLocationlink">Work Location</a></li>
+    					<li><a href="#individuallink">Individual</a></li>
+    					<li><a href="#mapLocationlink">Map Location</a></li>
     					</ul></li>
     					<li><a href="#projlink">Projections</a></li>
     				</ul>    				
@@ -231,8 +231,8 @@
 						<td>.25</td></tr>
 					<tr><td colspan="3"><i>The level of assumed bacterial present from which the individual will attempt to avoid.</i></td></tr></tbody>
 					<tbody ><tr><td>Avoid TB Locations</td>
-						<td>Boolean</td>
-						<td>true</td></tr>
+						<td>Integer</td>
+						<td>1</td></tr>
 					<tr><td colspan="3"><i></i></td></tr></tbody>
 					<tbody ><tr><td>P Initial Impoverished</td>
 						<td>Real</td>
@@ -324,11 +324,23 @@
 					<tr><td colspan="3"><i></i></td></tr></tbody>
 					<tbody ><tr><td>Periods in Day</td>
 						<td>Integer</td>
-						<td>2</td></tr>
+						<td>24</td></tr>
 					<tr><td colspan="3"><i></i></td></tr></tbody>
 					<tbody ><tr><td>Maximum Seperation</td>
 						<td>Integer</td>
 						<td>100</td></tr>
+					<tr><td colspan="3"><i></i></td></tr></tbody>
+					<tbody ><tr><td>P High Social Status</td>
+						<td>Real</td>
+						<td>0.08</td></tr>
+					<tr><td colspan="3"><i></i></td></tr></tbody>
+					<tbody ><tr><td>Next House ID</td>
+						<td>Integer</td>
+						<td></td></tr>
+					<tr><td colspan="3"><i></i></td></tr></tbody>
+					<tbody ><tr><td>Next Work ID</td>
+						<td>Integer</td>
+						<td></td></tr>
 					<tr><td colspan="3"><i></i></td></tr></tbody>
 		</table>
     					<h3><a name="behaviorlink">Behaviors</a></h3>
@@ -342,6 +354,44 @@
 						</div>
     					<div id="agents">
     					<h1><a name="agentslink">Agents</a></h1>
+								<div id="agent">
+									<H2><a name="houselink"/>House</a></H2>
+									<H3>Attributes</H3>
+		<table CELLPADDING="10px" rules="groups">
+			<thead align="left"><tr><th>Name</th><th>Type</th><th>Default Value</th></tr></thead>
+					<tbody ><tr><td>House ID</td>
+						<td>Integer</td>
+						<td></td></tr>
+					<tr><td colspan="3"><i></i></td></tr></tbody>
+		</table>
+									<H3>Behaviors</H3>
+		<table CELLPADDING="10px">
+			<thead align="left"><tr><th>Act</th><th>Description</th></tr></thead>
+					<tr>
+						<td><i>Initialize</i></td>
+						<td>Initialize Initialization. Executed once at the beginning of each model run.</td>
+					</tr>
+		</table>
+								</div>
+								<div id="agent">
+									<H2><a name="workLocationlink"/>Work Location</a></H2>
+									<H3>Attributes</H3>
+		<table CELLPADDING="10px" rules="groups">
+			<thead align="left"><tr><th>Name</th><th>Type</th><th>Default Value</th></tr></thead>
+					<tbody ><tr><td>Work ID</td>
+						<td>Integer</td>
+						<td></td></tr>
+					<tr><td colspan="3"><i></i></td></tr></tbody>
+		</table>
+									<H3>Behaviors</H3>
+		<table CELLPADDING="10px">
+			<thead align="left"><tr><th>Act</th><th>Description</th></tr></thead>
+					<tr>
+						<td><i>Initialize</i></td>
+						<td>Initialize Initialization. Executed once at the beginning of each model run.</td>
+					</tr>
+		</table>
+								</div>
 								<div id="agent">
 									<H2><a name="individuallink"/>Individual</a></H2>
 									<H3>Attributes</H3>
@@ -419,6 +469,18 @@
 						<td>Boolean</td>
 						<td></td></tr>
 					<tr><td colspan="3"><i></i></td></tr></tbody>
+					<tbody ><tr><td>Social Status</td>
+						<td>Symbol</td>
+						<td>Normal</td></tr>
+					<tr><td colspan="3"><i></i></td></tr></tbody>
+					<tbody ><tr><td>House ID</td>
+						<td>Integer</td>
+						<td></td></tr>
+					<tr><td colspan="3"><i></i></td></tr></tbody>
+					<tbody ><tr><td>Work ID</td>
+						<td>Integer</td>
+						<td></td></tr>
+					<tr><td colspan="3"><i></i></td></tr></tbody>
 		</table>
 									<H3>Behaviors</H3>
 		<table CELLPADDING="10px">
@@ -432,12 +494,16 @@
 						<td>Initialize State Initialization. Executed once at the beginning of each model run.</td>
 					</tr>
 					<tr>
+						<td><i>Individual Rule</i></td>
+						<td>Individual Rule Rule. Executed every period.</td>
+					</tr>
+					<tr>
 						<td><i>Movement</i></td>
 						<td>Movement Rule. Executed every period.</td>
 					</tr>
 					<tr>
-						<td><i>Place Movement</i></td>
-						<td>Place Movement Rule. Executed every period.</td>
+						<td><i>Avoidance</i></td>
+						<td>Avoidance Rule. Executed every period.</td>
 					</tr>
 					<tr>
 						<td><i>Disease Process</i></td>
@@ -480,8 +546,8 @@
 						<td>Death Process Rule. Executed every period.</td>
 					</tr>
 					<tr>
-						<td><i>Acquire</i></td>
-						<td>Acquire Rule. Executed every period.</td>
+						<td><i>Transmit</i></td>
+						<td>Transmit Rule. Executed every period.</td>
 					</tr>
 					<tr>
 						<td><i>Derive Bacterial Clearing Rate</i></td>
@@ -494,27 +560,12 @@
 		</table>
 								</div>
 								<div id="agent">
-									<H2><a name="houselink"/>House</a></H2>
-									<H3>Attributes</H3>
-		<table CELLPADDING="10px" rules="groups">
-			<thead align="left"><tr><th>Name</th><th>Type</th><th>Default Value</th></tr></thead>
-		</table>
-									<H3>Behaviors</H3>
-		<table CELLPADDING="10px">
-			<thead align="left"><tr><th>Act</th><th>Description</th></tr></thead>
-					<tr>
-						<td><i>Initialize</i></td>
-						<td>Initialize Initialization. Executed once at the beginning of each model run.</td>
-					</tr>
-		</table>
-								</div>
-								<div id="agent">
 									<H2><a name="mapLocationlink"/>Map Location</a></H2>
 									<H3>Attributes</H3>
 		<table CELLPADDING="10px" rules="groups">
 			<thead align="left"><tr><th>Name</th><th>Type</th><th>Default Value</th></tr></thead>
-					<tbody ><tr><td>TB Bacterial Presense</td>
-						<td>Real</td>
+					<tbody ><tr><td>Active Site</td>
+						<td>Boolean</td>
 						<td></td></tr>
 					<tr><td colspan="3"><i></i></td></tr></tbody>
 		</table>
@@ -522,23 +573,8 @@
 		<table CELLPADDING="10px">
 			<thead align="left"><tr><th>Act</th><th>Description</th></tr></thead>
 					<tr>
-						<td><i>Diffuse</i></td>
-						<td>Diffuse.</td>
-					</tr>
-		</table>
-								</div>
-								<div id="agent">
-									<H2><a name="workLocationlink"/>Work Location</a></H2>
-									<H3>Attributes</H3>
-		<table CELLPADDING="10px" rules="groups">
-			<thead align="left"><tr><th>Name</th><th>Type</th><th>Default Value</th></tr></thead>
-		</table>
-									<H3>Behaviors</H3>
-		<table CELLPADDING="10px">
-			<thead align="left"><tr><th>Act</th><th>Description</th></tr></thead>
-					<tr>
-						<td><i>Initialize</i></td>
-						<td>Initialize Initialization. Executed once at the beginning of each model run.</td>
+						<td><i>Map Location Rule</i></td>
+						<td>Map Location Rule Rule. Executed every period.</td>
 					</tr>
 		</table>
 								</div>
@@ -551,16 +587,6 @@
 						<td><i>Village</i></td>
 						<td></td>
 						<td>2-Dimensional Grid</td>
-					</tr>
-					<tr>
-						<td><i>Housing</i></td>
-						<td></td>
-						<td>Network</td>
-					</tr>
-					<tr>
-						<td><i>Workplaces</i></td>
-						<td></td>
-						<td>Network</td>
 					</tr>
 		</table>
 					</div>			    			

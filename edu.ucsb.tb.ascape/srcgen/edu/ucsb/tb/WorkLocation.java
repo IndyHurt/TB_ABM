@@ -37,6 +37,14 @@ public class WorkLocation extends CellOccupant {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private int workID = 0;
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * Constructs a new Work Location.
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -114,16 +122,6 @@ public class WorkLocation extends CellOccupant {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getNetwork() {
-		return Collections.emptyList();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public Color getColor() {
 		return Color.LIGHT_GRAY;
 	}
@@ -134,6 +132,7 @@ public class WorkLocation extends CellOccupant {
 	 * @generated
 	 */
 	public void intializeNonFramework() {
+		setWorkID(getTBmodel().getNextWorkID());
 		final Object workLocation = (Object) ((org.ascape.model.space.Discrete) getTBmodel()
 				.getVillage().getSpace()).findRandomAvailable();
 		if (workLocation != null) {
@@ -143,6 +142,31 @@ public class WorkLocation extends CellOccupant {
 			}
 			moveTo(((HostCell) workLocation));
 		}
+		int incrementNextWorkID = getTBmodel().getNextWorkID() + 1;
+
+		getTBmodel().setNextWorkID(incrementNextWorkID);
+	}
+	/**
+	 * <!-- begin-user-doc -->
+	 * Gets the Work ID property for Work Location.
+	 * @return 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getWorkID() {
+		return workID;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Sets the Work ID property for Work Location.
+	 * 
+	 * @param _workID the new Work ID value
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setWorkID(int _workID) {
+		workID = _workID;
 	}
 
 	/**

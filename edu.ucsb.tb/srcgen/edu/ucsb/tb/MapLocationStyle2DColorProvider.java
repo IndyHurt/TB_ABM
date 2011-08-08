@@ -45,16 +45,22 @@ public class MapLocationStyle2DColorProvider implements IColorProvider {
 
 		MapLocation actions = (MapLocation) object;
 		MapLocation defaultTBmodelAgentStyle = actions;
-		double tBBacterialPresenseDivideActiveBacterialTransmissionRate = defaultTBmodelAgentStyle
-				.getTBBacterialPresense()
-				/ defaultTBmodelAgentStyle.getTBmodel()
-						.getActiveBacterialTransmissionRate();
-
-		fillColor = new Color(
-				Display.getCurrent(),
-				(int) (0 * 255),
-				(int) (tBBacterialPresenseDivideActiveBacterialTransmissionRate * 255),
-				(int) (0 * 255));
+		/* 
+		Evaluation:
+		Expression:
+		!defaultTBmodelAgentStyle.isActiveSite()
+		 */
+		/* 
+		Evaluation:
+		Expression:
+		defaultTBmodelAgentStyle.isActiveSite()
+		 */
+		if (!defaultTBmodelAgentStyle.isActiveSite()) {
+			fillColor = ColorConstants.black;
+		}
+		if (defaultTBmodelAgentStyle.isActiveSite()) {
+			fillColor = ColorConstants.green;
+		}
 		if (fill) {
 			return fillColor;
 		} else {
