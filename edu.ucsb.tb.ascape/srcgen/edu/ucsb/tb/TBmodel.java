@@ -221,13 +221,6 @@ public class TBmodel extends Scape {
 	private double bacterialEmissionRate = .8;
 	/**
 	 * <!-- begin-user-doc -->
-	 * The level of assumed bacterial present from which the individual will attempt to avoid.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private double tBAvoidanceThreshold = .25;
-	/**
-	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -422,6 +415,34 @@ public class TBmodel extends Scape {
 	 * @generated
 	 */
 	private int nextWorkID = 0;
+	/**
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private String modelName = "";
+	/**
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private double hIVPrevalenceFemalebyAgeFactor = 1.0;
+	/**
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private double hIVPrevalenceMalebyAgeFactor = 1.0;
+	/**
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private double smokingPrevelanceMalebyAgeFactor = 1.0;
 	/**
 	 * <!-- begin-user-doc -->
 	 * The horizontal extent of the space.
@@ -2233,29 +2254,6 @@ public class TBmodel extends Scape {
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * Gets the TB Avoidance Threshold property for TBmodel.
-	 * @return The level of assumed bacterial present from which the individual will attempt to avoid.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public double getTBAvoidanceThreshold() {
-		return tBAvoidanceThreshold;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * Sets the TB Avoidance Threshold property for TBmodel.
-	 * The level of assumed bacterial present from which the individual will attempt to avoid.
-	 * @param _tBAvoidanceThreshold the new TB Avoidance Threshold value
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setTBAvoidanceThreshold(double _tBAvoidanceThreshold) {
-		tBAvoidanceThreshold = _tBAvoidanceThreshold;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
 	 * Gets the Avoid TB Locations property for TBmodel.
 	 * @return 
 	 * <!-- end-user-doc -->
@@ -2914,6 +2912,101 @@ public class TBmodel extends Scape {
 	 */
 	public void setNextWorkID(int _nextWorkID) {
 		nextWorkID = _nextWorkID;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Gets the Model Name property for TBmodel.
+	 * @return 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getModelName() {
+		return modelName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Sets the Model Name property for TBmodel.
+	 * 
+	 * @param _modelName the new Model Name value
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setModelName(String _modelName) {
+		modelName = _modelName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Gets the HIV Prevalence Female by Age Factor property for TBmodel.
+	 * @return 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public double getHIVPrevalenceFemalebyAgeFactor() {
+		return hIVPrevalenceFemalebyAgeFactor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Sets the HIV Prevalence Female by Age Factor property for TBmodel.
+	 * 
+	 * @param _hIVPrevalenceFemalebyAgeFactor the new HIV Prevalence Female by Age Factor value
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setHIVPrevalenceFemalebyAgeFactor(
+			double _hIVPrevalenceFemalebyAgeFactor) {
+		hIVPrevalenceFemalebyAgeFactor = _hIVPrevalenceFemalebyAgeFactor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Gets the HIV Prevalence Male by Age Factor property for TBmodel.
+	 * @return 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public double getHIVPrevalenceMalebyAgeFactor() {
+		return hIVPrevalenceMalebyAgeFactor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Sets the HIV Prevalence Male by Age Factor property for TBmodel.
+	 * 
+	 * @param _hIVPrevalenceMalebyAgeFactor the new HIV Prevalence Male by Age Factor value
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setHIVPrevalenceMalebyAgeFactor(
+			double _hIVPrevalenceMalebyAgeFactor) {
+		hIVPrevalenceMalebyAgeFactor = _hIVPrevalenceMalebyAgeFactor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Gets the Smoking Prevelance Male by Age Factor property for TBmodel.
+	 * @return 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public double getSmokingPrevelanceMalebyAgeFactor() {
+		return smokingPrevelanceMalebyAgeFactor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Sets the Smoking Prevelance Male by Age Factor property for TBmodel.
+	 * 
+	 * @param _smokingPrevelanceMalebyAgeFactor the new Smoking Prevelance Male by Age Factor value
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSmokingPrevelanceMalebyAgeFactor(
+			double _smokingPrevelanceMalebyAgeFactor) {
+		smokingPrevelanceMalebyAgeFactor = _smokingPrevelanceMalebyAgeFactor;
 	}
 
 	/**

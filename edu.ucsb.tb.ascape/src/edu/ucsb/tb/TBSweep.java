@@ -14,6 +14,7 @@ public class TBSweep extends TBmodel {
 	public void createViews() {
 		 super.createViews();
 		DataOutputView output;
+		
 		try {
 			output = new DataOutputView(new File(
 					"/Users/milesparker/git/TB_ABM/edu.ucsb.tb/results/Data.txt"));

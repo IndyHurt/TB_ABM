@@ -532,7 +532,8 @@ public class Individual extends CellOccupant {
 	 * @generated
 	 */
 	public void avoidance() {
-		if (getTBStatus() == TBStatusEnum.suseptible && false) {
+		if (getTBStatus() == TBStatusEnum.suseptible
+				&& getTBmodel().getAvoidTBLocations() == 1) {
 			Conditional activeMapLocationCondition = new Conditional() {
 				private static final long serialVersionUID = 1L;
 				public boolean meetsCondition(Object activeMapLocationCell) {
@@ -782,13 +783,29 @@ public class Individual extends CellOccupant {
 	public void watchAgeIndex() {
 		double hIVDraw = getRandom().nextDouble();
 
+		if (getGender() == GenderEnum.female) {
+			double item_HIVPrevalenceFemalebyAgeIndexAgeIndex_ = getTBmodel()
+					.getHIVPrevalenceFemalebyAgeIndex()[getAgeIndex()]
+
+			;
+
+			double factorHIVPrevalenceFemalebyAge = item_HIVPrevalenceFemalebyAgeIndexAgeIndex_
+					* getTBmodel().getHIVPrevalenceFemalebyAgeFactor();
+
+			if (hIVDraw < factorHIVPrevalenceFemalebyAge) {
+				setHIVStatus(HIVStatusEnum.hIVPositive);
+			}
+		}
 		if (getGender() == GenderEnum.male) {
 			double item_HIVPrevalenceMalebyAgeIndexAgeIndex_ = getTBmodel()
 					.getHIVPrevalenceMalebyAgeIndex()[getAgeIndex()]
 
 			;
 
-			if (hIVDraw < item_HIVPrevalenceMalebyAgeIndexAgeIndex_) {
+			double item_HIVPrevalenceMalebyAgeIndexAgeIndex_MultiplyHIVPrevalenceMalebyAgeFactor = item_HIVPrevalenceMalebyAgeIndexAgeIndex_
+					* getTBmodel().getHIVPrevalenceMalebyAgeFactor();
+
+			if (hIVDraw < item_HIVPrevalenceMalebyAgeIndexAgeIndex_MultiplyHIVPrevalenceMalebyAgeFactor) {
 				setHIVStatus(HIVStatusEnum.hIVPositive);
 			}
 		}
@@ -798,9 +815,12 @@ public class Individual extends CellOccupant {
 
 			;
 
+			double item_SmokingPrevelanceMalebyAgeIndexAgeIndex_MultiplySmokingPrevelanceMalebyAgeFactor = item_SmokingPrevelanceMalebyAgeIndexAgeIndex_
+					* getTBmodel().getSmokingPrevelanceMalebyAgeFactor();
+
 			double smokingDraw = getRandom().nextDouble();
 
-			if (smokingDraw < item_SmokingPrevelanceMalebyAgeIndexAgeIndex_) {
+			if (smokingDraw < smokingDraw) {
 				setSmoking(SmokingEnum.smoker);
 			}
 		}
